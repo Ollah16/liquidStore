@@ -15,6 +15,7 @@ const NavIndex = () => {
         const handleNavEffect = () => {
             const currentScroll = window.pageYOffset;
             const isScrollingDown = prevScroll < currentScroll;
+            const mdAbove = currentInnerWidth > 768;
 
             dispatch(toggleLoginBox(false));
             dispatch(toggleSearch(false));
@@ -28,8 +29,7 @@ const NavIndex = () => {
 
         window.addEventListener('scroll', handleNavEffect);
         return () => window.removeEventListener('scroll', handleNavEffect);
-
-    }, [prevScroll, mdAbove, dispatch]);
+    }, [prevScroll, currentInnerWidth, dispatch]);
 
     useEffect(() => {
 
