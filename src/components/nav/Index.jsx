@@ -19,7 +19,7 @@ const NavIndex = () => {
             dispatch(toggleSearch(false));
 
             if (navRef.current) {
-                navRef.current.style.top = isScrollingDown ? '-500px' : '0px';
+                navRef.current.style.top = isScrollingDown ? '-200px' : '0px';
             }
 
             setPrevScroll(currentScroll);
