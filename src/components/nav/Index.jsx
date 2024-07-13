@@ -13,7 +13,7 @@ const NavIndex = () => {
     useEffect(() => {
         const handleNavEffect = () => {
             const currentScroll = window.pageYOffset;
-            const isScrollingDown = (prevScroll + 50) < currentScroll;
+            const isScrollingDown = (prevScroll + 5) < currentScroll;
 
             dispatch(toggleLoginBox(false));
             dispatch(toggleSearch(false));
