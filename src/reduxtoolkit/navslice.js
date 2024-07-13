@@ -58,10 +58,10 @@ const navSlice = createSlice({
             state.currentMenuTitle = menuContent[0].title;
             state.currentMenuSubTitle = menuContent[0].subTitle;
         },
-        toggleSearch(state) {
+        toggleSearch(state, action) {
             state.isLoginDropDown = false;
             state.isMenu = false;
-            state.isSearch = !state.isSearch;
+            state.isSearch = action.payload;
         },
         getClickedMenu(state, action) {
             const clickedMenu = state.menuContent.find(menu => menu.id === Number(action.payload));

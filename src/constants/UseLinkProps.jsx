@@ -34,7 +34,6 @@ const UseLinkProps = () => {
             link: '/',
             // aria_label: 'More about our app',
         }
-
     }
 
     return linkProps

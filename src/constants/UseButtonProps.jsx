@@ -28,7 +28,7 @@ const ButtonProps = () => {
             searchBtn: {
                 icon: isSearch ? < XMarkIcon className="size-5" /> : <MagnifyingGlassIcon className='rotate-[90deg] size-5' />,
                 title: isSearch ? 'Cancel' : 'Search',
-                clickAction: () => dispatch(toggleSearch()),
+                clickAction: () => dispatch(toggleSearch(!isSearch)),
                 aria_label: isSearch ? 'close search' : 'open search',
                 className: `md:w-[120px] w-[80px] ${isSearch ? 'bg-white text-theme' : 'bg-theme text-white'} justify-center px-3 space-x-2 font-semibold md:text-lg text-sm md:flex md:flex-row flex flex-col items-center transition-colors duration-200 h-full ease-in-out hover:bg-white hover:text-theme`
             },
