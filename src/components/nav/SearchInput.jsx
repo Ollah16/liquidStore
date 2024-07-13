@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getInput } from '../../reduxtoolkit/navslice'
 import { useEffect } from 'react'
@@ -14,31 +14,31 @@ const SearchInput = React.memo(({ searchClass }) => {
     const [index, setIndex] = useState(0);
     const [charIndex, setCharIndex] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
+    const intervalRef = useRef(null);
 
     useEffect(() => {
-
         const handleSearchOptions = () => {
-            if (!isDeleting) {
-                if (charIndex < searchOptions[index].length) {
-                    setOption((prev) => prev + searchOptions[index][charIndex]);
-                    setCharIndex((prev) => prev + 1);
-                } else {
-                    setTimeout(() => setIsDeleting(true), 1000);
-                }
-            } else {
+            if (isDeleting) {
                 if (charIndex > 0) {
-                    setOption((prev) => prev.slice(0, -1));
-                    setCharIndex((prev) => prev - 1);
+                    setOption(prev => prev.slice(0, -1));
+                    setCharIndex(prev => prev - 1);
                 } else {
                     setIsDeleting(false);
-                    setIndex((prev) => (prev + 1) % searchOptions.length);
+                    setIndex(prev => (prev + 1) % searchOptions.length);
+                }
+            } else {
+                if (charIndex < searchOptions[index].length) {
+                    setOption(prev => prev + searchOptions[index][charIndex]);
+                    setCharIndex(prev => prev + 1);
+                } else {
+                    setTimeout(() => setIsDeleting(true), 1000);
                 }
             }
         };
 
-        const interval = setInterval(handleSearchOptions, 100);
+        intervalRef.current = setInterval(handleSearchOptions, 100);
 
-        return () => clearInterval(interval);
+        return () => clearInterval(intervalRef.current);
     }, [charIndex, isDeleting, searchOptions, index]);
 
     return (

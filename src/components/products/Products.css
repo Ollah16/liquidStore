@@ -1,197 +1,401 @@
-.lichild0 {
-    transform: translateX(0px);
-}
+@media (min-width: 764px) {
 
-.lichild1 {
-    transform: translateX(300px);
-}
-
-.lichild2 {
-    transform: translateX(600px);
-}
-
-.lichild3 {
-    transform: translateX(900px);
-}
-
-.lichild4 {
-    transform: translateX(1200px);
-}
-
-.lichild5 {
-    transform: translateX(1500px);
-}
-
-.lichild6 {
-    transform: translateX(1800px);
-}
-
-.lichild7 {
-    transform: translateX(2100px);
-}
-
-
-
-
-@keyframes slideIndex0 {
-    0% {
+    .lichild0 {
         transform: translateX(0px);
     }
 
-    100% {
-        transform: translateX(-300px);
+    .lichild1 {
+        transform: translateX(320px);
+    }
+
+    .lichild2 {
+        transform: translateX(640px);
+    }
+
+    .lichild3 {
+        transform: translateX(960px);
+    }
+
+    .lichild4 {
+        transform: translateX(1280px);
+    }
+
+    .lichild5 {
+        transform: translateX(1600px);
+    }
+
+    .lichild6 {
+        transform: translateX(1920px);
+    }
+
+    .lichild7 {
+        transform: translateX(2240px);
     }
 
 }
 
-@keyframes slideIndexI {
-    0% {
-        transform: translateX(300px);
+
+@media (max-width: 764px) {
+
+    .lichild0 {
+        transform: translateX(0%);
     }
 
-    100% {
-        transform: translateX(0px);
-    }
-}
-
-@keyframes slideIndexII {
-    0% {
-        transform: translateX(600px);
+    .lichild1 {
+        transform: translateX(100%);
     }
 
-    100% {
-        transform: translateX(300px);
-    }
-}
-
-@keyframes slideIndexIII {
-    0% {
-        transform: translateX(900px);
+    .lichild2 {
+        transform: translateX(200%);
     }
 
-    100% {
-        transform: translateX(600px);
-    }
-}
-
-@keyframes slideIndexIV {
-    0% {
-        transform: translateX(1200px);
+    .lichild3 {
+        transform: translateX(300%);
     }
 
-    100% {
-        transform: translateX(900px);
-    }
-}
-
-@keyframes slideIndexV {
-    0% {
-        transform: translateX(1500px);
+    .lichild4 {
+        transform: translateX(400%);
     }
 
-    100% {
-        transform: translateX(1200px);
-    }
-}
-
-@keyframes slideIndexVI {
-    0% {
-        transform: translateX(1800px);
+    .lichild5 {
+        transform: translateX(500%);
     }
 
-    100% {
-        transform: translateX(1500px);
-    }
-}
-
-@keyframes slideIndexVII {
-    0% {
-        transform: translateX(-300px);
+    .lichild6 {
+        transform: translateX(600%);
     }
 
-    100% {
-        transform: translateX(-600px);
-    }
-}
-
-
-@keyframes revSlideIndex0 {
-    0% {
-        transform: translateX(0px);
-    }
-
-    100% {
-        transform: translateX(300px);
+    .lichild7 {
+        transform: translateX(700%);
     }
 
 }
 
-@keyframes revSlideIndexI {
-    0% {
-        transform: translateX(300px);
+
+@media (min-width: 764px) {
+    @keyframes slideIndex0 {
+        0% {
+            transform: translateX(0px);
+        }
+
+        100% {
+            transform: translateX(-320px);
+        }
+
     }
 
-    100% {
-        transform: translateX(600px);
+    @keyframes slideIndex1 {
+        0% {
+            transform: translateX(320px);
+        }
+
+        100% {
+            transform: translateX(0px);
+        }
+    }
+
+    @keyframes slideIndex2 {
+        0% {
+            transform: translateX(640px);
+        }
+
+        100% {
+            transform: translateX(320px);
+        }
+    }
+
+    @keyframes slideIndex3 {
+        0% {
+            transform: translateX(960px);
+        }
+
+        100% {
+            transform: translateX(640px);
+        }
+    }
+
+    @keyframes slideIndex4 {
+        0% {
+            transform: translateX(1280px);
+        }
+
+        100% {
+            transform: translateX(960px);
+        }
+    }
+
+    @keyframes slideIndex5 {
+        0% {
+            transform: translateX(1600px);
+        }
+
+        100% {
+            transform: translateX(1280px);
+        }
+    }
+
+    @keyframes slideIndex6 {
+        0% {
+            transform: translateX(1920px);
+        }
+
+        100% {
+            transform: translateX(1600px);
+        }
+    }
+
+    @keyframes slideIndex7 {
+        0% {
+            transform: translateX(-320px);
+        }
+
+        100% {
+            transform: translateX(-640px);
+        }
+    }
+
+
+    @keyframes revSlideIndex0 {
+        0% {
+            transform: translateX(0px);
+        }
+
+        100% {
+            transform: translateX(320px);
+        }
+
+    }
+
+    @keyframes revSlideIndex1 {
+        0% {
+            transform: translateX(320px);
+        }
+
+        100% {
+            transform: translateX(640px);
+        }
+    }
+
+    @keyframes revSlideIndex2 {
+        0% {
+            transform: translateX(640px);
+        }
+
+        100% {
+            transform: translateX(960px);
+        }
+    }
+
+    @keyframes revSlideIndex3 {
+        0% {
+            transform: translateX(960px);
+        }
+
+        100% {
+            transform: translateX(1280px);
+        }
+    }
+
+    @keyframes revSlideIndex4 {
+        0% {
+            transform: translateX(1280px);
+        }
+
+        100% {
+            transform: translateX(1600px);
+        }
+    }
+
+    @keyframes revSlideIndex5 {
+        0% {
+            transform: translateX(1600px);
+        }
+
+        100% {
+            transform: translateX(1920px);
+        }
+    }
+
+    @keyframes revSlideIndex6 {
+        0% {
+            transform: translateX(1920px);
+        }
+
+        100% {
+            transform: translateX(2240px);
+        }
+    }
+
+    @keyframes revSlideIndex7 {
+        0% {
+            transform: translateX(-320px);
+        }
+
+        100% {
+            transform: translateX(0px);
+        }
     }
 }
 
-@keyframes revSlideIndexII {
-    0% {
-        transform: translateX(600px);
+@media (max-width: 764px) {
+    @keyframes slide0 {
+        0% {
+            transform: translateX(0%);
+        }
+
+        100% {
+            transform: translateX(-100%);
+        }
+
     }
 
-    100% {
-        transform: translateX(900px);
-    }
-}
+    @keyframes slide1 {
+        0% {
+            transform: translateX(100%);
+        }
 
-@keyframes revSlideIndexIII {
-    0% {
-        transform: translateX(900px);
-    }
-
-    100% {
-        transform: translateX(1200px);
-    }
-}
-
-@keyframes revSlideIndexIV {
-    0% {
-        transform: translateX(1200px);
+        100% {
+            transform: translateX(0%);
+        }
     }
 
-    100% {
-        transform: translateX(1500px);
-    }
-}
+    @keyframes slide2 {
+        0% {
+            transform: translateX(200%);
+        }
 
-@keyframes revSlideIndexV {
-    0% {
-        transform: translateX(1500px);
-    }
-
-    100% {
-        transform: translateX(1800px);
-    }
-}
-
-@keyframes revSlideIndexVI {
-    0% {
-        transform: translateX(1800px);
+        100% {
+            transform: translateX(100%);
+        }
     }
 
-    100% {
-        transform: translateX(2100px);
-    }
-}
+    @keyframes slide3 {
+        0% {
+            transform: translateX(300%);
+        }
 
-@keyframes revSlideIndexVII {
-    0% {
-        transform: translateX(-300px);
+        100% {
+            transform: translateX(200%);
+        }
     }
 
-    100% {
-        transform: translateX(0px);
+    @keyframes slide4 {
+        0% {
+            transform: translateX(400%);
+        }
+
+        100% {
+            transform: translateX(300%);
+        }
+    }
+
+    @keyframes slide5 {
+        0% {
+            transform: translateX(500%);
+        }
+
+        100% {
+            transform: translateX(400%);
+        }
+    }
+
+    @keyframes slide6 {
+        0% {
+            transform: translateX(600%);
+        }
+
+        100% {
+            transform: translateX(500%);
+        }
+    }
+
+    @keyframes slide7 {
+        0% {
+            transform: translateX(700%);
+        }
+
+        100% {
+            transform: translateX(600%);
+        }
+    }
+
+    @keyframes revSlide0 {
+        0% {
+            transform: translateX(0%);
+        }
+
+        100% {
+            transform: translateX(100%);
+        }
+    }
+
+    @keyframes revSlide1 {
+        0% {
+            transform: translateX(100%);
+        }
+
+        100% {
+            transform: translateX(200%);
+        }
+    }
+
+    @keyframes revSlide2 {
+        0% {
+            transform: translateX(200%);
+        }
+
+        100% {
+            transform: translateX(300%);
+        }
+    }
+
+    @keyframes revSlide3 {
+        0% {
+            transform: translateX(300%);
+        }
+
+        100% {
+            transform: translateX(400%);
+        }
+    }
+
+    @keyframes revSlide4 {
+        0% {
+            transform: translateX(500%);
+        }
+
+        100% {
+            transform: translateX(600%);
+        }
+    }
+
+    @keyframes revSlide5 {
+        0% {
+            transform: translateX(600%);
+        }
+
+        100% {
+            transform: translateX(500%);
+        }
+    }
+
+    @keyframes revSlide6 {
+        0% {
+            transform: translateX(-200%);
+        }
+
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+
+    @keyframes revSlide7 {
+        0% {
+            transform: translateX(-100%);
+        }
+
+        100% {
+            transform: translateX(0%);
+        }
     }
 }

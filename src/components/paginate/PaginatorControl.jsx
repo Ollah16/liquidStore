@@ -7,13 +7,13 @@ const PaginatorControl = ({ clickAction, parentClassName, isBtnForwardDisable, i
 
     const arrowIcon = [
         {
-            icon: <ArrowLongLeftIcon className='size-16' />,
+            icon: <ArrowLongLeftIcon className='md:size-16 size-12' />,
             type: 'previous',
             isBtnDisable: isBtnPrevDisable,
             className: `${isBtnPrevDisable ? 'text-gray-500 bg-gray-200 hover:bg-none cursor-not-allowed' : 'hover:bg-[#77ba00] bg-theme text-white cursor-pointer'}`
         },
         {
-            icon: <ArrowLongRightIcon className='size-16' />,
+            icon: <ArrowLongRightIcon className='md:size-16 size-12' />,
             type: 'forward',
             isBtnDisable: isBtnForwardDisable,
             className: `${isBtnForwardDisable ? 'text-gray-500 bg-gray-200 hover:bg-none cursor-not-allowed' : 'hover:bg-[#77ba00] bg-theme text-white cursor-pointer'}`
