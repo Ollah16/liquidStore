@@ -12,21 +12,24 @@ const NavIndex = () => {
     const [currentInnerWidth, setInnerWidth] = useState(0)
 
     useEffect(() => {
-        const refNav = navRef.current
-        const mdAbove = currentInnerWidth > 768
         const handleNavEffect = () => {
-            let currentScroll = window.pageYOffset
-            const isPrevLess = prevScroll < currentScroll
-            dispatch(toggleLoginBox(false))
-            dispatch(toggleSearch(false))
-            refNav.style.top = isPrevLess ? mdAbove ? `-142px` : `-118px` : '0px'
-            setPrevScroll(currentScroll)
-        }
+            const currentScroll = window.pageYOffset;
+            const isScrollingDown = prevScroll < currentScroll;
 
-        window.addEventListener('scroll', handleNavEffect)
-        return () => window.removeEventListener('scroll', handleNavEffect)
+            dispatch(toggleLoginBox(false));
+            dispatch(toggleSearch(false));
 
-    }, [prevScroll])
+            if (navRef.current) {
+                navRef.current.style.top = isScrollingDown ? (mdAbove ? '-142px' : '-118px') : '0px';
+            }
+
+            setPrevScroll(currentScroll);
+        };
+
+        window.addEventListener('scroll', handleNavEffect);
+        return () => window.removeEventListener('scroll', handleNavEffect);
+
+    }, [prevScroll, mdAbove, dispatch]);
 
     useEffect(() => {
 
