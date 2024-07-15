@@ -85,7 +85,7 @@ const ProductCarousel = () => {
                                         <div className='h-auto'>
                                             <img src={prod.image} alt={prod.title} height='384' width='767' className='w-full h-auto' />
                                         </div>
-                                        <div className='flex flex-col flex-1 md:h-full bg-[#f1f1f1] p-5 basis-[300px] md:basis-[440px]'>
+                                        <div className='flex flex-col flex-1 md:h-full bg-[#f1f1f1] p-5 basis-[330px] md:basis-[440px]'>
                                             <div className='pb-5 md:pb-10 h-full'>
                                                 <h3 className='md:text-3xl text-2xl font-medium mb-3 md:mb-5'>
                                                     {prod.title}
