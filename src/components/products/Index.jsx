@@ -79,8 +79,8 @@ const ProductCarousel = () => {
                                     key={index}
                                     className={`md:w-[20rem] w-full px-2 bg-transparent flex absolute h-full lichild${index}`}>
                                     <div className='flex-1 flex flex-col w-full'>
-                                        <div className='h-full w-full'>
-                                            <img src={prod.image} alt={prod.title} className='h-full w-full' />
+                                        <div className='h-auto flex-1'>
+                                            <img src={prod.image} alt={prod.title} className='h-auto w-full' />
                                         </div>
                                         <div className='md:flex-1 flex flex-col md:h-full sm:h-[45%] h-50% bg-[#f1f1f1] p-5'>
                                             <div className='pb-5 md:pb-10 h-full'>
