@@ -26,15 +26,18 @@ const ProductCarousel = () => {
     }, [])
 
     useEffect(() => {
-        const repChild = carouselRef.current.map((m) => {
-            return m.offsetHeight
-        })
+        const updateChildHeights = () => {
+            const childElements = carouselRef.current;
+            if (!childElements.length) return;
 
-        const height = Math.max(...repChild)
-        const repParent = carouselWrapRef.current
-        repParent.style.height = currentInnerWidth < 768 ? `${height}px` : '600px'
+            const heights = childElements.map(el => el.offsetHeight);
+            const maxHeight = Math.max(...heights);
+            carouselWrapRef.current.style.height = `${maxHeight}px`
 
-    }, [currentInnerWidth])
+        };
+
+        updateChildHeights();
+    }, [currentInnerWidth]);
 
     useEffect(() => {
         const scrollDynamic = scrollWidthRef.current
@@ -66,23 +69,23 @@ const ProductCarousel = () => {
 
     return (
         <div className='w-full relative min-h-[500px] md:px-16 px-5 my-16'>
-            <div className='md:h-[800px] h-full flex md:flex-row flex-col items-center md:bg-transparent bg-theme_hover w-full relative overflow-hidden px-2'>
+            <div className='md:h-[800px] h-fit flex md:flex-row flex-col items-center md:bg-transparent bg-theme_hover w-full relative overflow-hidden px-2'>
                 <div className='md:w-[35.6%] w-full bg-theme_hover md:h-full h-28 flex flex-col justify-center px-5'>
                     <p className='text-[#77ba00] md:text-start text-center text-[2rem] font-semibold'>Our Products</p>
                 </div>
-                <div className='md:w-[64.4%] w-full relative h-fit flex md:flex-row flex-col items-center'>
-                    <div className={`bg-transparent w-full flex items-center relative ml-0 md:ml-[-10.61%] h-max`}>
-                        <div className='inline-block relative w-full overflow-hidden' ref={carouselWrapRef}>
+                <div className='md:w-[64.4%] w-full relative h-fit flex md:flex-row flex-col items-center md:items-stretch'>
+                    <div className={`bg-transparent w-full flex items-center relative ml-0 md:ml-[-10.61%] flex-1`}>
+                        <div className='relative w-full inline-block overflow-hidden' ref={carouselWrapRef}>
                             {prodProps.map((prod, index) => (
                                 <div
                                     ref={(el) => carouselRef.current[index] = el}
                                     key={index}
-                                    className={`md:w-[20rem] w-full px-2 bg-transparent flex absolute h-full lichild${index}`}>
-                                    <div className='flex-1 flex flex-col w-full'>
-                                        <div className='h-auto flex-1'>
-                                            <img src={prod.image} alt={prod.title} className='h-auto w-full' />
+                                    className={`md:w-[20rem] w-full px-2 bg-transparent flex absolute lichild${index}`}>
+                                    <div className='flex flex-col items-stretch w-full'>
+                                        <div className='h-auto'>
+                                            <img src={prod.image} alt={prod.title} height='384' width='767' className='w-full h-auto' />
                                         </div>
-                                        <div className='md:flex-1 flex flex-col md:h-full sm:h-[45%] h-50% bg-[#f1f1f1] p-5'>
+                                        <div className='flex flex-col flex-1 md:h-full bg-[#f1f1f1] p-5 basis-[300px] md:basis-[440px]'>
                                             <div className='pb-5 md:pb-10 h-full'>
                                                 <h3 className='md:text-3xl text-2xl font-medium mb-3 md:mb-5'>
                                                     {prod.title}
@@ -90,11 +93,9 @@ const ProductCarousel = () => {
                                                 <p className='md:text-base text-sm font-semibold text[#333]/80 mb-5'>
                                                     {prod.subTitle}
                                                 </p>
-                                                {prod.subTitleOne &&
-                                                    <p className='md:text-base text-sm font-semibold text[#333]/80'>
-                                                        {prod.subTitleOne}
-                                                    </p>
-                                                }
+                                                <p className='md:text-base text-sm font-semibold text[#333]/80'>
+                                                    {prod.subTitleOne}
+                                                </p>
                                             </div>
                                             <div className='h-max md:h-fit flex items-end w-full'>
                                                 <UseLink title={prod.linkTitle} link={prod.link} className='text-white bg-theme px-5 py-3 hover:underline text-center w-full' />

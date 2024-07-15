@@ -1,11 +1,11 @@
 import creditCard from '../assets/credit-card-desktop-lloyds.jpg'
-import currentAccount from '../assets/insurance-desktop-lloyds.jpg'
-import savings from '../assets/investments-desktop-lloyds.jpg'
-import personalLoans from '../assets/lloyds_homepage_cl_hero_mobile_final.jpg'
-import mortgages from '../assets/lloyds-homepage-cl-carousel-desktop.jpg'
-import carFinance from '../assets/personal-loan-desktop-lloyds.jpg'
-import readyMadeInvestments from '../assets/remortgage-desktop-lloyds.jpg'
-import homeInsurance from '../assets/savings-desktop-lloyds.jpg'
+import homeInsurance from '../assets/insurance-desktop-lloyds.jpg'
+import investment from '../assets/investments-desktop-lloyds.jpg'
+import savings from '../assets/lloyds-homepage-cl-carousel-desktop.jpg'
+import carFinance from '../assets/car-finance-lloyds-desktop.jpg'
+import mortgageImage from '../assets/remortgage-desktop-lloyds.jpg'
+import homensurance from '../assets/savings-desktop-lloyds.jpg'
+import personalLoans from '../assets/personal-loan-desktop-lloyds.jpg'
 
 
 const Products = () => {
@@ -22,7 +22,7 @@ const Products = () => {
             subTitle: 'Choose 1 of 4 benefits to enjoy each year - 12 month Disney + subscription, six cinema tickets, digital Coffee Club and Gourmet Society membership or a magazine subscription.',
             subTitleOne: '£3 monthly fee may apply.',
             linkTitle: 'Explore Club benefits',
-            image: currentAccount,
+            image: homensurance,
             link: '/'
         },
         {
@@ -43,7 +43,7 @@ const Products = () => {
             title: 'Mortgages',
             subTitle: 'Find a mortgage deal that best suits your needs. Explore and compare our mortgage rates and apply online.',
             linkTitle: 'Find your mortgage deals',
-            image: mortgages,
+            image: mortgageImage,
             link: '/'
         },
         {
@@ -58,7 +58,7 @@ const Products = () => {
             subTitle: 'Just choose how much you want to invest, pick a risk level, then leave the rest to our experts.Start from just £50 a month.',
             subTitleOne: 'Capital at risk.',
             linkTitle: 'Ready-Made Investments',
-            image: readyMadeInvestments,
+            image: investment,
             link: '/'
         },
         {
