@@ -26,9 +26,13 @@ const ProductCarousel = () => {
     }, [])
 
     useEffect(() => {
-        const repChild = carouselRef.current[0].offsetHeight
+        const repChild = carouselRef.current.map((m) => {
+            return m.offsetHeight
+        })
+
+        const height = Math.max(...repChild)
         const repParent = carouselWrapRef.current
-        repParent.style.height = currentInnerWidth < 768 ? `${repChild}px` : '600px'
+        repParent.style.height = currentInnerWidth < 768 ? `${height}px` : '600px'
 
     }, [currentInnerWidth])
 
@@ -66,31 +70,33 @@ const ProductCarousel = () => {
                 <div className='md:w-[35.6%] w-full bg-theme_hover md:h-full h-28 flex flex-col justify-center px-5'>
                     <p className='text-[#77ba00] md:text-start text-center text-[2rem] font-semibold'>Our Products</p>
                 </div>
-                <div className='md:w-[64.5%] w-full relative h-fit flex md:flex-row flex-col items-center'>
-                    <div className={`bg-transparent w-full flex items-center relative ml-0 md:ml-[-10.61%] h-fit`}>
+                <div className='md:w-[64.4%] w-full relative h-fit flex md:flex-row flex-col items-center'>
+                    <div className={`bg-transparent w-full flex items-center relative ml-0 md:ml-[-10.61%] h-max`}>
                         <div className='inline-block relative w-full overflow-hidden' ref={carouselWrapRef}>
                             {prodProps.map((prod, index) => (
                                 <div
                                     ref={(el) => carouselRef.current[index] = el}
                                     key={index}
-                                    className={`md:w-[20rem] w-full px-2 bg-transparent flex absolute lichild${index}`}>
+                                    className={`md:w-[20rem] w-full px-2 bg-transparent flex absolute h-full lichild${index}`}>
                                     <div className='flex-1 flex flex-col w-full'>
-                                        <div className='h-auto'>
-                                            <img src={prod.image} alt={prod.title} className='h-auto w-full' />
+                                        <div className='h-auto flex-1 overflow-hidden'>
+                                            <img src={prod.image} alt={prod.title} className='h-full w-full' />
                                         </div>
-                                        <div className='md:flex-1 flex flex-col md:h-full h-max bg-[#f1f1f1] p-5'>
-                                            <div className='pb-10 h-full'>
-                                                <h3 className='text-3xl font-medium mb-5'>
+                                        <div className='md:flex-1 flex flex-col md:h-full sm:h-[45%] h-50% bg-[#f1f1f1] p-5'>
+                                            <div className='pb-5 md:pb-10 h-full'>
+                                                <h3 className='md:text-3xl text-2xl font-medium mb-3 md:mb-5'>
                                                     {prod.title}
                                                 </h3>
                                                 <p className='md:text-base text-sm font-semibold text[#333]/80 mb-5'>
                                                     {prod.subTitle}
                                                 </p>
-                                                <p className='md:text-base text-sm font-semibold text[#333]/80'>
-                                                    {prod.subTitleOne}
-                                                </p>
+                                                {prod.subTitleOne &&
+                                                    <p className='md:text-base text-sm font-semibold text[#333]/80'>
+                                                        {prod.subTitleOne}
+                                                    </p>
+                                                }
                                             </div>
-                                            <div className='h-full md:h-fit flex items-end w-full'>
+                                            <div className='h-max md:h-fit flex items-end w-full'>
                                                 <UseLink title={prod.linkTitle} link={prod.link} className='text-white bg-theme px-5 py-3 hover:underline text-center w-full' />
                                             </div>
                                         </div>
@@ -102,12 +108,12 @@ const ProductCarousel = () => {
                     </div>
                 </div>
 
-                <div className='relative md:absolute h-[6rem] w-full md:bottom-0 md:left-[-4rem] flex items-center'>
-                    <div className={`z-20 w-full px-2 md:px-0 absolute right-0 h-12 my-auto`}>
+                <div className='relative md:absolute h-[6rem] md:w-[64.4%] w-full md:bottom-0 md:right-[-2.1px] flex items-center md:items-end justify-between'>
+                    <div className={`z-20 w-full px-2 md:px-0 absolute h-12 my-auto md:left-[-4rem]`}>
 
                         <div className='relative w-full flex h-full items-center justify-between gap-x-5'>
                             <PaginatorControl
-                                parentClassName={`leading-[0px] space-x-5 w-max md:bottom-0 bottom-0 absolute md:left-0 right-0`}
+                                parentClassName={`leading-[0px] space-x-5 w-max bottom-0 absolute md:left-0 right-0`}
                                 clickAction={handleAnimation}
                                 isBtnForwardDisable={isBtnForwardDisable}
                                 isBtnPrevDisable={isBtnPrevDisable}
