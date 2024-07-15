@@ -40,7 +40,7 @@ const CustomerSupportComp = () => {
             <div>
                 <section className='flex justify-center'>
                     {supportProps.slice(0, 1).map((support, index) => (
-                        <div key={index} className='w-10/12 flex flex-col h-full items-stretch md:justify-center md:flex-row'>
+                        <div key={index} className='md:w-10/12 w-full flex flex-col h-full items-stretch md:justify-center md:flex-row'>
                             <div className='md:w-6/12 w-full relative'>
                                 <img ref={supportImageRef} src={support.image} className='object-cover w-full' alt='support' />
                             </div>
@@ -57,7 +57,7 @@ const CustomerSupportComp = () => {
                 </section>
             </div>
             <div>
-                <section className='flex flex-col justify-center w-10/12 items-center gap-y-14 mx-auto'>
+                <section className='flex flex-col justify-center md:w-10/12 w-full items-center gap-y-14 mx-auto'>
                     {supportProps.slice(1, supportProps.length).map((support, index) => (
                         <div key={index} className='w-full flex flex-col gap-x-5 gap-y-5 items-stretch h-full md:justify-center md:flex-row'>
                             <div className={`w-full md:w-7/12 h-full ${index === 1 ? 'order-2' : 'order-1'}`}>

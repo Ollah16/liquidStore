@@ -12,7 +12,7 @@ const NavSm = () => {
         <div className='md:hidden block'>
             <Navlist />
 
-            <div className="bg-theme text-white md:before:w-[4%] h-[70px] md:before:content-[''] md:before:inline-block md:after:w-[4%] md:after:content-[''] md:after:inline-block flex">
+            <div className="bg-theme text-white before:w-5 md:before:w-[4%] h-[70px] md:before:content-[''] md:before:inline-block after:w-5 md:after:w-[4%] md:after:content-[''] md:after:inline-block flex">
 
                 <div className='flex justify-between md:gap-0 w-full items-center h-full'>
 
