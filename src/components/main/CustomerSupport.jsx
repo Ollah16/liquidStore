@@ -44,7 +44,7 @@ const CustomerSupportComp = () => {
                             <div className='md:w-6/12 w-full relative'>
                                 <img ref={supportImageRef} src={support.image} className='object-cover w-full' alt='support' />
                             </div>
-                            <div ref={customerSupportRef} className='md:w-6/12 w-full p-5 bg-white'>
+                            <div ref={customerSupportRef} className='md:w-6/12 w-full p-5 bg-white flex flex-col justify-between'>
                                 <div className='md:my-16 mb-3'>
                                     <h2 className='text-[1.77rem] mb-3'>{support.title}</h2>
                                     <p className='text-sm md:text-lg font-medium text-black/80'>{support.subTitle}</p>
