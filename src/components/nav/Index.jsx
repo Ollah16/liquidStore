@@ -1,25 +1,28 @@
 import React, { useEffect, useRef, useState } from 'react'
 import NavSm from './NavSm'
 import NavLg from './NavLg'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { toggleLoginBox, toggleSearch } from '../../reduxtoolkit/navslice'
 
 const NavIndex = () => {
 
     const navRef = useRef()
     const dispatch = useDispatch()
+    const { isMenu, isSearch } = useSelector(state => state.nav)
     const [prevScroll, setPrevScroll] = useState(window.pageYOffset)
 
     useEffect(() => {
         const handleNavEffect = () => {
             const currentScroll = window.pageYOffset;
-            const isScrollingDown = (prevScroll + 5) < currentScroll;
+            const isScrollingDown = (prevScroll) < currentScroll;
 
-            dispatch(toggleLoginBox(false));
-            dispatch(toggleSearch(false));
+            if (isMenu || isSearch) {
+                dispatch(toggleLoginBox(false));
+                dispatch(toggleSearch(false));
+            }
 
             if (navRef.current) {
-                navRef.current.style.top = isScrollingDown ? '-200px' : '0px';
+                navRef.current.style.top = isScrollingDown ? '-300px' : '0px';
             }
 
             setPrevScroll(currentScroll);
@@ -27,11 +30,11 @@ const NavIndex = () => {
 
         window.addEventListener('scroll', handleNavEffect);
         return () => window.removeEventListener('scroll', handleNavEffect);
-    }, [prevScroll, dispatch]);
+    }, [prevScroll, dispatch, isMenu, isSearch]);
 
 
     return (
-        <nav ref={navRef} className='z-50 fixed w-full transition-top duration-300 ease-in-out'>
+        <nav ref={navRef} className='z-50 fixed w-full transition-top duration-500 ease-in-out'>
             <div className='relative'>
                 <NavLg />
                 <NavSm />

@@ -3,6 +3,7 @@ import WelcomeProps from './WelcomeProps';
 import MobileApp from './MobileAppAd';
 import ProgressiveLinks from './ProgressiveLinks';
 import Benefits from './Benefits';
+import CustomerSupportComp from './CustomerSupport';
 const ProductCarousel = lazy(() => import('../products/Index'))
 
 const Main = () => {
@@ -14,6 +15,7 @@ const Main = () => {
             <MobileApp />
             <ProductCarousel />
             <Benefits />
+            <CustomerSupportComp />
         </main >
     )
 }

@@ -1,4 +1,3 @@
-import React from 'react'
 import creditCard from '../assets/credit-card-desktop-lloyds.jpg'
 import currentAccount from '../assets/insurance-desktop-lloyds.jpg'
 import savings from '../assets/investments-desktop-lloyds.jpg'
@@ -64,7 +63,7 @@ const Products = () => {
         },
         {
             title: 'Home Insurance',
-            subTitle: 'ith Home Insurance Select there are three levels of cover: Bronze, Silver and Gold.',
+            subTitle: 'With Home Insurance Select there are three levels of cover: Bronze, Silver and Gold.',
             subTitleOne: 'It’s 10 % cheaper when you get your quote and buy online, and you can get a quote in minutes.',
             linkTitle: 'Home Insurance',
             image: homeInsurance,

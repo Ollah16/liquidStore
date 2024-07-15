@@ -20,7 +20,6 @@ const Menu = () => {
         handleOverflow()
     }, [isMenu])
 
-
     return (
         <div className={`overflow-x-hidden overflow-y-auto ${isMenu ? 'md:top-[142px] top-[118px]' : 'top-[-5000px]'} pl-5 transition-top ease-in-out duration-200 fixed left-0 w-full md:h-[calc(100vh-142px)] h-[calc(100vh-118px)] pt-5 bg-[#f1f1f1] flex z-30`}>
             <MenuContent />

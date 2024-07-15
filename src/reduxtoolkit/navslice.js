@@ -49,6 +49,7 @@ const navSlice = createSlice({
             state.isSearch = false;
             state.isMenu = false;
             state.isLoginDropDown = action.payload;
+            console.log(state.isMenu)
         },
         toggleMenu(state, action) {
             state.isLoginDropDown = false;

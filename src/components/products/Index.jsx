@@ -54,7 +54,7 @@ const ProductCarousel = () => {
     };
 
     return (
-        <div className='w-full relative min-h-[500px] md:px-16 px-10 my-16 overflow-hidden'>
+        <div className='w-full relative min-h-[500px] md:px-16 px-5 my-16 overflow-hidden'>
             <div className='md:h-[800px] h-[850px] flex md:flex-row flex-col items-center md:bg-transparent bg-theme_hover w-full relative overflow-hidden px-2'>
                 <div className='md:w-[35.6%] w-full bg-theme_hover md:h-full h-28 flex flex-col justify-center px-5'>
                     <p className='text-[#77ba00] md:text-start text-center text-[2rem] font-semibold'>Our Products</p>
@@ -72,18 +72,23 @@ const ProductCarousel = () => {
                                             <div>
                                                 <img src={prod.image} alt={prod.title} />
                                             </div>
-                                            <div className='flex flex-col justify-between items-start flex-1 bg-[#f1f1f1] px-3 py-5'>
-                                                <p className='text-2xl font-medium'>
-                                                    {prod.title}
-                                                </p>
-                                                <p className='text-base'>
-                                                    {prod.subTitle}
-                                                </p>
-                                                <p className='text-base'>
-                                                    {prod.subTitleOne}
-                                                </p>
-                                                <UseLink title={prod.linkTitle} link={prod.link} className='text-white bg-theme px-5 py-3 hover:underline text-center' />
+                                            <div className='md:flex-1 flex flex-col md:h-full h-max bg-[#f1f1f1] p-5'>
+                                                <div className='pb-10 h-full'>
+                                                    <h3 className='text-3xl font-medium mb-5'>
+                                                        {prod.title}
+                                                    </h3>
+                                                    <p className='md:text-base text-sm font-semibold text[#333]/80 mb-5'>
+                                                        {prod.subTitle}
+                                                    </p>
+                                                    <p className='md:text-base text-sm font-semibold text[#333]/80'>
+                                                        {prod.subTitleOne}
+                                                    </p>
+                                                </div>
+                                                <div className='h-full flex items-end w-full'>
+                                                    <UseLink title={prod.linkTitle} link={prod.link} className='text-white bg-theme px-5 py-3 hover:underline text-center w-full' />
+                                                </div>
                                             </div>
+
                                         </div>
                                     </li>
                                 ))}
