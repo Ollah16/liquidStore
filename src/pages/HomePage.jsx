@@ -14,7 +14,7 @@ const HomePage = () => {
     useEffect(() => {
         const handleOverflow = () => {
             const getRef = document.querySelector('body')
-            if (isMenu || (isLoginDropDown && window.innerWidth < 768)) {
+            if (isMenu || (isLoginDropDown && window.innerWidth < 640)) {
                 getRef.style.overflowY = 'hidden'
             } else {
                 getRef.style.overflowY = 'auto'
