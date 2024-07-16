@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import NavSm from './NavSm'
 import NavLg from './NavLg'
 import { useDispatch, useSelector } from 'react-redux'
-import { toggleLoginBox, toggleSearch } from '../../reduxtoolkit/navslice'
+import { handleNavOnScroll } from '../../reduxtoolkit/navslice'
 
 const NavIndex = () => {
 
@@ -17,15 +17,13 @@ const NavIndex = () => {
             const isScrollingDown = prevScroll < currentScroll;
             const isScrollingUp = prevScroll > currentScroll;
 
-            if (isMenu || isSearch) {
-                dispatch(toggleLoginBox(false));
-                dispatch(toggleSearch(false));
-            }
 
             if (navRef.current) {
                 if (currentScroll > 200 && isScrollingDown) {
+                    dispatch(handleNavOnScroll(true))
                     navRef.current.style.top = '-300px';
                 } else if (prevScroll > 200 && isScrollingUp) {
+                    dispatch(handleNavOnScroll(false))
                     navRef.current.style.top = '0px';
                 }
             }
@@ -43,7 +41,7 @@ const NavIndex = () => {
 
 
     return (
-        <nav ref={navRef} className='z-50 fixed w-full transition-top duration-1000 ease-in-out'>
+        <nav ref={navRef} className='z-50 fixed w-full transition-top duration-500 ease-in-out'>
             <div className='relative'>
                 <NavLg />
                 <NavSm />

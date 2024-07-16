@@ -27,9 +27,10 @@ const initialState = {
     menuContent,
     menuSubContent,
     currentId: 0,
-    currentMenuTitle: '',
-    currentMenuSubTitle: '',
-    currentWelcome: {}
+    currentMenuTitle: menuContent[0].title,
+    currentMenuSubTitle: menuContent[0].subTitle,
+    currentWelcome: {},
+    isNavTopLess: false
 }
 
 const navSlice = createSlice({
@@ -54,9 +55,6 @@ const navSlice = createSlice({
             state.isLoginDropDown = false;
             state.isSearch = false;
             state.isMenu = action.payload;
-            state.currentId = 0;
-            state.currentMenuTitle = menuContent[0].title;
-            state.currentMenuSubTitle = menuContent[0].subTitle;
         },
         toggleSearch(state, action) {
             state.isLoginDropDown = false;
@@ -73,9 +71,12 @@ const navSlice = createSlice({
         },
         resetMenu(state, action) {
             state.currentId = action.payload;
+        },
+        handleNavOnScroll(state, action) {
+            state.isNavTopLess = action.payload
         }
     },
 });
 
 export const navReducer = navSlice.reducer
-export const { getCurrent, toggleLoginBox, getInput, toggleMenu, toggleSearch, getClickedMenu, resetMenu } = navSlice.actions
+export const { getCurrent, toggleLoginBox, getInput, toggleMenu, toggleSearch, getClickedMenu, resetMenu, handleNavOnScroll } = navSlice.actions

@@ -15,6 +15,8 @@ const MenuSubContent = () => {
             setInnerWidth(window.innerWidth);
         };
 
+        handleResize()
+
         window.addEventListener('resize', handleResize);
 
         return () => {

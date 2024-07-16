@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import Button from '../Button'
 import ButtonProps from '../../constants/UseButtonProps'
 
 const LoginType = () => {
-    const { isLoginDropDown } = useSelector(state => state.nav)
+    const { isLoginDropDown, isNavTopLess } = useSelector(state => state.nav)
     const { personalBtn, registerBtn, businessBtn, keepSecureBtn } = ButtonProps()
 
     const buttonData = [
@@ -14,8 +14,22 @@ const LoginType = () => {
         { key: 'keepSecureBtn', data: keepSecureBtn }
     ]
 
+    useEffect(() => {
+        const handleOverflow = () => {
+            const getRef = document.querySelector('body')
+            if (isLoginDropDown && window.innerWidth < 768) {
+                getRef.style.overflowY = 'hidden'
+            } else {
+                getRef.style.overflowY = 'auto'
+            }
+        }
+
+        handleOverflow()
+
+    }, [isLoginDropDown])
+
     return (
-        <div className={`flex-col w-full text-sm md:text-base sm:h-max h-[calc(100vh-118px)] sm:w-[451px] py-[32px] px-[40px] fixed z-40 bg-white right-0 transition-top ease-in-out duration-200 md:right-[1%] lg:right-[2%] ${isLoginDropDown ? 'md:top-[134px] top-[118px]' : 'top-[-5000px]'}`}>
+        <div className={`flex-col w-full text-sm md:text-base sm:h-max h-[calc(100vh-118px)] sm:w-[451px] py-[32px] px-[40px] fixed z-40 bg-white right-0 transition-top ease-in-out duration-500 md:right-[1%] lg:right-[2%] ${isLoginDropDown ? (isNavTopLess && window.innerWidth > 768 ? 'top-0' : 'md:top-[134px] top-[118px]') : 'top-[-5000px]'}`}>
             <p className="mb-5">
                 <span className="self-start font-semibold">Internet Banking</span>
             </p>

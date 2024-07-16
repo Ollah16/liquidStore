@@ -42,7 +42,7 @@ const SearchInput = React.memo(({ searchClass }) => {
     }, [charIndex, isDeleting, searchOptions, index]);
 
     return (
-        <div className={`${searchClass} transition-top duration-200 ease-in-out md:ml-8`}>
+        <div className={`${searchClass} transition-top duration-500 ease-in-out md:ml-8`}>
             <div className={`bg-white items-center flex w-full space-x-2`}>
                 <span className='px-2 w-1/12'>
                     <MagnifyingGlassIcon className='font-extrabold text-xl text-theme rotate-[90deg] size-5' />

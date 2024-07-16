@@ -9,10 +9,10 @@ import Main from '../components/main/Index'
 const HomePage = () => {
 
     // Extracting search state from Redux store
-    const { isSearch } = useSelector(state => state.nav)
+    const { isSearch, isNavTopLess } = useSelector(state => state.nav)
 
     // Memoizing the search class string to avoid unnecessary re-renders
-    const searchClass = React.useMemo(() => `${isSearch ? 'md:top-[141px] top-[117px]' : 'top-[-500px]'} fixed z-10 w-full md:hidden py-5 px-2 bg-gray-100 left-0 text-xs sm:text-sm z-30`, [isSearch])
+    const searchClass = React.useMemo(() => `${isSearch ? (isNavTopLess ? 'top-0' : 'md:top-[141px] top-[117px]') : 'top-[-500px]'} fixed z-10 w-full md:hidden py-5 px-2 bg-gray-100 left-0 text-xs sm:text-sm z-30 placeholder:text-md`, [isSearch, isNavTopLess])
 
     return (
         <div className={`min-h-screen relative overflow-x-hidden`}>
