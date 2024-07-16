@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Button = React.memo(({ title, disabled, icon, clickAction, className, aria_label }) => {
+const Button = React.memo(({ title, disabled, icon, clickAction, className, subTitle, titleStyle, subStyle, aria_label }) => {
 
     return (
         <button
@@ -10,8 +10,14 @@ const Button = React.memo(({ title, disabled, icon, clickAction, className, aria
             disabled={disabled && disabled}
         >
             {icon && <span>{icon}</span>}
-            {title && <span >{title}</span>}
-
+            {title && subTitle ?
+                <div className='flex flex-col'>
+                    <span className={titleStyle && titleStyle}>{title}</span>
+                    <span className={subStyle}>{subTitle}</span>
+                </div>
+                :
+                <span>{title}</span>
+            }
         </button >
     );
 });

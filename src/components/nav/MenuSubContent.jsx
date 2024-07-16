@@ -35,7 +35,7 @@ const MenuSubContent = () => {
     return (menuSubContent.map((sub, subIndex) => {
         const { contentI, contentII, contentIII, contentIV, contentVI, contentVII, contentFeatured, contentAlready } = sub;
 
-        const rotatedArrow = <ChevronRightIcon className='text-theme size-5' />
+        const rotatedArrow = <ChevronRightIcon className='text-theme size-5 rotate-180' />
         const className = 'flex gap-2 py-2 px-3 items-center bg-[#f1f1f1] w-full justify-start absolute left-0 top-0'
         const titleStyle = 'text-xl text-theme font-bold self-start'
         const subStyle = 'text-base self-start'
@@ -50,7 +50,7 @@ const MenuSubContent = () => {
                     <Button
                         titleStyle={titleStyle}
                         aria_label={currentMenuTitle || 'btn'}
-                        rotatedArrow={rotatedArrow}
+                        icon={rotatedArrow}
                         title={currentMenuTitle}
                         subTitle={currentMenuSubTitle}
                         className={className}
