@@ -47,7 +47,7 @@ const MenuContent = () => {
                     <div className='flex justify-between items-center w-11/12 py-3'>
                         <div className='flex flex-col'>
                             <span className=' text-theme font-semibold text-xl'>{menu.title}</span>
-                            <span className='tracking-tight'>{menu.subTitle}</span>
+                            <span className='tracking-tight font-semibold'>{menu.subTitle}</span>
                         </div>
                         <div>
                             <span className='flex items-center justify-end'><ChevronRightIcon className='size-5' /></span>

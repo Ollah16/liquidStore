@@ -86,14 +86,6 @@ const MenuContents = () => {
                 'See upcoming payments',
                 'Search transactions',
                 'Download statements'
-            ],
-
-            contentVII: ['Payments & transfers',
-                'Daily payment limits',
-                'Pay someone new',
-                'Cancel a Direct Debit',
-                'Pay in a cheque',
-                'Send money outside the UK'
             ]
         },
         {
