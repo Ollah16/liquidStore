@@ -23,8 +23,8 @@ const HomePage = () => {
 
         handleOverflow()
 
-        window.addEventListener('resize', handleOverflow)
-        return () => window.removeEventListener('resize', handleOverflow)
+        window.addEventListener('scroll', handleOverflow)
+        return () => window.removeEventListener('scroll', handleOverflow)
 
     }, [isMenu, isLoginDropDown])
 
