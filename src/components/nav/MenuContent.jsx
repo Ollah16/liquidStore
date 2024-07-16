@@ -57,6 +57,7 @@ const MenuContent = () => {
                 </li>
 
             ))}
+            <li className='block md:hidden py-3 h-12'></li>
         </ul>
     )
 }
