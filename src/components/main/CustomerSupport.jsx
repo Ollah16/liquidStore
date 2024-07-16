@@ -33,8 +33,8 @@ const CustomerSupportComp = () => {
     }, [])
 
     return (
-        <div className='bg-gray-100 p-5 flex flex-col gap-y-10'>
-            <div className='pb-10'>
+        <div className='bg-gray-100 p-5 flex flex-col md:gap-y-10 gap-y-5 md:pb-24 pb-12'>
+            <div className='md:py-8 pb-4'>
                 <h2 className='text-center text-4xl text-[#333]'>Customer Support</h2>
             </div>
             <div>
@@ -46,7 +46,7 @@ const CustomerSupportComp = () => {
                             </div>
                             <div ref={customerSupportRef} className='md:w-6/12 w-full p-5 bg-white flex flex-col justify-between'>
                                 <div className='md:my-16 mb-3'>
-                                    <h2 className='text-[1.77rem] mb-3'>{support.title}</h2>
+                                    <h2 className='text-2xl md:text-[1.77rem] mb-3 font-semibold'>{support.title}</h2>
                                     <p className='text-sm md:text-lg font-medium text-black/80'>{support.subTitle}</p>
                                 </div>
                                 <UseLink title={support.linkTitle} className={support.linkClassName} link={support.link} />
@@ -57,7 +57,7 @@ const CustomerSupportComp = () => {
                 </section>
             </div>
             <div>
-                <section className='flex flex-col justify-center md:w-10/12 w-full items-center gap-y-14 mx-auto'>
+                <section className='flex flex-col justify-center md:w-10/12 w-full items-center gap-y-7 md:gap-y-14 mx-auto'>
                     {supportProps.slice(1, supportProps.length).map((support, index) => (
                         <div key={index} className='w-full flex flex-col gap-x-5 gap-y-5 items-stretch h-full md:justify-center md:flex-row'>
                             <div className={`w-full md:w-7/12 h-full ${index === 1 ? 'order-2' : 'order-1'}`}>
@@ -66,7 +66,7 @@ const CustomerSupportComp = () => {
                                 </div>
                                 <div className='w-full p-5 bg-white h-full'>
                                     <div className='md:my-5 mb-3'>
-                                        <h2 className='text-2xl md:text-[1.77rem] mb-3'>{support.title}</h2>
+                                        <h2 className='text-2xl md:text-[1.77rem] mb-3 font-semibold'>{support.title}</h2>
                                         <p className='text-sm md:text-lg font-medium text-black/80'>{support.subTitle}</p>
                                         <p className='text-sm md:text-lg font-medium text-black/80'>{support.subTitleOne}</p>
                                     </div>
