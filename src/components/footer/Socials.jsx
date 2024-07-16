@@ -8,7 +8,12 @@ import { ChevronUpIcon } from '@heroicons/react/24/outline';
 import UseLink from '../Link';
 
 const Socials = () => {
+
     const handleScrollTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
 
     }
 
@@ -16,7 +21,7 @@ const Socials = () => {
         <div className='md:w-11/12 w-full py-8 px-5 md:px-0'>
             <div className='w-full flex justify-between'>
                 <div className='text-white flex items-center gap-x-5'>
-                    <p className='text-lg'>Connect with us</p>
+                    <p className='text-md md:text-lg'>Connect with us</p>
                     <UseLink icon={<FaXTwitter className='size-6 hover:text-[#77ba00] transition-colors duration-200 ease-in-out' />} link='/' />
                     <UseLink icon={<AiFillFacebook className='size-6 hover:text-[#77ba00] transition-colors duration-200 ease-in-out' />} link='/' />
                     <UseLink icon={<FaYoutube className='size-6 hover:text-[#77ba00] transition-colors duration-200 ease-in-out' />} link='/' />
@@ -25,8 +30,8 @@ const Socials = () => {
                 <Button
                     clickAction={() => handleScrollTop()}
                     title={'Back to top'}
-                    className={'underline hover:no-underline text-lg flex flex-row-reverse gap-x-1 items-center text-white'}
-                    icon={<ChevronUpIcon className='size-5' />} />
+                    className={'underline hover:no-underline text-md md:text-lg flex flex-row-reverse gap-x-1 items-center text-white'}
+                    icon={<ChevronUpIcon className='md:size-5 size-2' />} />
             </div>
         </div>
     )
