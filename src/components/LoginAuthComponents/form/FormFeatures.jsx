@@ -21,7 +21,7 @@ const FormFeatures = () => {
 
             <div className="after:h-[.5px] after:w-full after:content-[''] after:bg-black/70 after:inline-block mb-5">
                 <div className='flex justify-between items-center'>
-                    <Link href='/' className='text-theme underline font-semibold text-lg'>Forgotten your login details?</Link>
+                    <Link href='/' className='text-theme underline font-semibold text-base md:text-lg'>Forgotten your login details?</Link>
                     <Button title={'continue'} className={'font-bold text-lg bg-theme text-white py-2 px-5'} />
                 </div>
             </div>
@@ -32,7 +32,7 @@ const FormFeatures = () => {
                 </div>
                 <div className='tracking-tight'>
                     <div className='mb-4'>
-                        <p className='text-lg font-semibold text-theme mb-3'>Why not try our secure Mobile Banking app?</p>
+                        <p className='text-base md:text-lg font-semibold text-theme mb-3'>Why not try our secure Mobile Banking app?</p>
                         <p className='text-md font-light'>With our app you get access to lots of extra features to make banking even easier. Things like freeze your card, check your PIN and set your own contactless limit.</p>
                     </div>
                     <Link href='/' className='text-theme underline text-md font-light'>How to set up the app</Link>

@@ -4,7 +4,7 @@ const Button = React.memo(({ title, disabled, icon, clickAction, className, subT
 
     return (
         <button
-            onClick={() => clickAction()}
+            onClick={clickAction}
             className={`${className} `}
             aria-label={aria_label}
             disabled={disabled && disabled}
