@@ -26,7 +26,7 @@ const FormFeatures = () => {
                 </div>
             </div>
 
-            <div className='flex gap-x-5'>
+            <div className='flex flex-col md:flex-row gap-x-5 gap-y-5'>
                 <div>
                     <img src={mobileImg} alt='mobilelogo' className='w-36' />
                 </div>
