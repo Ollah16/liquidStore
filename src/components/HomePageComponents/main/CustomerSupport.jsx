@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import CustomerSupport from '../../constants/CustomerSupport'
-import UseLink from '../Link'
+import CustomerSupport from '../../../constants/CustomerSupport'
+import UseLink from '../../Link'
 
 const CustomerSupportComp = () => {
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { ChevronUpIcon } from '@heroicons/react/24/outline'
-import FooterProps from '../../constants/FooterProps'
+import FooterProps from '../../../constants/FooterProps'
 
 const FooterList = () => {
     const footerPropt = FooterProps()

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
-import UseLink from '../Link'
-import Products from '../../constants/ProductsProps'
-import PaginatorControl from '../paginate/PaginatorControl'
+import UseLink from '../../Link'
+import Products from '../../../constants/ProductsProps'
+import PaginatorControl from '../../HomePageComponents/paginate/PaginatorControl'
 import './Products.css'
 
 const ProductCarousel = () => {

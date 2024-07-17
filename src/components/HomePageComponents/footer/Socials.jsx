@@ -3,9 +3,9 @@ import { AiFillFacebook } from "react-icons/ai";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
-import Button from '../Button';
+import Button from '../../Button';
 import { ChevronUpIcon } from '@heroicons/react/24/outline';
-import UseLink from '../Link';
+import UseLink from '../../Link';
 
 const Socials = () => {
 

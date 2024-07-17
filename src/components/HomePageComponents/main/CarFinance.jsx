@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
-import CarFinanceProps from '../../constants/CarFinanceProps'
-import UseLink from '../Link'
+import CarFinanceProps from '../../../constants/CarFinanceProps'
+import UseLink from '../../Link'
 
 const CarFinance = () => {
 

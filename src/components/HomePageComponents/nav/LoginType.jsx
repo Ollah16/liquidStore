@@ -1,7 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import Button from '../Button'
-import ButtonProps from '../../constants/UseButtonProps'
+import Button from '../../Button'
+import ButtonProps from '../../../constants/UseButtonProps'
+import { useNavigate } from 'react-router-dom'
 
 const LoginType = () => {
     const { isLoginDropDown, isNavTopLess } = useSelector(state => state.nav)
@@ -14,17 +15,23 @@ const LoginType = () => {
         { key: 'keepSecureBtn', data: keepSecureBtn }
     ]
 
+    const navigate = useNavigate()
+
+
     return (
         <div className={`flex-col w-full text-sm md:text-base sm:h-max h-[calc(100vh-118px)] sm:w-[451px] py-[32px] px-[40px] fixed z-40 bg-white right-0 transition-top ease-in-out duration-500 md:right-[1%] lg:right-[2%] ${isLoginDropDown ? (isNavTopLess && window.innerWidth > 640 ? 'top-0' : 'md:top-[134px] top-[118px]') : 'top-[-5000px]'}`}>
             <p className="mb-5">
                 <span className="self-start font-semibold">Internet Banking</span>
             </p>
 
-            {buttonData.map(({ key, data }) => (
-                <p className="mb-5" key={key}>
-                    <Button className={data.className} title={data.title} arrowIcon={data.arrowIcon} />
-                </p>
-            ))}
+
+            {buttonData.map(({ key, data }) => {
+                return (
+                    <div className="mb-5" key={key}>
+                        <Button className={data.className} title={data.title} icon={data.arrowIcon} clickAction={() => navigate(data.link)} />
+                    </div>
+                )
+            })}
         </div>
     )
 }

@@ -1,9 +1,9 @@
 import React from 'react'
-import ButtonProps from '../../constants/UseButtonProps'
-import Button from '../Button'
-import Navlist from './Navlist'
+import ButtonProps from '../../../constants/UseButtonProps'
+import Button from '../../Button'
 import Search from './Search'
-import Navbrand from './Navbrand'
+import Navbrand from '../../Navbrand'
+import Navlist from './Navlist'
 
 const NavLg = () => {
     const { loginBtn, menuBtn } = ButtonProps()

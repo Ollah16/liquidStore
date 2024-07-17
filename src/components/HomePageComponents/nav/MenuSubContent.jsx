@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import Button from '../Button';
-import { resetMenu } from '../../reduxtoolkit/navslice';
+import Button from '../../Button';
+import { resetMenu } from '../../../reduxtoolkit/navslice';
 import RenderMenuContent from './RenderSubContent';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 

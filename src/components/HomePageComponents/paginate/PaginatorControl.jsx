@@ -1,6 +1,6 @@
 import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/24/outline'
 import React from 'react'
-import Button from '../Button'
+import Button from '../../Button'
 import '../paginate/Paginate.css'
 
 const PaginatorControl = ({ clickAction, parentClassName, isBtnForwardDisable, isBtnPrevDisable }) => {

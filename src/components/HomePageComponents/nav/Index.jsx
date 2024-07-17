@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import NavSm from './NavSm'
 import NavLg from './NavLg'
 import { useDispatch, useSelector } from 'react-redux'
-import { handleNavOnScroll } from '../../reduxtoolkit/navslice'
+import { handleNavOnScroll } from '../../../reduxtoolkit/navslice'
 
 const NavIndex = () => {
 

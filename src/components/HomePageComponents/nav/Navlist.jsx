@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCurrent } from '../../reduxtoolkit/navslice'
-import Button from '../Button'
+import { getCurrent } from '../../../reduxtoolkit/navslice'
+import Button from '../../Button'
 
 const Navlist = () => {
 

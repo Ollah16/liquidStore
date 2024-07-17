@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react'
-import Button from '../Button'
-import imageDesktop from '../../assets/lloyds_homepage_cl_hero_mobile_final.jpg';
-import imageMobile from '../../assets/lloyds-homepage-strategic-engagement.jpg';
-import WelcomeDocs from '../../constants/WelcomeDocs';
+import Button from '../../Button'
+import imageDesktop from '../../../assets/lloyds_homepage_cl_hero_mobile_final.jpg';
+import imageMobile from '../../../assets/lloyds-homepage-strategic-engagement.jpg';
+import WelcomeDocs from '../../../constants/WelcomeDocs';
 
 const WelcomeProps = () => {
 

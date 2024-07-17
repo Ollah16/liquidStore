@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getInput } from '../../reduxtoolkit/navslice'
+import { getInput } from '../../../reduxtoolkit/navslice'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'

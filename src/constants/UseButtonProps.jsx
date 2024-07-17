@@ -36,23 +36,27 @@ const ButtonProps = () => {
                 className: "w-full flex justify-center bg-theme hover:bg-theme_hover font-bold transition-colors duration-200 ease-in-out py-[12px] px-[24px] hover:underline text-white",
                 title: 'Personal',
                 aria_label: 'personal account',
+                link: '/login'
             },
             businessBtn: {
                 className: "w-full flex justify-center bg-theme hover:bg-theme_hover font-bold transition-colors duration-200 ease-in-out py-[12px] px-[24px] hover:underline text-white",
                 title: 'Business',
                 aria_label: 'business account',
+                link: '/'
             },
             registerBtn: {
                 className: "text-theme underline font-semibold hover:no-underline transition-underline duration-200 ease-in-out flex gap-1 items-center",
                 title: `Register`,
                 arrowIcon: <ChevronRightIcon className="size-5" />,
                 aria_label: 'register',
+                link: '/'
             },
             keepSecureBtn: {
                 className: "text-theme underline font-semibold hover:no-underline transition-underline duration-200 ease-in-out flex gap-1 items-center",
                 title: `Keep me secure`,
                 arrowIcon: <ChevronRightIcon className="size-5" />,
                 aria_label: 'keep secure',
+                link: '/'
             }
         }
     }, [isMenu, isLoginDropDown, isSearch, dispatch])

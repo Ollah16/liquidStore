@@ -1,6 +1,6 @@
 import React from 'react'
-import UseLinkProps from '../../constants/UseLinkProps'
-import UseLink from '../Link'
+import UseLinkProps from '../../../constants/UseLinkProps'
+import UseLink from '../../Link'
 
 const ProgressiveLinks = () => {
     const { mortgageLink, moneyWLink, protectLink, logOnLink } = UseLinkProps()

@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import Button from '../Button';
+import Button from '../../Button';
 import SearchInput from './SearchInput';
-import ButtonProps from '../../constants/UseButtonProps';
+import ButtonProps from '../../../constants/UseButtonProps';
 
 const Search = () => {
 

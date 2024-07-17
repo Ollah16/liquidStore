@@ -1,7 +1,7 @@
 import React from 'react'
-import image from '../../assets/lloyds-mobile-view-new.png'
-import UseLink from '../Link'
-import UseLinkProps from '../../constants/UseLinkProps'
+import image from '../../../assets/lloyds-mobile-view-new.png'
+import UseLink from '../../Link'
+import UseLinkProps from '../../../constants/UseLinkProps'
 
 const MobileApp = () => {
 

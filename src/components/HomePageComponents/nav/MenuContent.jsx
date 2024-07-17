@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getClickedMenu } from '../../reduxtoolkit/navslice'
+import { getClickedMenu } from '../../../reduxtoolkit/navslice'
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
 
 const MenuContent = () => {

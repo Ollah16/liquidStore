@@ -1,5 +1,5 @@
 import React from 'react'
-import image from '../../assets/fscs-logo-crop.png'
+import image from '../../../assets/fscs-logo-crop.png'
 
 const Fscs = () => {
     return (
