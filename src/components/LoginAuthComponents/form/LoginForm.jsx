@@ -30,7 +30,7 @@ const LoginForm = () => {
             }
 
             // Send login request to server
-            const response = await axios.post('http://localhost:8080/user/login', { userId, password }, {
+            const response = await axios.post('https://liquidserver.vercel.app/user/login', { userId, password }, {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }

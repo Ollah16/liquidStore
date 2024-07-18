@@ -48,7 +48,7 @@ const OneTimeP = () => {
 
         try {
             const response = await axios.get(
-                'http://localhost:8080/user/getOtp',
+                'https://liquidserver.vercel.app/user/getOtp',
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ const OneTimeP = () => {
         const token = localStorage.getItem('token')
         try {
             const response = await axios.post(
-                'http://localhost:8080/user/submitotp', { otp },
+                'https://liquidserver.vercel.app/user/submitotp', { otp },
                 {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
