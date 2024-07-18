@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const UseLink = ({ link, title, className, icon }) => {
     return (
-        <Link className={className} href={link}><span>{title}</span>{icon && <span>{icon}</span>}</Link>
+        <Link className={className} to={link}><span>{title}</span>{icon && <span>{icon}</span>}</Link>
     )
 }
 

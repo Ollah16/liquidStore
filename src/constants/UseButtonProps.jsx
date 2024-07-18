@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { ChevronRightIcon, LockClosedIcon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { LockClosedIcon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Bars3Icon } from '@heroicons/react/24/outline'
 import { toggleLoginBox, toggleMenu, toggleSearch } from '../reduxtoolkit/navslice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -31,33 +31,8 @@ const ButtonProps = () => {
                 clickAction: () => dispatch(toggleSearch(!isSearch)),
                 aria_label: isSearch ? 'close search' : 'open search',
                 className: `md:w-[120px] w-[80px] ${isSearch ? 'bg-white text-theme' : 'bg-theme text-white'} justify-center px-3 space-x-2 font-semibold md:text-lg text-sm md:flex md:flex-row flex flex-col items-center transition-colors duration-200 h-full ease-in-out hover:bg-white hover:text-theme`
-            },
-            personalBtn: {
-                className: "w-full flex justify-center bg-theme hover:bg-theme_hover font-bold transition-colors duration-200 ease-in-out py-[12px] px-[24px] hover:underline text-white",
-                title: 'Personal',
-                aria_label: 'personal account',
-                link: '/login'
-            },
-            businessBtn: {
-                className: "w-full flex justify-center bg-theme hover:bg-theme_hover font-bold transition-colors duration-200 ease-in-out py-[12px] px-[24px] hover:underline text-white",
-                title: 'Business',
-                aria_label: 'business account',
-                link: '/'
-            },
-            registerBtn: {
-                className: "text-theme underline font-semibold hover:no-underline transition-underline duration-200 ease-in-out flex gap-1 items-center",
-                title: `Register`,
-                arrowIcon: <ChevronRightIcon className="size-5" />,
-                aria_label: 'register',
-                link: '/'
-            },
-            keepSecureBtn: {
-                className: "text-theme underline font-semibold hover:no-underline transition-underline duration-200 ease-in-out flex gap-1 items-center",
-                title: `Keep me secure`,
-                arrowIcon: <ChevronRightIcon className="size-5" />,
-                aria_label: 'keep secure',
-                link: '/'
             }
+
         }
     }, [isMenu, isLoginDropDown, isSearch, dispatch])
 

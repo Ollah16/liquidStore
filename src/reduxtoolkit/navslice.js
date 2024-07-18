@@ -74,9 +74,14 @@ const navSlice = createSlice({
         },
         handleNavOnScroll(state, action) {
             state.isNavTopLess = action.payload
+        },
+        resetNav(state) {
+            state.isLoginDropDown = false
+            state.isSearch = false
+            state.isMenu = false
         }
     },
 });
 
 export const navReducer = navSlice.reducer
-export const { getCurrent, toggleLoginBox, getInput, toggleMenu, toggleSearch, getClickedMenu, resetMenu, handleNavOnScroll } = navSlice.actions
+export const { getCurrent, toggleLoginBox, getInput, toggleMenu, toggleSearch, getClickedMenu, resetMenu, handleNavOnScroll, resetNav } = navSlice.actions

@@ -1,21 +1,18 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import Button from '../../Button'
-import ButtonProps from '../../../constants/UseButtonProps'
-import { useNavigate } from 'react-router-dom'
+import UseLink from '../../Link'
+import UseLinkProps from '../../../constants/UseLinkProps'
 
 const LoginType = () => {
     const { isLoginDropDown, isNavTopLess } = useSelector(state => state.nav)
-    const { personalBtn, registerBtn, businessBtn, keepSecureBtn } = ButtonProps()
+    const { personalLink, registerLink, businessLink, keepSecureLink } = UseLinkProps()
 
     const buttonData = [
-        { key: 'personalBtn', data: personalBtn },
-        { key: 'businessBtn', data: businessBtn },
-        { key: 'registerBtn', data: registerBtn },
-        { key: 'keepSecureBtn', data: keepSecureBtn }
+        { key: 'personalLink', data: personalLink },
+        { key: 'businessLink', data: businessLink },
+        { key: 'registerLink', data: registerLink },
+        { key: 'keepSecureLink', data: keepSecureLink }
     ]
-
-    const navigate = useNavigate()
 
 
     return (
@@ -28,7 +25,7 @@ const LoginType = () => {
             {buttonData.map(({ key, data }) => {
                 return (
                     <div className="mb-5" key={key}>
-                        <Button className={data.className} title={data.title} icon={data.arrowIcon} clickAction={() => navigate(data.link)} />
+                        <UseLink className={data.className} title={data.title} icon={data.arrowIcon} link={data.link} />
                     </div>
                 )
             })}

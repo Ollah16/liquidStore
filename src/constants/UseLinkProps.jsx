@@ -3,7 +3,32 @@ import { ChevronRightIcon } from "@heroicons/react/24/outline"
 const UseLinkProps = () => {
 
     const linkProps = {
-
+        personalLink: {
+            className: "w-full flex justify-center bg-theme hover:bg-theme_hover font-bold transition-colors duration-200 ease-in-out py-[12px] px-[24px] hover:underline text-white",
+            title: 'Personal',
+            aria_label: 'personal account',
+            link: '/login'
+        },
+        businessLink: {
+            className: "w-full flex justify-center bg-theme hover:bg-theme_hover font-bold transition-colors duration-200 ease-in-out py-[12px] px-[24px] hover:underline text-white",
+            title: 'Business',
+            aria_label: 'business account',
+            link: '/'
+        },
+        registerLink: {
+            className: "text-theme underline font-semibold hover:no-underline transition-underline duration-200 ease-in-out flex gap-1 items-center",
+            title: `Register`,
+            arrowIcon: <ChevronRightIcon className="size-5" />,
+            aria_label: 'register',
+            link: '/'
+        },
+        keepSecureLink: {
+            className: "text-theme underline font-semibold hover:no-underline transition-underline duration-200 ease-in-out flex gap-1 items-center",
+            title: `Keep me secure`,
+            arrowIcon: <ChevronRightIcon className="size-5" />,
+            aria_label: 'keep secure',
+            link: '/'
+        },
         mortgageLink: {
             className: 'md:text-sm lg:text-base md:bg-theme flex justify-between items-center font-semibold w-full py-5 px-4 text-theme md:text-white hover:underline md:border-r-[.5px] md:border-r-[#649c00] border-b-theme border-b-[.5px] bg-white hover:underline md:w-3/12 text-center inline-block',
             title: 'Mortgage Calculator',
