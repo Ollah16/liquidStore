@@ -4,7 +4,7 @@ import Button from '../../Button'
 import mobileImg from '../../../assets/mobileAppLogo.png'
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline'
 
-const FormFeatures = () => {
+const FormFeatures = ({ onClick }) => {
 
     return (
         <div>
@@ -22,7 +22,7 @@ const FormFeatures = () => {
             <div className="after:h-[.5px] after:w-full after:content-[''] after:bg-black/70 after:inline-block mb-5">
                 <div className='flex justify-between items-center'>
                     <Link href='/' className='text-theme underline font-semibold text-base md:text-lg'>Forgotten your login details?</Link>
-                    <Button title={'continue'} className={'font-bold text-lg bg-theme text-white py-2 px-5'} />
+                    <Button title={'continue'} clickAction={onClick} className={'font-bold text-lg bg-theme text-white py-2 px-5'} />
                 </div>
             </div>
 

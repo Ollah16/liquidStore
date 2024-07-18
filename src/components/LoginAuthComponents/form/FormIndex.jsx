@@ -1,7 +1,6 @@
 import React from 'react'
 import HelpSupport from '../Help&Support'
 import LoginForm from './LoginForm'
-import FormFeatures from './FormFeatures'
 import WelcomeComp from '../WelcomeComp'
 
 const FormIndex = () => {
@@ -11,7 +10,6 @@ const FormIndex = () => {
             <div className='w-full md:w-9/12'>
                 <WelcomeComp />
                 <LoginForm />
-                <FormFeatures />
             </div>
             <div className='w-full md:w-3/12'>
                 <HelpSupport />

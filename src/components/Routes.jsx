@@ -4,9 +4,14 @@ import HomePage from '../pages/HomePage'
 import LoginAuth from '../pages/LoginAuth'
 import { useDispatch, useSelector } from 'react-redux'
 import { resetNav } from '../reduxtoolkit/navslice'
+import ProtectedRoutes from './ProtectedRoutes'
+import { useAuthentication } from '../util/authentication'
+import OneTimeP from '../pages/OTP'
+
+
 
 const AppRoutes = () => {
-
+    const isAuthenticated = useAuthentication()
     const { pathname } = useLocation()
     const dispatch = useDispatch()
     const { isMenu, isLoginDropDown } = useSelector(state => state.nav)
@@ -25,7 +30,8 @@ const AppRoutes = () => {
     useEffect(() => {
         const handleOverflow = () => {
             const getRef = document.querySelector('body')
-            if (isMenu || (isLoginDropDown && window.innerWidth < 640)) {
+            const repIsLogin = isLoginDropDown && window.innerWidth < 640
+            if (isMenu || repIsLogin) {
                 getRef.style.overflowY = 'hidden'
             } else {
                 getRef.style.overflowY = 'auto'
@@ -44,7 +50,10 @@ const AppRoutes = () => {
         <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/login' element={<LoginAuth />} />
-        </Routes>
+            <Route element={<ProtectedRoutes isAuthenticated={isAuthenticated} />}>
+                <Route path='/onetimepassword' element={<OneTimeP />} />
+            </Route>
+        </Routes >
     )
 }
 

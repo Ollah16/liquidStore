@@ -1,57 +1,68 @@
-import React, { useRef, useState } from 'react'
-import Button from '../../Button'
+import React, { useState } from 'react'
+import FormFeatures from './FormFeatures'
+import FormInputs from './FormInputs'
+import { toast } from 'react-hot-toast';
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
 
-    const formRef = useRef()
-    const passwordRef = useRef()
-    const userIdRef = useRef()
-    const [passwordState, setPasswordState] = useState('Show')
+    const [password, setPassword] = useState('')
+    const [userId, setUserId] = useState('')
+    const navigate = useNavigate()
 
-    const showPassowrd = (event) => {
-        event.stopPropagation();
-        // console.log(event)
-        const repPassword = passwordRef.current
-        if (repPassword.value.length <= 0) return
-        const isText = repPassword.type === 'text'
-        repPassword.type = isText ? 'password' : 'text'
-        setPasswordState(!isText ? 'Hide' : 'Show')
+    const handleUserId = (value) => {
+
+        setUserId(value)
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+    const handlePassword = (value) => {
+        setPassword(value)
+    }
 
+
+    const handleSubmit = async () => {
         try {
-            const formData = new FormData(formRef.current);
-            const userId = formData.get('userId').trim();
-            const password = formData.get('password').trim();
-
+            // Validate input
             if (!userId || !password) {
-                throw new Error("User ID or Password is missing.");
+                toast.error("User ID or Password is missing.");
+                return;
             }
 
-            // Assuming a function to process the user ID and password exists
-            // processCredentials(userId, password);
+            // Send login request to server
+            const response = await axios.post('http://localhost:8080/user/login', { userId, password }, {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+
+            handleUserId('')
+            handlePassword('')
+
+            const { token } = response.data;
+
+            localStorage.setItem('token', token)
+
+            navigate('/onetimepassword');
 
         } catch (error) {
+            // Handle errors from the server
+            if (error.response) {
+                const { data } = error.response;
+                toast.error(data.error);
+            } else {
+                toast.error("An unexpected error occurred. Please try again later.");
+            }
             console.error("Error handling form submission:", error.message);
         }
     };
 
+
     return (
-        <form ref={formRef} onSubmit={handleSubmit} className='w-full flex flex-col'>
-            <div className='w-full flex flex-col pb-5'>
-                <label className='pb-3 inline-block text-md font-semibold'>User ID:</label>
-                <input ref={userIdRef} type='text' name='userId' className='border pl-3 mr-3 h-10 w-[300px] border-[#767676]' autoComplete='off' />
-            </div>
-            <div className='w-full flex flex-col pb-5'>
-                <label className='pb-3 inline-block text-md font-semibold'>Password:</label>
-                <div className='relative flex items-center'>
-                    <input ref={passwordRef} type='password' name='password' required className='border pl-3 mr-3 h-10 w-[300px] border-[#767676]' autoComplete='off' />
-                    <Button className={'text-theme underline absolute left-[250px] passwordHandler'} title={passwordState} clickAction={showPassowrd} />
-                </div>
-            </div>
-        </form>
+        <div className='w-full flex flex-col'>
+            <FormInputs password={password} handleUserId={handleUserId} handlePassword={handlePassword} userId={userId} />
+            <FormFeatures onClick={() => handleSubmit()} />
+        </div>
     )
 }
 
