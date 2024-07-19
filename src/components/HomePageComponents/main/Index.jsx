@@ -6,8 +6,7 @@ import Benefits from './Benefits';
 import CustomerSupportComp from './CustomerSupport';
 import CarFinance from './CarFinance';
 import FooterIndex from '../footer/FooterIndex';
-const ProductCarousel = lazy(() => import('../products/Index'))
-
+import ProductCarousel from '../products/Index'
 const Main = () => {
 
     return (
