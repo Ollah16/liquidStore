@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-hot-toast'
 import Button from '../components/Button'
@@ -39,23 +39,25 @@ const OneTimeP = () => {
 
     const handleRequestOtp = async () => {
         const token = localStorage.getItem('token')
+        // const serverLink = 'https://liquidserver.vercel.app/user/getOtp'
+
+        const serverLink = 'http://localhost:8080/user/getOtp'
+
+        const header = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        }
 
         //Set button to disable to delay 
-        setIsDisable(!isDisabled)
+        // setIsDisable(!isDisabled)
 
         //Sanitize inputs
         setClear(!clear)
 
         try {
-            const response = await axios.get(
-                'https://liquidserver.vercel.app/user/getOtp',
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    }
-                }
-            );
+            const response = await axios.get(serverLink, header);
 
             // Notify user of successful OTP submission
             const { message } = response.data
@@ -79,16 +81,19 @@ const OneTimeP = () => {
 
     const handleSubmitOtp = async () => {
         const token = localStorage.getItem('token')
+
+        // const serverLink = 'https://liquidserver.vercel.app/user/submitotp'
+        const serverLink = 'http://localhost:8080/user/submitotp'
+        const bodyContent = { otp }
+        const header = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        }
+
         try {
-            const response = await axios.post(
-                'https://liquidserver.vercel.app/user/submitotp', { otp },
-                {
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        'Authorization': `Bearer ${token}`
-                    }
-                }
-            );
+            const response = await axios.post(serverLink, bodyContent, header)
 
             setClear(!clear)
 
