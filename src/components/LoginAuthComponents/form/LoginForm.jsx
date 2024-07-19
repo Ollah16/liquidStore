@@ -51,7 +51,7 @@ const LoginForm = () => {
             // Handle errors from the server
             if (error.response) {
                 const { data } = error.response;
-                // toast.error(data.error);
+                toast.error(data.error);
             } else {
                 toast.error("An unexpected error occurred. Please try again later.");
             }
