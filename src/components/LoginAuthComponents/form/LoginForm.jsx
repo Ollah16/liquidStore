@@ -22,6 +22,12 @@ const LoginForm = () => {
 
 
     const handleSubmit = async () => {
+
+        const serverLink = 'https://liquidserver.vercel.app/user/login'
+        // const serverLink = 'http://localhost:8080/user/login'
+        const bodyContent = { userId, password }
+        const headers = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+
         try {
             // Validate input
             if (!userId || !password) {
@@ -30,11 +36,7 @@ const LoginForm = () => {
             }
 
             // Send login request to server
-            const response = await axios.post('https://liquidserver.vercel.app/user/login', { userId, password }, {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            });
+            const response = await axios.post(serverLink, bodyContent, headers);
 
             handleUserId('')
             handlePassword('')
