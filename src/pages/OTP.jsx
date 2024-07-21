@@ -4,6 +4,8 @@ import { toast } from 'react-hot-toast'
 import Button from '../components/Button'
 import { Link, useNavigate } from 'react-router-dom'
 import OTPInput from '../components/OTPComponent/OTPInput'
+import { useDispatch } from 'react-redux'
+import { handleOTP } from '../reduxtoolkit/authslice'
 
 const OneTimeP = () => {
 
@@ -13,7 +15,7 @@ const OneTimeP = () => {
     const [isDisabled, setIsDisable] = useState(false)
     const [clear, setClear] = useState(false)
     const navigate = useNavigate()
-
+    const dispatch = useDispatch()
 
     useEffect(() => {
         let interval;
@@ -51,7 +53,7 @@ const OneTimeP = () => {
         }
 
         //Set button to disable to delay 
-        // setIsDisable(!isDisabled)
+        setIsDisable(!isDisabled)
 
         //Sanitize inputs
         setClear(!clear)
@@ -85,17 +87,20 @@ const OneTimeP = () => {
         // const serverLink = 'https://liquidserver.vercel.app/user/submitotp'
         const serverLink = 'http://localhost:8080/user/submitotp'
         const bodyContent = { otp }
+
         const header = {
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': `Bearer ${token}`
             }
         }
 
+        if (!otp) {
+            return toast.error('OTP is required')
+        }
+
         try {
             const response = await axios.post(serverLink, bodyContent, header)
-
-            setClear(!clear)
 
             const { token: newToken } = response.data;
 
@@ -104,6 +109,8 @@ const OneTimeP = () => {
             // Notify user of successful OTP submission
             toast.success('OTP verified successfully.');
 
+            dispatch(handleOTP(true))
+
             navigate('/accounts')
 
         } catch (error) {
@@ -111,6 +118,7 @@ const OneTimeP = () => {
             if (error.response) {
                 const { data } = error.response;
                 toast.error(data.error);
+                setClear(!clear)
             } else if (error.request) {
                 // Handle network errors
                 toast.error('Network error. Please try again later.');

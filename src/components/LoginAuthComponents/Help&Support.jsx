@@ -2,7 +2,7 @@ import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import React, { useState } from 'react'
 import Button from '../Button'
 import fscsImg from '../../assets/fscsAuthimg.png'
-import HelpSupportContact from '../../constants/HelpSupportContact'
+import HelpSupportContact from '../../constants/AuthConstants/HelpSupportContact'
 
 const HelpSupport = () => {
     const [currentClick, setCurrentClick] = useState('')

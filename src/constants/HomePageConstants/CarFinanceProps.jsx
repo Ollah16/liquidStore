@@ -1,4 +1,4 @@
-import carFinancePort from '../assets/carFinancePort.jpeg'
+import carFinancePort from '../../assets/carFinancePort.jpeg'
 
 const CarFinanceProps = () => {
     const prop = {

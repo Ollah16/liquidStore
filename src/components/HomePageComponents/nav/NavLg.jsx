@@ -1,5 +1,5 @@
 import React from 'react'
-import ButtonProps from '../../../constants/UseButtonProps'
+import ButtonProps from '../../../constants/HomePageConstants/UseButtonProps'
 import Button from '../../Button'
 import Search from './Search'
 import Navbrand from '../../Navbrand'

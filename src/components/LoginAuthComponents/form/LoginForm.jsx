@@ -4,12 +4,15 @@ import FormInputs from './FormInputs'
 import { toast } from 'react-hot-toast';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { handle_Login_Signout } from '../../../reduxtoolkit/authslice';
+import { useDispatch } from 'react-redux';
 
 const LoginForm = () => {
 
     const [password, setPassword] = useState('')
     const [userId, setUserId] = useState('')
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const handleUserId = (value) => {
 
@@ -23,8 +26,8 @@ const LoginForm = () => {
 
     const handleSubmit = async () => {
 
-        const serverLink = 'https://liquidserver.vercel.app/user/login'
-        // const serverLink = 'http://localhost:8080/user/login'
+        // const serverLink = 'https://liquidserver.vercel.app/user/login'
+        const serverLink = 'http://localhost:8080/user/login'
         const bodyContent = { userId, password }
         const headers = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
 
@@ -44,6 +47,8 @@ const LoginForm = () => {
             const { token } = response.data;
 
             localStorage.setItem('token', token)
+
+            dispatch(handle_Login_Signout(true))
 
             navigate('/onetimepassword');
 

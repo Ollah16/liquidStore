@@ -1,5 +1,5 @@
 import React from 'react'
-import UseLinkProps from '../../../constants/UseLinkProps'
+import UseLinkProps from '../../../constants/HomePageConstants/UseLinkProps'
 import UseLink from '../../Link'
 
 const ProgressiveLinks = () => {

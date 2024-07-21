@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import React, { lazy, useEffect } from 'react'
+import { Navigate, Outlet, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import HomePage from '../pages/HomePage'
 import LoginAuth from '../pages/LoginAuth'
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,7 +7,17 @@ import { resetNav } from '../reduxtoolkit/navslice'
 import ProtectedRoutes from './ProtectedRoutes'
 import { useAuthentication } from '../util/authentication'
 import OneTimeP from '../pages/OTP'
+import AccountPage from '../pages/Account/AccountPage'
+import StatementPage from '../pages/Account/StatementPage'
 
+const AuthRoute = ({ isOTPValidated, isLoggedIn }) => {
+    console.log(isOTPValidated, isLoggedIn)
+
+    if (isOTPValidated && isLoggedIn) return <Navigate to={'/'} replace />
+
+
+    return <Outlet />
+}
 
 
 const AppRoutes = () => {
@@ -15,7 +25,7 @@ const AppRoutes = () => {
     const { pathname } = useLocation()
     const dispatch = useDispatch()
     const { isMenu, isLoginDropDown } = useSelector(state => state.nav)
-
+    const { isOTPValidated, isLoggedIn } = useSelector(state => state.auth)
 
     useEffect(() => {
 
@@ -26,6 +36,7 @@ const AppRoutes = () => {
         monitorRoutes()
 
     }, [pathname, dispatch])
+
 
     useEffect(() => {
         const handleOverflow = () => {
@@ -49,9 +60,13 @@ const AppRoutes = () => {
     return (
         <Routes>
             <Route path='/' element={<HomePage />} />
+            {/* <Route element={<AuthRoute isOTPValidated={isOTPValidated} isLoggedIn={isLoggedIn} />}> */}
             <Route path='/login' element={<LoginAuth />} />
+            <Route path='/onetimepassword' element={<OneTimeP />} />
+
             <Route element={<ProtectedRoutes isAuthenticated={isAuthenticated} />}>
-                <Route path='/onetimepassword' element={<OneTimeP />} />
+                <Route path='/accounts' element={<AccountPage />} />
+                <Route path='/accountstatement' element={<StatementPage />} />
             </Route>
         </Routes >
     )

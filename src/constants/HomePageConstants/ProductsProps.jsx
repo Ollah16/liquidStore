@@ -1,11 +1,11 @@
-import creditCard from '../assets/credit-card-desktop-lloyds.jpg'
-import homeInsurance from '../assets/insurance-desktop-lloyds.jpg'
-import investment from '../assets/investments-desktop-lloyds.jpg'
-import savings from '../assets/lloyds-homepage-cl-carousel-desktop.jpg'
-import carFinance from '../assets/car-finance-lloyds-desktop.jpg'
-import mortgageImage from '../assets/remortgage-desktop-lloyds.jpg'
-import homensurance from '../assets/savings-desktop-lloyds.jpg'
-import personalLoans from '../assets/personal-loan-desktop-lloyds.jpg'
+import creditCard from '../../assets/credit-card-desktop-lloyds.jpg'
+import homeInsurance from '../../assets/insurance-desktop-lloyds.jpg'
+import investment from '../../assets/investments-desktop-lloyds.jpg'
+import savings from '../../assets/lloyds-homepage-cl-carousel-desktop.jpg'
+import carFinance from '../../assets/car-finance-lloyds-desktop.jpg'
+import mortgageImage from '../../assets/remortgage-desktop-lloyds.jpg'
+import homensurance from '../../assets/savings-desktop-lloyds.jpg'
+import personalLoans from '../../assets/personal-loan-desktop-lloyds.jpg'
 
 
 const Products = () => {

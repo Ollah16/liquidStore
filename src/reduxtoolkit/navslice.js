@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import MenuContents from '../constants/MenuContents'
+import MenuContents from '../constants/HomePageConstants/MenuContents'
 
 const navlist = ['Personal', 'Business', 'Private Banking', 'International Banking']
 

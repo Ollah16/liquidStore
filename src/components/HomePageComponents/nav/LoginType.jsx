@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import UseLink from '../../Link'
-import UseLinkProps from '../../../constants/UseLinkProps'
+import UseLinkProps from '../../../constants/HomePageConstants/UseLinkProps'
 
 const LoginType = () => {
     const { isLoginDropDown, isNavTopLess } = useSelector(state => state.nav)

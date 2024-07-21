@@ -1,6 +1,6 @@
 import React from 'react'
 import UseLink from '../../Link'
-import BenefitsProps from '../../../constants/BenefitsProps'
+import BenefitsProps from '../../../constants/HomePageConstants/BenefitsProps'
 import image from '../../../assets/lloyds-homepage-strategic-engagement.jpg'
 
 const Benefits = () => {

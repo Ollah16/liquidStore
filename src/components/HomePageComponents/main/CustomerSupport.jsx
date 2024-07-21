@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import CustomerSupport from '../../../constants/CustomerSupport'
+import CustomerSupport from '../../../constants/HomePageConstants/CustomerSupport'
 import UseLink from '../../Link'
 
 const CustomerSupportComp = () => {

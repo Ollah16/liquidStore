@@ -1,6 +1,6 @@
-import supportImage from '../assets/supportImage.jpg'
-import mortgage from '../assets/lloyds-fraud-homepage-mobile.jpg'
-import disability from '../assets/disability-desktop-lloyds.jpg'
+import supportImage from '../../assets/supportImage.jpg'
+import mortgage from '../../assets/lloyds-fraud-homepage-mobile.jpg'
+import disability from '../../assets/disability-desktop-lloyds.jpg'
 
 const CustomerSupport = () => {
 
