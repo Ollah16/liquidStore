@@ -1,14 +1,14 @@
 import React, { lazy, useEffect } from 'react'
 import { Navigate, Outlet, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import HomePage from '../pages/HomePage'
-import LoginAuth from '../pages/LoginAuth'
 import { useDispatch, useSelector } from 'react-redux'
 import { resetNav } from '../reduxtoolkit/navslice'
 import ProtectedRoutes from './ProtectedRoutes'
 import { useAuthentication } from '../util/authentication'
-import OneTimeP from '../pages/OTP'
 import AccountPage from '../pages/Account/AccountPage'
 import StatementPage from '../pages/Account/StatementPage'
+import OneTimeP from '../pages/Authentication/OTP'
+import LoginAuth from '../pages/Authentication/LoginAuth'
 
 const AuthRoute = ({ isOTPValidated, isLoggedIn }) => {
     console.log(isOTPValidated, isLoggedIn)
