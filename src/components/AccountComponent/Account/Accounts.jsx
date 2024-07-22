@@ -8,8 +8,9 @@ const Accounts = ({ currentClick }) => {
     const { balance, accountNumber, accountType, sortCode } = useSelector(state => state.auth)
 
     return (
-        <div className='overflow-hidden bg-gray-200 '>
-            <div className={`z-10 py-12 transition-top duration-300 ease-in-out w-full ${isVisible ? 'relative top-0' : 'absolute top-[-500px]'}`}>
+        <div className={`overflow-hidden bg-gray-200 ${isVisible ? 'max-h-[800px]' : 'max-h-0'} transition-all ease-in-out duration-300`}>
+
+            <div className={`z-10 py-12 transition-top duration-300 ease-in-out w-full`}>
                 <div className='md:w-10/12 w-full px-5 md:px-0 mx-auto'>
                     <div className={`bg-white before:content-[''] before:bg-theme before:inline-block before:w-full before:h-1 before:absolute before:top-0 py-5 w-full md:w-3/12 relative flex items-center`}>
                         <div className='p-3'>

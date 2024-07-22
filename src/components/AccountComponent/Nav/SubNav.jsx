@@ -31,7 +31,7 @@ const NavExpand = ({ handleCurrentClick, currentClick }) => {
     ]
 
     return (
-        <nav className={`bg-white w-full hidden md:block after:content-[""] relative  ${currentClick ? 'border-b-[#5a8c00] border-b-4 ' : 'border-b border-black/20'} z-30 h-fit flex flex-col`}>
+        <nav className={`bg-white w-full hidden md:block after:content-[""] relative transition-colors ease-in-out duration-300  ${currentClick ? 'border-b-[#5a8c00] border-b-4 ' : 'border-b border-black/20'} z-30 h-fit flex flex-col`}>
             <div className='w-full lg:w-10/12 px-5 lg:px-0 mx-auto'>
                 <div className='flex flex-row justify-between w-full'>
                     <div className='h-full flex items-center'>
@@ -52,10 +52,10 @@ const NavExpand = ({ handleCurrentClick, currentClick }) => {
                                     onClick={() => handleCurrentClick(nav.title)}
                                     key={index}
                                     className={`${index === navDoc.length - 1 && "border-r"} ${isVisible ? 'bg-[#5a8c00] text-white' : 'hover:bg-gray-100 hover:text-theme_light'}
-                                        flex items-center gap-x-1 border-l px-2 py-3 w-fit cursor-pointer transition-colors duration-200 ease-in-out
+                                        flex items-center gap-x-1 border-l px-2 py-3 w-fit cursor-pointer transition-colors duration-300 ease-in-out
                                         `}>
                                     <span>{nav.title}</span>
-                                    <span className={`${isVisible ? 'rotate-180' : 'rotate-0'}`}>{nav.icon}</span>
+                                    <span className={`${isVisible ? 'rotate-x-180' : 'rotate-x-0'} transition-transform ease-in-out duration-300`}>{nav.icon}</span>
                                 </button>)
                         })}
 

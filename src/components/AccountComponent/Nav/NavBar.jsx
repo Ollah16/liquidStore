@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Accounts from '../Account/Accounts'
-import Profile from '../Profile'
+import Profile from './Profile'
 import NavExpand from './SubNav'
 import NavBrand from './NavBrand'
 

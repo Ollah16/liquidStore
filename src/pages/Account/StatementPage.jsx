@@ -1,17 +1,18 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Layout from './Layout'
 import BalanceComp from '../../components/AccountComponent/Account/BalanceComp'
 import { Link } from 'react-router-dom'
 import { ChevronLeftIcon } from '@heroicons/react/24/outline'
 import FullStatement from '../../components/AccountComponent/StatementComponent/FullStatement'
-import AccountFeatures from '../../components/AccountComponent/Account/AccountFeatures'
+import ContactUs from '../../components/AccountComponent/StatementComponent/ContactUs'
+import AccountProductServices from '../../components/AccountComponent/Account/AccountProductServices'
 
 const StatementPage = () => {
 
     return (
         <Layout>
             <main className='w-full'>
-                <div className='flex items-center relative z-30 w-10/12 mx-auto gap-x-5'>
+                <div className='flex items-stretch relative z-30 w-10/12 mx-auto gap-x-5 py-5'>
                     <div className='w-9/12 py-10'>
                         <div className='w-full -my-3'>
                             <Link to={'/accounts'} className='flex w-fit justify-between hover:text-theme_light transition-colors ease-in-out duration-200 items-center text-sm leading-tight font-medium text-theme text-center'><ChevronLeftIcon className='size-5' /> <span>Your Accounts</span></Link>
@@ -19,8 +20,9 @@ const StatementPage = () => {
                         <BalanceComp />
                         <FullStatement />
                     </div>
-                    <div className='w-3/12'>
-                        <AccountFeatures />
+                    <div className='w-3/12 flex flex-col gap-y-5'>
+                        <ContactUs />
+                        <AccountProductServices />
                     </div>
                 </div>
             </main>

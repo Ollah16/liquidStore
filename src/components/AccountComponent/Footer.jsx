@@ -19,29 +19,29 @@ const Footer = () => {
                 <div className='w-full lg:w-10/12 px-5 lg:px-0 mx-auto'>
                     <div className='flex flex-col md:flex-row justify-between'>
                         {
-                            footerList.map((item, index) => (
-                                <div key={index}>
+                            footerList.map((item, index) => {
+                                const isVisible = currentClick === item.title
+
+                                return (<div key={index}>
                                     <div
                                         onClick={() => handleCurrent(item.title)}
-                                        className={`text-base font-medium mb-0 md:mb-2 cursor-pointer md:cursor-default flex flex-col relative md:block after:w-full ${currentClick === item.title ? 'after:hidden' : 'after:inline-block'} after:md:hidden after:absolute after:bottom-0 after:h-[.3px] after:content-[''] after:bg-white/40`}>
+                                        className={`text-base font-medium mb-0 md:mb-2 cursor-pointer md:cursor-default flex flex-col relative md:block after:inline-block after:w-full ${currentClick === item.title ? 'after:max-h-0' : 'after:max-h-[.5px]'} transition-all duration-300 ease-in-out after:md:hidden after:absolute after:bottom-0 after:h-[.3px] after:content-[''] after:bg-white/40`}>
                                         <div className='w-full flex justify-between items-center py-2 text-sm'>
                                             <span>{item.title}</span>
-                                            <ChevronDownIcon className={`size-6 md:hidden ${currentClick === item.title ? 'rotate-180' : 'rotate-0'}`} />
+                                            <ChevronDownIcon className={`size-6 md:hidden transition-all ease-in-out duration-300 ${isVisible ? 'rotate-x-180' : 'rotate-x-0'}`} />
                                         </div>
                                     </div>
 
-                                    {item.content.map((foot, index) => {
-                                        const isVisible = currentClick === item.title
+                                    {item.content.map((foot, index) => (
+                                        <ul key={index} className={`${isVisible ? 'max-h-[1000px]' : 'max-h-0'} md:max-h-full transition-all ease-in-out duration-300 overflow-hidden`}>
+                                            <li className={`py-1 md:block cursor-pointer hover:underline text-sm font-light w-fit`}>
+                                                {foot}
+                                            </li>
+                                        </ul>)
+                                    )}
 
-                                        return (
-                                            <ul key={index}>
-                                                <li className={`py-1 ${isVisible ? 'block' : 'hidden'} md:block cursor-pointer hover:underline text-sm font-light w-fit`}>
-                                                    {foot}
-                                                </li>
-                                            </ul>)
-                                    })}
-
-                                </div>))
+                                </div>)
+                            })
                         }
                     </div>
                 </div>

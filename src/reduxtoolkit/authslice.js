@@ -19,16 +19,27 @@ const formatDate = (dateString, type) => {
     const date = new Date(dateString);
 
     const day = date.getDate();
-    const month = date.toLocaleString('default', { month: 'long' });
+    const dayOfWeek = date.toLocaleString('default', { weekday: 'long' });
+    const monthShort = date.toLocaleString('default', { month: 'short' });
+    const monthLong = date.toLocaleString('default', { month: 'long' });
     const year = date.getFullYear().toString().slice(-2);
     const hours = date.getHours();
     const minutes = date.getMinutes().toString().padStart(2, '0');
     const ampm = hours >= 12 ? 'PM' : 'AM';
     const formattedHours = hours % 12 || 12;
 
-    if (type === 'account') return `${day} ${month} ${year} at ${formattedHours}:${minutes} ${ampm}`;
-    if (type === 'statement') return `${day}/${month}/${year}`;
-
+    switch (type) {
+        case 'account':
+            return `${day} ${monthLong} ${year} at ${formattedHours}:${minutes} ${ampm}`;
+        case 'referencedate':
+            return `${dayOfWeek} ${day} ${monthLong} ${year}`;
+        case 'referencetime':
+            return `${formattedHours}:${minutes} ${ampm}`;
+        case 'statement':
+            return `${day} ${monthShort.slice(0, 3)} ${year}`;
+        default:
+            return `${day} ${monthShort.slice(0, 3)} ${year}`;
+    }
 };
 
 const authSlice = createSlice({
@@ -66,9 +77,25 @@ const authSlice = createSlice({
             const refinedStatement = statement.sort((a, b) => new Date(b.transaction_date) - new Date(a.transaction_date))
                 .map((tran) => ({
                     ...tran,
-                    transaction_date: formatDate(tran.transaction_date, 'statement')
+                    transaction_date: formatDate(tran.transaction_date, 'statement'),
+                    isViewed: false,
+                    referenceDate: formatDate(tran.transaction_date, 'referencedate'),
+                    referenceTime: formatDate(tran.transaction_date, 'referencetime')
                 }
                 ))
+
+
+            state.statement = refinedStatement
+        },
+        viewReference(state, action) {
+            const index = action.payload
+            const refinedStatement = state.statement.map((tran, ind) => {
+                const stateIndex = ind === index
+                return {
+                    ...tran,
+                    isViewed: stateIndex ? !tran.isViewed : tran.isViewed
+                }
+            })
 
 
             state.statement = refinedStatement
@@ -77,5 +104,5 @@ const authSlice = createSlice({
     }
 })
 
-export const { handle_Login_Signout, handleOTP, getUser, getTransactions } = authSlice.actions
+export const { handle_Login_Signout, handleOTP, getUser, getTransactions, viewReference } = authSlice.actions
 export const authReducer = authSlice.reducer

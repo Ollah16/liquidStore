@@ -1,8 +1,8 @@
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
-import React from 'react'
+import React, { memo } from 'react'
 import { Link } from 'react-router-dom'
 
-const AccountFunctions = ({ path_Name }) => {
+const AccountFunctions = memo(({ path_Name }) => {
 
     return (
         <div className='w-full md:w-4/12 mx-auto'>
@@ -26,6 +26,6 @@ const AccountFunctions = ({ path_Name }) => {
             </button>
         </div >
     )
-}
+})
 
 export default AccountFunctions
