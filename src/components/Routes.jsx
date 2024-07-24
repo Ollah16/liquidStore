@@ -9,6 +9,9 @@ import AccountPage from '../pages/Account/AccountPage'
 import StatementPage from '../pages/Account/StatementPage'
 import OneTimeP from '../pages/Authentication/OTP'
 import LoginAuth from '../pages/Authentication/LoginAuth'
+import MakePayment from '../pages/Account/MakePayment'
+import InternationalPayment from '../pages/MakePayment/InternationalPayment'
+import PayNewRecipient from '../pages/MakePayment/PayNewRecipient'
 
 const AuthRoute = ({ isOTPValidated, isLoggedIn }) => {
     console.log(isOTPValidated, isLoggedIn)
@@ -67,6 +70,9 @@ const AppRoutes = () => {
             <Route element={<ProtectedRoutes isAuthenticated={isAuthenticated} />}>
                 <Route path='/accounts' element={<AccountPage />} />
                 <Route path='/accountstatement' element={<StatementPage />} />
+                <Route path='/makepayment' element={<MakePayment />} />
+                <Route path='/internationalpayments' element={<InternationalPayment />} />
+                <Route path='/paynew' element={<PayNewRecipient />} />
             </Route>
         </Routes >
     )

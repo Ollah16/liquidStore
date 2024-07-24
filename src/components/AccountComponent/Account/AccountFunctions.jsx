@@ -16,7 +16,7 @@ const AccountFunctions = memo(({ path_Name }) => {
             }
 
             <button className='bg-gray-100 w-full flex flex-col text-sm font-medium tracking-tight after:bg-white after:w-full after:inline-block after-content-[""] after:h-[.4px]'>
-                <div className='flex justify-between w-full p-4 text-theme hover:text-theme_light ease-in-out duration-200 transition-colors'><span>Make a payment</span> <ChevronRightIcon className='size-6' /></div>
+                <Link to={'/makepayment'} className='flex justify-between w-full p-4 text-theme hover:text-theme_light ease-in-out duration-200 transition-colors'><span>Make a payment</span> <ChevronRightIcon className='size-6' /></Link>
             </button>
             <button className='w-full flex flex-col text-sm font-medium tracking-tight after:bg-white after:w-full after:inline-block after-content-[""] after:h-[.4px]'>
                 <div className='flex justify-between w-full p-4 bg-[#d24702] text-white hover:bg-[#ae3c04] duration-200 ease-in-out transition-colors'><span>Upgrade account</span> <ChevronRightIcon className='size-6' /></div>

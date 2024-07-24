@@ -55,22 +55,28 @@ const authSlice = createSlice({
             state.isOTPValidated = action.payload
         },
         getUser(state, action) {
-            const { firstName, lastName, email, phone, balance, accountNumber, address, accountType, sortCode, lastLogin } = action.payload
+            const { firstName, title, lastName, email, phone, address, lastLogin } = action.payload
 
             const formattedDate = formatDate(lastLogin, 'account');
 
             state.firstName = firstName;
+            state.title = title
             state.lastName = lastName;
             state.email = email;
             state.phone = phone;
             state.address = address;
-            state.balance = balance;
-            state.accountNumber = accountNumber;
-            state.accountType = accountType;
-            state.sortCode = sortCode;
             state.lastLogin = formattedDate;
         },
+        getAccountInformation(state, action) {
 
+            const { accountType, sortCode, balance, accountNumber } = action.payload
+
+            state.balance = balance;
+            state.accountNumber = accountNumber;
+            state.sortCode = sortCode;
+            state.accountType = accountType.toUpperCase().charAt(0) + accountType.slice(1, accountType.length)
+
+        },
         getTransactions(state, action) {
             const statement = action.payload
 
@@ -104,5 +110,5 @@ const authSlice = createSlice({
     }
 })
 
-export const { handle_Login_Signout, handleOTP, getUser, getTransactions, viewReference } = authSlice.actions
+export const { handle_Login_Signout, handleOTP, getUser, getTransactions, viewReference, getAccountInformation } = authSlice.actions
 export const authReducer = authSlice.reducer

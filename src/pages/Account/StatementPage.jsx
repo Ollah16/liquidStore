@@ -3,8 +3,8 @@ import Layout from './Layout'
 import BalanceComp from '../../components/AccountComponent/Account/BalanceComp'
 import { Link } from 'react-router-dom'
 import { ChevronLeftIcon } from '@heroicons/react/24/outline'
-import FullStatement from '../../components/AccountComponent/StatementComponent/FullStatement'
-import ContactUs from '../../components/AccountComponent/StatementComponent/ContactUs'
+import FullStatement from '../../components/StatementComponent/FullStatement'
+import ContactUs from '../../components/StatementComponent/ContactUs'
 import AccountProductServices from '../../components/AccountComponent/Account/AccountProductServices'
 
 const StatementPage = () => {

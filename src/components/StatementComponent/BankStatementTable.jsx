@@ -1,9 +1,9 @@
-import { CalendarIcon, PrinterIcon } from '@heroicons/react/24/outline';
+import { CalendarIcon } from '@heroicons/react/24/outline';
 import axios from 'axios';
 import React, { useEffect } from 'react'
 import { TbArrowBigRightLineFilled } from "react-icons/tb";
 import { useDispatch, useSelector } from 'react-redux';
-import { getTransactions, viewReference } from '../../../reduxtoolkit/authslice';
+import { getTransactions, viewReference } from '../../reduxtoolkit/authslice';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaRegClock } from "react-icons/fa";
 import { Link } from 'react-router-dom';
@@ -33,7 +33,6 @@ const BankStatementTable = () => {
 
         getStatement()
     }, [dispatch])
-
 
     return (
         <div className="my-10 shadow-lg bg-white">
@@ -115,7 +114,7 @@ const BankStatementTable = () => {
                                                 <span className='font-semibold'>{state.reference}</span>
                                             </div>
 
-                                            <Link className='bg-white py-3 px-5 font-medium hover:underline text-theme' to='/'>
+                                            <Link className='bg-white py-3 px-5 font-medium hover:underline text-theme' to={'/makepayment'}>
                                                 Make a payment or transfer
                                             </Link>
                                         </div>

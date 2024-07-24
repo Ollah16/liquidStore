@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-hot-toast'
 import Button from '../../components/Button'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import OTPInput from '../../components/OTPComponent/OTPInput'
 import { useDispatch } from 'react-redux'
-import { handleOTP } from '../../reduxtoolkit/authslice'
+import { getUser, handleOTP } from '../../reduxtoolkit/authslice'
 import Layout from './Layout'
+import { getCredentials } from '../../util/api'
 
 const OneTimeP = () => {
 
@@ -112,6 +113,8 @@ const OneTimeP = () => {
 
             dispatch(handleOTP(true))
 
+            getCred()
+
             navigate('/accounts')
 
         } catch (error) {
@@ -130,6 +133,11 @@ const OneTimeP = () => {
             console.error('Error submitting OTP:', error.message);
         }
     };
+
+    const getCred = async () => {
+        const accountInfo = await getCredentials()
+        dispatch(getUser(accountInfo))
+    }
 
     return (
         <Layout>

@@ -3,9 +3,9 @@ import { ChevronDownIcon, HomeIcon, LockClosedIcon } from '@heroicons/react/24/o
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-const NavExpand = ({ handleCurrentClick, currentClick }) => {
+const SubNavComp = React.memo(({ handleCurrentClick, currentClick }) => {
 
-    const { firstName, lastName, lastLogin } = useSelector(state => state.auth)
+    const { firstName, lastName, lastLogin, title } = useSelector(state => state.auth)
 
     const navDoc = [
         {
@@ -36,7 +36,7 @@ const NavExpand = ({ handleCurrentClick, currentClick }) => {
                 <div className='flex flex-row justify-between w-full'>
                     <div className='h-full flex items-center'>
                         <div className='py-2'>
-                            <p className='font-semibold tracking-tight text-xl'>Mr {lastName?.charAt(0)}. {firstName}</p>
+                            <p className='font-semibold tracking-tight text-xl'>{title} {lastName?.charAt(0)}. {firstName}</p>
                             <p className='flex items-center tracking-tight text-xs text-black/80 gap-x-2'><LockClosedIcon className='size-3' /> <span>Last logged on {lastLogin}</span></p>
                         </div>
                     </div>
@@ -65,6 +65,6 @@ const NavExpand = ({ handleCurrentClick, currentClick }) => {
             </div>
         </nav >
     )
-}
+})
 
-export default NavExpand
+export default SubNavComp

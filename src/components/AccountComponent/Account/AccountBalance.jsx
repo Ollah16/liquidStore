@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUser } from '../../../reduxtoolkit/authslice'
-import axios from 'axios'
+import { getAccountInfo } from '../../../util/api'
+import { getAccountInformation } from '../../../reduxtoolkit/authslice'
 
 const AccountBalance = ({ path_Name }) => {
 
@@ -9,27 +9,12 @@ const AccountBalance = ({ path_Name }) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        const getUserDetails = async () => {
-            try {
-                const serverLink = 'http://localhost:8080/user/getdetails'
-                const token = localStorage.getItem('token')
-
-                const header = {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                }
-
-                const response = await axios.get(serverLink, header)
-
-                const { userDetails } = response.data
-
-                dispatch(getUser(userDetails))
-
-            } catch (error) {
-                console.error(error)
-            }
+        const getInfo = async () => {
+            const accountInfo = await getAccountInfo()
+            dispatch(getAccountInformation(accountInfo))
         }
+        getInfo()
 
-        getUserDetails()
     }, [dispatch])
 
     return (
