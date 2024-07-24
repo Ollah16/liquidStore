@@ -1,5 +1,5 @@
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import React, { useState } from 'react'
+import React from 'react'
 import { BiSolidDownArrow } from "react-icons/bi";
 import { useDispatch, useSelector } from 'react-redux';
 import { setInformation } from '../../reduxtoolkit/paymentslice';
@@ -33,7 +33,7 @@ const RecipientDetails = () => {
                 <p className='text-2xl font-normal mb-3'>Step 1 - Recipient details</p>
                 <div className='mb-5'>
                     <label htmlFor='full name' className='block mb-3'>Recipient's full name*</label>
-                    <input id='full name' className='border py-2 w-full inline-block border-gray-500/70' required />
+                    <input id='full name' className='border py-2 w-full px-1 inline-block border-gray-500/70' required />
                 </div>
                 <div>
                     <label htmlFor='address' className='block mb-1'>Recipient's address*</label>
@@ -41,9 +41,9 @@ const RecipientDetails = () => {
                         onClick={() => dispatch(setInformation('address'))}
                         className='text-theme underline text-sm mb-3'>Why do I need to provide an address?</button>
                     <div className='flex flex-col gap-y-3'>
-                        <input id='address' className='border py-2 w-full inline-block border-gray-500/70' required />
-                        <input id='address' className='border py-2 w-full inline-block border-gray-500/70' required />
-                        <input id='address' className='border py-2 w-full inline-block border-gray-500/70' required />
+                        <input id='address' className='border py-2 w-full px-1 inline-block border-gray-500/70' required />
+                        <input id='address' className='border py-2 w-full px-1 inline-block border-gray-500/70' required />
+                        <input id='address' className='border py-2 w-full px-1 inline-block border-gray-500/70' required />
                     </div>
                 </div>
                 <div className={`absolute bg-theme text-white font-normal top-[60px] ${informationType === 'address' ? 'block' : 'hidden'}`}>

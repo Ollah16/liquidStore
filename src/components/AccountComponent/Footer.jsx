@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import AccountFooter from '../../constants/AccountConstants/Footer'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
     const footerList = AccountFooter()
@@ -35,7 +36,7 @@ const Footer = () => {
                                     {item.content.map((foot, index) => (
                                         <ul key={index} className={`${isVisible ? 'max-h-[1000px]' : 'max-h-0'} md:max-h-full transition-all ease-in-out duration-300 overflow-hidden`}>
                                             <li className={`py-1 md:block cursor-pointer hover:underline text-sm font-light w-fit`}>
-                                                {foot}
+                                                <Link to={`/${foot}`}>{foot}</Link>
                                             </li>
                                         </ul>)
                                     )}

@@ -19,14 +19,14 @@ const SelectCountry = () => {
     }, [isCurrencyClicked])
 
     return (
-        <div className={`fixed w-full top-0 h-full flex justify-center items-center tracking-tight z-30 left-0 right-0 bg-black/10 ${isCurrencyClicked ? 'block' : 'hidden'}`}>
-            <div className='md:w-8/12 w-10/12 flex justify-center items-center mx-auto bg-white h-[90%] overflow-y-scroll'>
+        <div className={`fixed w-full top-0 h-full flex justify-center items-center tracking-tight z-30 left-0 right-0 bg-[#00000080] ${isCurrencyClicked ? 'block' : 'hidden'}`}>
+            <div className='md:w-8/12 w-11/12 flex justify-center items-center mx-auto bg-white h-[90%] overflow-y-scroll'>
                 <ul className='w-full p-5 h-full inline-block'>
                     <li><button onClick={() => dispatch(handleMoreCurrency(!isCurrencyClicked))} className='underline text-theme hover:no-underline py-2 flex items-center'><ChevronLeftIcon className='mr-2 size-5' /> <span>Back</span></button></li>
                     {countries.map((country, index) => (
                         <li key={index} onClick={() => dispatch(changeCurrency(country))} className={`flex justify-between cursor-pointer w-full items-center text-theme py-3 border-b border-b-gray-500/70 ${index === countries.length - 1 && 'border-b-0'}`}>
                             <div className='flex items-center gap-x-2'>
-                                <div> <img src={country.flag} className='w-10 h-7' /></div>
+                                <div> <img src={country.flag} alt={country.flag} className='w-10 h-7' /></div>
                                 <div>{country.label}</div>
                             </div>
                             <ChevronRightIcon className='h-5 w-5' />

@@ -15,7 +15,7 @@ const ChooseMethod = ({ onChange, isBank }) => {
                 onClick={() => dispatch(setInformation('account'))}
                 className='text-sm font-normal underline text-theme'>What is an account number?</button>
             <div className='my-5'>
-                <input id='address' className='border py-2 w-full inline-block border-gray-500/70' required />
+                <input id='address' className='border py-2 px-1 w-full inline-block border-gray-500/70' required />
             </div>
             <div className='flex flex-col gap-y-3 px-5'>
                 <div className='flex items-center gap-x-3'><input type='checkbox' checked={!isBank} name='bank' onChange={onChange} className='rounded-full inline-block h-5 w-5' /> <span>BIC/SWIFT code</span></div>

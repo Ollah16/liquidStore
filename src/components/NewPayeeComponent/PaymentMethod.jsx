@@ -14,7 +14,7 @@ const PaymentMethod = ({ isBank }) => {
             <p className='text-sm font-semibold text-black/80'>(e.g. LOYDGB2L or LOYDGB2L124)</p>
             <button onClick={() => dispatch(setInformation('swift'))} className='underline text-theme text-sm '>What is a BIC/SWIFT?</button>
             <div className='my-5'>
-                <input id='address' className='border py-2 w-full inline-block border-gray-500/70' required />
+                <input id='address' className='border py-2 w-full px-1 inline-block border-gray-500/70' required />
             </div>
             <div className={`absolute bg-theme text-white font-normal bottom-[90px] ${informationType === 'swift' ? 'block' : 'hidden'}`}>
                 <div className='p-5 relative'>
@@ -37,13 +37,13 @@ const PaymentMethod = ({ isBank }) => {
                 onClick={() => dispatch(setInformation('bankaddress'))}
                 className='underline text-theme text-sm '>Why do I need to provide a bank name and address?</button>
             <div className='my-5'>
-                <input id='address' className='border py-2 w-full inline-block border-gray-500/70' required />
+                <input id='address' className='border py-2 w-full inline-block px-1 border-gray-500/70' required />
             </div>
-            <p className='text-sm font-semibold text-black/80'>Bank address*</p>
-            <div className='my-5 flex flex-col gap-y-3'>
-                <input id='address' className='border py-2 w-full inline-block border-gray-500/70' required />
-                <input id='address' className='border py-2 w-full inline-block border-gray-500/70' required />
-                <input id='address' className='border py-2 w-full inline-block border-gray-500/70' required />
+            <p className='text-sm font-semibold mb-3 text-black/80'>Bank address*</p>
+            <div className='mb-5 flex flex-col gap-y-3'>
+                <input id='address' className='border py-2 w-full inline-block px-1 border-gray-500/70' required />
+                <input id='address' className='border py-2 w-full inline-block px-1 border-gray-500/70' required />
+                <input id='address' className='border py-2 w-full inline-block px-1 border-gray-500/70' required />
             </div>
             <div className={`absolute bg-theme text-white font-normal top-[-110px] ${informationType === 'bankaddress' ? 'block' : 'hidden'}`}>
                 <div className='p-5 relative'>

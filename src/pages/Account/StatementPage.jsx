@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Layout from './Layout'
 import BalanceComp from '../../components/AccountComponent/Account/BalanceComp'
 import { Link } from 'react-router-dom'
@@ -6,8 +6,22 @@ import { ChevronLeftIcon } from '@heroicons/react/24/outline'
 import FullStatement from '../../components/StatementComponent/FullStatement'
 import ContactUs from '../../components/StatementComponent/ContactUs'
 import AccountProductServices from '../../components/AccountComponent/Account/AccountProductServices'
+import { useDispatch } from 'react-redux'
+import { getAccountInfo } from '../../util/api'
+import { getAccountInformation } from '../../reduxtoolkit/authslice'
 
 const StatementPage = () => {
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        const getInfo = async () => {
+            const accountInfo = await getAccountInfo()
+            dispatch(getAccountInformation(accountInfo))
+        }
+
+        getInfo()
+    }, [dispatch])
 
     return (
         <Layout>
