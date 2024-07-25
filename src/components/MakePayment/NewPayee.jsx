@@ -45,10 +45,10 @@ const NewPayee = React.memo(({ payNew, onClick }) => {
                 </div>
                 <div>
                     <label className='block mb-2 text-lg font-semibold'>Account number</label>
-                    <input className='py-2 block px-2 border border-black/70 w-full md:w-6/12' placeholder='Enter sort code' />
+                    <input className='py-2 block px-2 border border-black/70 w-full md:w-6/12' placeholder='Account number' />
                 </div>
                 <div>
-                    <div className='flex gap-x-2'>
+                    <div className='flex gap-x-1'>
                         <input type='checkbox' className='py-2 inline-block border-black/70 w-1/12' />
                         <p className='text-lg w-11/12'>Is this a business</p>
                     </div>

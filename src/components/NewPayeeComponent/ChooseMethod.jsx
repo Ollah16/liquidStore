@@ -10,7 +10,7 @@ const ChooseMethod = ({ onChange, isBank }) => {
     return (
         <div className='my-5 border-b-gray-500 w-full relative overflow-visible'>
             <p className='text-2xl font-normal mb-3'> Step 2 - Recipient bank account details</p>
-            <p className='text-sm font-semibold text-black/80'>Account number / IBAN*</p>
+            <p className='text-base font-semibold text-black/80'>Account number / IBAN*</p>
             <button
                 onClick={() => dispatch(setInformation('account'))}
                 className='text-sm font-normal underline text-theme'>What is an account number?</button>

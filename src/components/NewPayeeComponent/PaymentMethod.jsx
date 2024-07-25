@@ -10,8 +10,8 @@ const PaymentMethod = ({ isBank }) => {
 
     return (!isBank ?
         <div className='w-full relative'>
-            <p className='text-sm font-semibold text-black/80'>BIC/SWIFT*</p>
-            <p className='text-sm font-semibold text-black/80'>(e.g. LOYDGB2L or LOYDGB2L124)</p>
+            <p className='text-base font-semibold text-black/80'>BIC/SWIFT*</p>
+            <p className='text-base font-semibold text-black/80'>(e.g. LOYDGB2L or LOYDGB2L124)</p>
             <button onClick={() => dispatch(setInformation('swift'))} className='underline text-theme text-sm '>What is a BIC/SWIFT?</button>
             <div className='my-5'>
                 <input id='address' className='border py-2 w-full px-1 inline-block border-gray-500/70' required />
@@ -32,14 +32,14 @@ const PaymentMethod = ({ isBank }) => {
         </div>
         :
         <div className='w-full relative'>
-            <p className='text-sm font-semibold text-black/80'>Bank name*</p>
+            <p className='text-base font-semibold text-black/80'>Bank name*</p>
             <button
                 onClick={() => dispatch(setInformation('bankaddress'))}
                 className='underline text-theme text-sm '>Why do I need to provide a bank name and address?</button>
             <div className='my-5'>
                 <input id='address' className='border py-2 w-full inline-block px-1 border-gray-500/70' required />
             </div>
-            <p className='text-sm font-semibold mb-3 text-black/80'>Bank address*</p>
+            <p className='text-base font-semibold mb-3 text-black/80'>Bank address*</p>
             <div className='mb-5 flex flex-col gap-y-3'>
                 <input id='address' className='border py-2 w-full inline-block px-1 border-gray-500/70' required />
                 <input id='address' className='border py-2 w-full inline-block px-1 border-gray-500/70' required />
