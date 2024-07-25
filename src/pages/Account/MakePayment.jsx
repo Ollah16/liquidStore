@@ -5,12 +5,22 @@ import Layout from './Layout'
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import Balance from '../../components/StatementComponent/Balance'
 import NewPayee from '../../components/MakePayment/NewPayee'
+import SelectPayee from '../../components/MakePayment/SelectPayee'
 
 const MakePayment = () => {
     const [payNew, setPayNew] = useState(false)
+    const [isSelected, selectRecipient] = useState(false)
 
+    //Open new payment
     const handlePayNew = (value) => {
-        setPayNew()
+        setPayNew(value)
+        selectRecipient(false)
+    }
+
+    //choose beneficiary
+    const handleBeneficiary = (value) => {
+        selectRecipient(value)
+        setPayNew(false)
     }
 
     return (
@@ -31,7 +41,7 @@ const MakePayment = () => {
                                 <div className='my-5'>
                                     <p className='mb-1 font-semibold text-lg tracking-tight'>To</p>
                                     <div className='md:flex-row flex gap-x-8 flex-col gap-y-5'>
-                                        <Link to={'/'} className='bg-theme px-5 py-2 text-white font-semibold text-lg inline-block w-full md:w-fit text-center hover:bg-[#004A36] transition-colors duration-200 ease-in-out'>Select account or recipient</Link>
+                                        <button onClick={() => selectRecipient(!isSelected)} className='bg-theme px-5 py-2 text-white font-semibold text-lg inline-block w-full md:w-fit text-center hover:bg-[#004A36] transition-colors duration-200 ease-in-out'>Select account or recipient</button>
                                         <button
                                             onClick={() => setPayNew(!payNew)}
                                             className='border hover:underline px-5 py-2 flex font-semibold text-theme border-theme w-full md:w-fit justify-center items-center gap-x-3'><span>Pay someone new</span> <TiPlus className='w-5 h-5' /></button>
@@ -53,8 +63,13 @@ const MakePayment = () => {
                     </div>
                 </div>
             </main>
-            <NewPayee payNew={payNew} onClick={() => handlePayNew(!payNew)} />
+            <NewPayee
+                payNew={payNew}
+                onClick={() => handlePayNew(!payNew)} />
 
+            <SelectPayee
+                onClick={() => handleBeneficiary(!isSelected)}
+                isSelected={isSelected} newPay={() => handlePayNew(!payNew)} />
         </Layout>
     )
 }

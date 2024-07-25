@@ -1,4 +1,5 @@
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
 export const getCredentials = async () => {
     try {
@@ -79,4 +80,64 @@ export const getCountries = async () => {
     } catch (error) {
         console.error('Error fetching country data:', error);
     };
+}
+
+export const addBen = async (body) => {
+
+    try {
+        const serverLink = 'http://localhost:8080/user/addBeneficiary'
+        const token = localStorage.getItem('token')
+
+        const header = {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': `Bearer ${token}`
+            }
+        }
+
+        const response = await axios.post(serverLink, body, header)
+        return response.data
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export const getBen = async () => {
+    try {
+        const serverLink = 'http://localhost:8080/user/getAllBeneficiary'
+        const token = localStorage.getItem('token')
+
+        const header = {
+            headers: { 'Authorization': `Bearer ${token}` }
+        }
+
+        const response = await axios.get(serverLink, header)
+
+        const { allBeneficiary } = response.data
+        return allBeneficiary
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export const deleteBeneficiary = async (id) => {
+    try {
+        const serverLink = `http://localhost:8080/user/delBeneficiary/${id}`
+        const token = localStorage.getItem('token')
+
+        const header = {
+            headers: { 'Authorization': `Bearer ${token}` }
+        }
+
+        const response = await axios.patch(serverLink, {}, header);
+
+        const { userDetails } = response.data
+
+        return userDetails
+
+    } catch (error) {
+        console.error(error)
+    }
 }
