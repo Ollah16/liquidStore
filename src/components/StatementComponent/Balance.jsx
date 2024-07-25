@@ -1,9 +1,21 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAccountInformation } from '../../reduxtoolkit/authslice'
+import { getAccountInfo } from '../../util/api'
 
 const Balance = () => {
 
     const { balance, sortCode, accountType, accountNumber } = useSelector(state => state.auth)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        const getInfo = async () => {
+            const accountInfo = await getAccountInfo()
+            dispatch(getAccountInformation(accountInfo))
+        }
+        getInfo()
+
+    }, [dispatch])
 
     return (
         <div className='bg-gray-100 p-5'>

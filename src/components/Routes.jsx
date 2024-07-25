@@ -13,6 +13,7 @@ import MakePayment from '../pages/Account/MakePayment'
 import InternationalPayment from '../pages/MakePayment/InternationalPayment'
 import PayNewRecipient from '../pages/MakePayment/PayNewRecipient'
 import NotFound from '../pages/NotFound'
+import TransfersAndPayment from '../pages/TransfersAndPayment'
 
 const AuthRoute = ({ isOTPValidated, isLoggedIn }) => {
     console.log(isOTPValidated, isLoggedIn)
@@ -74,6 +75,7 @@ const AppRoutes = () => {
                 <Route path='/makepayment' element={<MakePayment />} />
                 <Route path='/internationalpayments' element={<InternationalPayment />} />
                 <Route path='/paynew' element={<PayNewRecipient />} />
+                <Route path='/makepayment_transfer/:id' element={<TransfersAndPayment />} />
             </Route>
             <Route path='*' element={<NotFound />} />
         </Routes >

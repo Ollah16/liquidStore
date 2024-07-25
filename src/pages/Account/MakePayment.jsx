@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { TiPlus } from 'react-icons/ti'
 import Layout from './Layout'
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import Balance from '../../components/StatementComponent/Balance'
 import NewPayee from '../../components/MakePayment/NewPayee'
 import SelectPayee from '../../components/MakePayment/SelectPayee'
+import CompletePayment from '../../components/MakePayment/CompletePayment'
 
 const MakePayment = () => {
     const [payNew, setPayNew] = useState(false)
     const [isSelected, selectRecipient] = useState(false)
+    const navigate = useNavigate()
 
     //Open new payment
     const handlePayNew = (value) => {
@@ -21,6 +23,11 @@ const MakePayment = () => {
     const handleBeneficiary = (value) => {
         selectRecipient(value)
         setPayNew(false)
+    }
+
+    //route to transfer
+    const handleRoute = (id) => {
+        navigate(`/makepayment_transfer/${id}`)
     }
 
     return (
@@ -52,12 +59,7 @@ const MakePayment = () => {
                                     <Link to={'/internationalpayments'} className='flex gap-x-2 items-center hover:underline font-semibold text-theme'><span>Send money outside the UK</span> <ChevronRightIcon className='size-5' /></Link>
                                 </div>
 
-                                <div>
-                                    <div className='flex flex-col-reverse md:flex-row gap-y-5 justify-end gap-x-5 pt-5 border-t border-gray-500/30'>
-                                        <Link to={'/accounts'} className='text-theme text-center text-base font-semibold px-5 py-3 bg-gray-100 hover:bg-gray-200 transition-colors duration-200 ease-in-out'>Cancel</Link>
-                                        <button className='gap-x-3 flex py-3 px-5 items-center justify-center md:justify-normal font-semibold text-black/60 bg-gray-100 hover:bg-gray-200 transition-colors duration-200 ease-in-out'><span>Continue</span><ChevronRightIcon className='size-5' /></button>
-                                    </div>
-                                </div>
+                                <CompletePayment isDisabled={true} />
                             </div>
                         </div >
                     </div>
@@ -69,7 +71,8 @@ const MakePayment = () => {
 
             <SelectPayee
                 onClick={() => handleBeneficiary(!isSelected)}
-                isSelected={isSelected} newPay={() => handlePayNew(!payNew)} />
+                isSelected={isSelected} newPay={() => handlePayNew(!payNew)}
+                clickRecipient={handleRoute} />
         </Layout>
     )
 }

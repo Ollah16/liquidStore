@@ -1,12 +1,14 @@
 import { ChevronRightIcon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import React, { useEffect, useState } from 'react'
-import { deleteBeneficiary, getBen } from '../../util/api'
+import { deleteBeneficiary, getAllBen } from '../../util/api'
 import { TiPlus } from 'react-icons/ti'
+import { useNavigate } from 'react-router-dom'
 
-const SelectPayee = React.memo(({ isSelected, onClick, newPay }) => {
+const SelectPayee = React.memo(({ isSelected, onClick, newPay, clickRecipient }) => {
 
     const [allBeneficiaries, setBeneficiary] = useState([])
     const [isDeleteClicked, setIsDelete] = useState(false)
+    const navigate = useNavigate()
 
     useEffect(() => {
 
@@ -38,8 +40,9 @@ const SelectPayee = React.memo(({ isSelected, onClick, newPay }) => {
 
     //get all beneficiaries
     const getBeneficiaries = async () => {
-        const beneficiaries = await getBen()
-        setBeneficiary(beneficiaries)
+        let beneficiaries = await getAllBen();
+        beneficiaries = beneficiaries.sort((a, b) => a.recipientFullName.localeCompare(b.recipientFullName));
+        setBeneficiary(beneficiaries);
     }
 
     //get value of the seached beneficairy
@@ -56,9 +59,10 @@ const SelectPayee = React.memo(({ isSelected, onClick, newPay }) => {
     }
 
 
+
     return (
         <div className={`tracking-light fixed min-h-screen overflow-y-hidden md:overflow-y-auto flex justify-center bg-[#004a36]/90 items-center z-50 left-0 top-0 w-full ${isSelected ? 'block' : 'hidden'}`}>
-            <div className='w-full md:w-6/12 min-h-screen md:min-h-[80%] flex flex-col gap-y-5 p-5 bg-white overflow-y-auto relative'>
+            <div className='w-full md:w-6/12 h-screen md:h-[600px] flex flex-col gap-y-5 p-5 bg-white overflow-y-auto relative'>
                 <button onClick={onClick}><XMarkIcon className='size-6 text-theme absolute right-3 top-3' /></button>
                 <div className='flex justify-between items-center mt-5 mb-3'>
                     <p className='text-2xl font-semibold'>Your recipients</p>
@@ -75,7 +79,9 @@ const SelectPayee = React.memo(({ isSelected, onClick, newPay }) => {
                     {allBeneficiaries?.length > 0 ?
                         <ul>
                             {allBeneficiaries.map((ben, index) => (
-                                <li key={index} className='cursor-pointer border-b py-3 w-full border-b-gray-500 flex items-center justify-between gap-x-10' tabIndex='0'>
+                                <li key={index}
+                                    onClick={() => !isDeleteClicked ? clickRecipient(ben._id) : deleteRecipient(ben._id)}
+                                    className='cursor-pointer border-b py-3 w-full border-b-gray-500 flex items-center justify-between gap-x-10' tabIndex='0'>
                                     <div className='w-5/12 text-theme font-medium text-lg'>{ben.recipientFullName}</div>
                                     <div className='flex gap-x-7 justify-between w-3/12 font-light text-sm'>
                                         <div>{ben.recipientSortCode}</div>
@@ -88,7 +94,7 @@ const SelectPayee = React.memo(({ isSelected, onClick, newPay }) => {
                                                 <button className='inline-block'><ChevronRightIcon className='size-6' /></button>
                                                 :
                                                 <button
-                                                    onClick={() => deleteRecipient(ben._id)}
+
                                                     className={`text-theme size-6 block`}
                                                 ><XMarkIcon className='size-6' />
                                                 </button>}
@@ -106,9 +112,9 @@ const SelectPayee = React.memo(({ isSelected, onClick, newPay }) => {
                             </button>
                         </div>
                     }
-                </div>
-            </div>
-        </div>
+                </div >
+            </div >
+        </div >
     )
 })
 

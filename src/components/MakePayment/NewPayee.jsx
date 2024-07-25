@@ -5,11 +5,12 @@ import { useDispatch } from 'react-redux'
 import { getAccountInformation } from '../../reduxtoolkit/authslice'
 import { addBen, getAccountInfo } from '../../util/api'
 import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 
 const NewPayee = React.memo(({ payNew, onClick }) => {
 
     const dispatch = useDispatch()
-
+    const navigate = useNavigate()
     const [recipientFullName, setFullName] = useState('')
     const [recipientAccountNumber, setAccountNumber] = useState('')
     const [recipientSortCode, setSortCode] = useState('')
@@ -39,14 +40,14 @@ const NewPayee = React.memo(({ payNew, onClick }) => {
     }, [payNew])
 
     //add new beneficiary
-    const addNewBeneficiary = () => {
+    const addNewBeneficiary = async () => {
         const body = { recipientFullName, recipientAccountNumber, recipientSortCode }
-        const response = addBen(body)
+        const beneficiaryId = await addBen(body)
         setFullName('')
         setAccountNumber('')
         setSortCode('')
         onClick()
-        toast.success(response)
+        navigate(`/makepayment_transfer/${beneficiaryId}`)
     }
 
 

@@ -14,15 +14,6 @@ const StatementPage = () => {
 
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        const getInfo = async () => {
-            const accountInfo = await getAccountInfo()
-            dispatch(getAccountInformation(accountInfo))
-        }
-
-        getInfo()
-    }, [dispatch])
-
     return (
         <Layout>
             <main className='w-full'>

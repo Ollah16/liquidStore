@@ -1,5 +1,4 @@
 import axios from 'axios'
-import toast from 'react-hot-toast'
 
 export const getCredentials = async () => {
     try {
@@ -96,14 +95,15 @@ export const addBen = async (body) => {
         }
 
         const response = await axios.post(serverLink, body, header)
-        return response.data
+        const { beneficiaryId } = response.data
+        return beneficiaryId
 
     } catch (error) {
         console.error(error)
     }
 }
 
-export const getBen = async () => {
+export const getAllBen = async () => {
     try {
         const serverLink = 'http://localhost:8080/user/getAllBeneficiary'
         const token = localStorage.getItem('token')
@@ -116,6 +116,26 @@ export const getBen = async () => {
 
         const { allBeneficiary } = response.data
         return allBeneficiary
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export const getRecipient = async (id) => {
+    try {
+        const serverLink = `http://localhost:8080/user/getrecipient/${id}`
+        const token = localStorage.getItem('token')
+
+        const header = {
+            headers: { 'Authorization': `Bearer ${token}` }
+        }
+
+        const response = await axios.get(serverLink, header)
+
+        const { recipient } = response.data
+
+        return recipient
 
     } catch (error) {
         console.error(error)
