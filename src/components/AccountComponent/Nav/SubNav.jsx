@@ -1,11 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ChevronDownIcon, HomeIcon, LockClosedIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCredentials } from '../../../util/api'
+import { getUser } from '../../../reduxtoolkit/authslice'
 
 const SubNavComp = React.memo(({ handleCurrentClick, currentClick }) => {
 
+    const dispatch = useDispatch()
     const { firstName, lastName, lastLogin, title } = useSelector(state => state.auth)
+
+    useEffect(() => {
+
+        const getCred = async () => {
+            const accountInfo = await getCredentials()
+            dispatch(getUser(accountInfo))
+        }
+
+        getCred()
+
+    }, [dispatch])
 
     const navDoc = [
         {
