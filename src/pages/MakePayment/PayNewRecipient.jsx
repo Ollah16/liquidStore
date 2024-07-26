@@ -4,14 +4,16 @@ import PaymentMethod from '../../components/NewPayeeComponent/PaymentMethod'
 import ChooseMethod from '../../components/NewPayeeComponent/ChooseMethod'
 import RecipientDetails from '../../components/NewPayeeComponent/RecipientDetails'
 import FraudProtection from '../../components/NewPayeeComponent/FraudProtection'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import { handleMoreCurrency, setInformation } from '../../reduxtoolkit/paymentslice'
+import toast from 'react-hot-toast'
 
 const PayNewRecipient = () => {
-    const { selectedCountry, isCurrencyClicked } = useSelector(state => state.pay)
+    const { selectedCountry, isCurrencyClicked, fullName, accountNumber, addressLineI, bankName, bankaddressLineI, bankSwift } = useSelector(state => state.pay)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const [isBank, setIsbank] = useState(false)
 
@@ -19,9 +21,28 @@ const PayNewRecipient = () => {
         dispatch(setInformation(false))
     }, [dispatch])
 
+    //handle method of transfer
     const handleMethod = (value) => {
         setIsbank(value)
     }
+
+    //handle routing after validating fields
+    const handleRoute = () => {
+        // Check if required bank details are filled
+        const isBankDetailsFilled = Boolean(bankName && bankaddressLineI || bankSwift);
+
+        // Validate all required fields
+        const isFormValid = Boolean(fullName && accountNumber && addressLineI && isBankDetailsFilled);
+
+        if (isFormValid) {
+            // Navigate to the international payments page if the form is valid
+            navigate('/internationalpayments');
+        } else {
+            // Show an error message if required fields are missing
+            toast.error('Fields marked with * are required');
+        }
+    };
+
 
     return (
         <Layout>
@@ -58,11 +79,11 @@ const PayNewRecipient = () => {
                             <div>
                                 <div className='flex flex-col md:flex-row justify-between gap-y-5'>
                                     <div className='w-full'>
-                                        <Link to={'/internationalpayments'} className='py-2 px-5 w-full md:w-auto inline-block text-center border-theme border-2 hover:underline text-theme'>Back</Link>
+                                        <Link to={'/accounts'} className='py-2 px-5 w-full md:w-auto inline-block text-center border-theme border-2 hover:underline text-theme'>Back</Link>
                                     </div>
                                     <div className='flex flex-col md:flex-row gap-x-5 gap-y-4 w-full md:w-auto'>
                                         <Link to={'/internationalpayments'} className='py-2 px-5 w-full border-theme border-2 text-center hover:underline text-theme'>Cancel</Link>
-                                        <Link className='py-2 px-5 bg-theme text-white w-full hover:underline text-center hover:bg-[#004A36]'>Continue</Link>
+                                        <button onClick={handleRoute} className='py-2 px-5 bg-theme text-white w-full hover:underline text-center hover:bg-[#004A36]'>Continue</button>
                                     </div>
                                 </div>
                             </div>

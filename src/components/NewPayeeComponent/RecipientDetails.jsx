@@ -2,7 +2,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import React from 'react'
 import { BiSolidDownArrow } from "react-icons/bi";
 import { useDispatch, useSelector } from 'react-redux';
-import { setInformation } from '../../reduxtoolkit/paymentslice';
+import { getAddressLineI, getAddressLineII, getAddressLineIII, getFullName, setInformation } from '../../reduxtoolkit/paymentslice';
 
 const RecipientDetails = () => {
     const { informationType } = useSelector(state => state.pay)
@@ -33,17 +33,27 @@ const RecipientDetails = () => {
                 <p className='text-2xl font-normal mb-3'>Step 1 - Recipient details</p>
                 <div className='mb-5'>
                     <label htmlFor='full name' className='block text-base font-semibold mb-3 text-black/80'>Recipient's full name*</label>
-                    <input id='full name' className='border py-2 w-full px-1 inline-block border-gray-500/70' required />
+                    <input
+                        onChange={(e) => dispatch(getFullName(e.target.value))}
+                        id='full name' className='border py-2 w-full px-1 inline-block border-gray-500/70' required />
                 </div>
                 <div>
                     <label htmlFor='address' className='block mb-1 text-base font-semibold text-black/80'>Recipient's address*</label>
                     <button
-                        onClick={() => dispatch(setInformation('address'))}
+                        onClick={(e) => dispatch(setInformation('address'))}
                         className='text-theme underline text-sm mb-3'>Why do I need to provide an address?</button>
                     <div className='flex flex-col gap-y-3'>
-                        <input id='address' className='border py-2 w-full px-1 inline-block border-gray-500/70' required />
-                        <input id='address' className='border py-2 w-full px-1 inline-block border-gray-500/70' required />
-                        <input id='address' className='border py-2 w-full px-1 inline-block border-gray-500/70' required />
+                        <input
+                            onChange={(e) => dispatch(getAddressLineI(e.target.value))}
+                            id='address' className='border py-2 w-full px-1 inline-block border-gray-500/70' required />
+
+                        <input
+                            onChange={(e) => dispatch(getAddressLineII(e.target.value))}
+                            id='address' className='border py-2 w-full px-1 inline-block border-gray-500/70' required />
+
+                        <input
+                            onChange={(e) => dispatch(getAddressLineIII(e.target.value))}
+                            id='address' className='border py-2 w-full px-1 inline-block border-gray-500/70' required />
                     </div>
                 </div>
                 <div className={`absolute bg-theme text-white font-normal top-[60px] ${informationType === 'address' ? 'block' : 'hidden'}`}>

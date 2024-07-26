@@ -74,12 +74,26 @@ export const getCountries = async () => {
             })).sort((a, b) => a.label.localeCompare(b.label))
         ]
 
+        console.log(countryData)
         return countryData
 
     } catch (error) {
         console.error('Error fetching country data:', error);
     };
 }
+
+export const getExchangeRates = async () => {
+    try {
+        const apiKey = '6a6d54c06990e04ad1c25814'
+        const response = await axios.get(`https://v6.exchangerate-api.com/v6/${apiKey}/latest/USD`);
+
+        const exchangeRates = response.data;
+        return exchangeRates.conversion_rates;
+    } catch (error) {
+        console.error('Error fetching exchange rates:', error);
+        return null;
+    }
+};
 
 export const addBen = async (body) => {
 

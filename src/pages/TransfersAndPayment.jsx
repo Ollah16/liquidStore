@@ -13,6 +13,7 @@ const TransfersAndPayment = () => {
     const { id } = useParams()
     const [recipient, setRecipient] = useState({})
     const [isSelected, selectRecipient] = useState(false)
+    const [payment, setPayment] = useState({})
 
     useEffect(() => {
         const getBody = document.querySelector('body')
@@ -42,6 +43,16 @@ const TransfersAndPayment = () => {
         selectRecipient(!isSelected)
     }
 
+    const getAmount_Reference = (e) => {
+        const { name, value } = e.target;
+
+        setPayment(prevPayment => ({
+            ...prevPayment,
+            [name]: name === 'amount' ? Number(value).toLocaleString() : value
+        }));
+    };
+
+
     return (<Layout>
         <div className='w-full py-10'>
             <div className='lg:w-10/12 w-full px-5 lg:px-0 mx-auto'>
@@ -49,11 +60,10 @@ const TransfersAndPayment = () => {
                     <div className='w-full border-b border-b-gray-500/70 pb-5'>
                         <Balance />
                         <Recipient recipient={recipient} onClick={() => handleBeneficiary(!isSelected)} />
-                        <PaymentInfo />
+                        <PaymentInfo onChange={getAmount_Reference} />
                     </div>
 
-                    <CompletePayment isDisabled={false}
-                    />
+                    <CompletePayment isDisabled={false} id={id} payment={payment} />
                 </div>
             </div >
         </div>

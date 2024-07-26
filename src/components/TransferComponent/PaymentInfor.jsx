@@ -1,13 +1,18 @@
 import React, { Fragment } from 'react'
 
-const PaymentInfo = () => {
+const PaymentInfo = ({ onChange }) => {
+
     return (
         <Fragment>
             <div className='mb-5 w-full'>
                 <div className='w-full'>
                     <p className='mb-1 font-normal text-lg'>Amount</p>
                     <div className='md:w-5/12 w-10/12 flex items-center gap-x-0'>
-                        <span className='w-3'>£</span> <input className='px-1 py-2 w-full border border-gray-500/70' required />
+                        <span className='w-3'>£</span>
+                        <input
+                            name='amount'
+                            onChange={onChange}
+                            className='px-1 py-2 w-full border border-gray-500/70' required />
                     </div>
                 </div>
             </div>
@@ -16,7 +21,10 @@ const PaymentInfo = () => {
                     <p className='mb-1 font-normal text-lg'>Reference</p>
                     <p className='font-light text-sm my-1'>The recipient will see this on their statement</p>
                     <div className='w-full'>
-                        <input className='px-1 py-2 md:w-5/12 w-10/12 border border-gray-500/70' />
+                        <input
+                            name='ref'
+                            onChange={onChange}
+                            className='px-1 py-2 md:w-5/12 w-10/12 border border-gray-500/70' required />
                     </div>
                 </div>
             </div>

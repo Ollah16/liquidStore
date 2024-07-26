@@ -2,11 +2,12 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import React from 'react'
 import { BiSolidDownArrow } from 'react-icons/bi'
 import { useDispatch, useSelector } from 'react-redux'
-import { setInformation } from '../../reduxtoolkit/paymentslice'
+import { getAccountNumber, setInformation } from '../../reduxtoolkit/paymentslice'
 
-const ChooseMethod = ({ onChange, isBank }) => {
+const ChooseMethod = () => {
     const { informationType } = useSelector(state => state.pay)
     const dispatch = useDispatch()
+
     return (
         <div className='my-5 border-b-gray-500 w-full relative overflow-visible'>
             <p className='text-2xl font-normal mb-3'> Step 2 - Recipient bank account details</p>
@@ -15,11 +16,9 @@ const ChooseMethod = ({ onChange, isBank }) => {
                 onClick={() => dispatch(setInformation('account'))}
                 className='text-sm font-normal underline text-theme'>What is an account number?</button>
             <div className='my-5'>
-                <input id='address' className='border py-2 px-1 w-full inline-block border-gray-500/70' required />
-            </div>
-            <div className='flex flex-col gap-y-3 px-5'>
-                <div className='flex items-center gap-x-3'><input type='checkbox' checked={!isBank} name='bank' onChange={onChange} className='rounded-full inline-block h-5 w-5' /> <span>BIC/SWIFT code</span></div>
-                <div className='flex items-center gap-x-3'><input type='checkbox' checked={isBank} name='bank' onChange={onChange} className='rounded-full inline-block h-5 w-5' /> <span>Bank name and address</span></div>
+                <input
+                    onChange={(e) => dispatch(getAccountNumber(e.target.value))}
+                    id='account' className='border py-2 px-1 w-full inline-block border-gray-500/70' required />
             </div>
 
             <div className={`absolute bg-theme text-white font-normal top-[-55px] ${informationType === 'account' ? 'block' : 'hidden'}`}>
