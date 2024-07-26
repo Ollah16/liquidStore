@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom'
 
 const HelpAndSupport = () => {
     const helpSupport = HelpSupport()
-    const [currentHelp, setCurrent] = useState([])
+    const [currentHelp, setCurrent] = useState(['Contact Us'])
 
     const { pathname } = useLocation()
 
@@ -17,7 +17,7 @@ const HelpAndSupport = () => {
     }
 
     return (
-        <div className={`w-4/12 bg-white p-5 h-fit ${pathname === '/paynew' && 'mt-[70px]'} md:block hidden`}>
+        <div className={`w-4/12 bg-white p-5 h-fit ${pathname === '/paynew' || pathname === '/confirmintpayment' && 'mt-[70px]'} md:block hidden`}>
             <div className='text-center flex flex-col items-center mb-5 text-xl py-5 relative after:absolute after:w-10/12 after:bottom-0 after:inline-block after:h-[.5px] after:bg-black'>Help & Support</div>
 
             {helpSupport.map((help, index) => {

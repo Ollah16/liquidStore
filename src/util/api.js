@@ -41,54 +41,72 @@ export const getAccountInfo = async () => {
 }
 
 export const getCountries = async () => {
-
+    // List of popular countries to fetch data 
     const popularCountries = [
-        'United States', 'Canada', 'Australia', 'Japan', 'China', 'India', 'Pakistan', 'United Kingdom',
-        'Germany', 'France', 'Italy', 'Brazil', 'Mexico', 'South Africa', 'Nigeria', 'Egypt', 'Kenya',
-        'Argentina', 'Chile', 'Colombia', 'Russia', 'Turkey', 'Saudi Arabia', 'South Korea', 'Indonesia',
-        'Malaysia', 'Singapore', 'Philippines', 'Thailand', 'Vietnam', 'Bangladesh', 'Sri Lanka', 'Nepal',
-        'New Zealand', 'Spain', 'Netherlands', 'Belgium', 'Sweden', 'Norway', 'Denmark', 'Finland', 'Poland',
-        'Austria', 'Switzerland', 'Greece', 'Portugal', 'Hungary', 'Czech Republic', 'Romania', 'Israel'
+        'United States', 'Canada', 'Australia', 'Japan', 'China', 'India', 'Pakistan',
+        'Brazil', 'Mexico', 'South Africa', 'Nigeria', 'Egypt', 'Kenya', 'Argentina',
+        'Chile', 'Colombia', 'Russia', 'Turkey', 'Saudi Arabia', 'South Korea', 'Indonesia',
+        'Malaysia', 'Singapore', 'Philippines', 'Thailand', 'Vietnam', 'Bangladesh', 'Sri Lanka',
+        'Nepal', 'New Zealand', 'Spain', 'Netherlands', 'Belgium', 'Sweden', 'Norway', 'Denmark',
+        'Finland', 'Poland', 'Austria', 'Switzerland', 'Greece', 'Portugal', 'Hungary',
+        'Czech Republic', 'Romania', 'Israel'
     ];
 
     try {
-        const response = await axios.get('https://restcountries.com/v3.1/all')
+        const response = await axios.get('https://restcountries.com/v3.1/all');
+        const countries = response.data;
 
-        const europeanCountries = response.data.filter(country => country.region === 'Europe');
-        const popularCountryData = response.data.filter(country => popularCountries.includes(country.name.common));
+        // Filter European countries and non-European countries
+        const europeanCountries = countries.filter(country => country.region === 'Europe');
+        const nonEuropeanCountries = countries.filter(country => popularCountries.includes(country.name.common));
 
-        const countryData = [
-            {
-                label: 'Europe (Euro)',
-                countryName: 'Europe',
-                abbr: 'EURO',
-                flag: 'https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg',
-                currency: 'Euro'
-            },
-            ...popularCountryData.map(country => ({
+        // Prepare country data with Euro for European countries
+        const europeanData = [{
+            label: 'Europe (Euro)',
+            countryName: 'Europe',
+            abbr: 'EURO',
+            flag: 'https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg',
+            currency: 'Euro'
+        }];
+
+        // Prepare country data for non-European popular countries
+        const nonEuropeanData = nonEuropeanCountries
+            .map(country => ({
                 label: `${country.name.common} (${country.cca2})`,
                 countryName: country.name.common,
                 abbr: country.cca2,
                 flag: country.flags.png,
                 currency: country.currencies ? Object.values(country.currencies)[0].name : 'N/A'
-            })).sort((a, b) => a.label.localeCompare(b.label))
-        ]
+            }));
 
-        console.log(countryData)
-        return countryData
+        // Combine European data and non-European data, and sort by label
+        const countryData = [
+            ...europeanData,
+            ...nonEuropeanData
+        ].sort((a, b) => a.label.localeCompare(b.label));
 
+        return countryData;
     } catch (error) {
         console.error('Error fetching country data:', error);
-    };
-}
+        return [];
+    }
+};
 
 export const getExchangeRates = async () => {
-    try {
-        const apiKey = '6a6d54c06990e04ad1c25814'
-        const response = await axios.get(`https://v6.exchangerate-api.com/v6/${apiKey}/latest/USD`);
 
-        const exchangeRates = response.data;
+    try {
+        const serverLink = 'http://localhost:8080/user/rate'
+        const token = localStorage.getItem('token')
+
+        const header = {
+            headers: { 'Authorization': `Bearer ${token}` }
+        }
+
+        const response = await axios.get(serverLink, header)
+
+        const { exchangeRates } = response.data;
         return exchangeRates.conversion_rates;
+
     } catch (error) {
         console.error('Error fetching exchange rates:', error);
         return null;

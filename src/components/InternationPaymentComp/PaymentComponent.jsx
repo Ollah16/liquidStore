@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Balance from './Balance'
 import PaymentDetails from './PaymentDetails'
 import Reference from './Reference'
@@ -18,7 +18,8 @@ const PaymentComponent = () => {
         const fetchCountry = async () => {
             const allCountries = await getCountries()
             dispatch(getAllCountry(allCountries))
-            dispatch(getSelectedCountry(allCountries[0]))
+
+            dispatch(getSelectedCountry(allCountries.find(_ => _.abbr === 'EURO')))
         }
         fetchCountry()
     }, []);
@@ -29,9 +30,11 @@ const PaymentComponent = () => {
                 <From />
                 <Balance />
                 <Pay />
-                <PaymentDetails />
-                <ExchangeDeets />
-                <Reference />
+                <div className='md:w-8/12 w-10/12'>
+                    <PaymentDetails />
+                    <ExchangeDeets />
+                    <Reference />
+                </div>
                 <CompletePayment />
 
             </div>

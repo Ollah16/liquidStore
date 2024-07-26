@@ -6,10 +6,9 @@ import { clearCurrentInputs } from '../../reduxtoolkit/paymentslice'
 
 const RecipientDeet = () => {
     const dispatch = useDispatch()
-    const { selectedCountry, accountNumber, bankName, fullName } = useSelector(state => state.pay)
-    const isFilled = Boolean(selectedCountry && accountNumber && bankName && fullName)
+    const { selectedCountry, recipientActNumber, bankName, recipientFullName } = useSelector(state => state.pay)
+    const isFilled = Boolean(selectedCountry && recipientActNumber && bankName && recipientFullName)
     const navigate = useNavigate()
-
 
     //chnage current recipient
     const handleChangeRecipient = () => {
@@ -19,8 +18,8 @@ const RecipientDeet = () => {
     }
 
     return (isFilled && <div className={`p-5 bg-gray-100 ${isFilled ? 'block' : 'hidden'}`}>
-        <div className='font-semibold text-lg'>{fullName}</div>
-        <div className='font-light'>{accountNumber}</div>
+        <div className='font-semibold text-lg'>{recipientFullName}</div>
+        <div className='font-light'>{recipientActNumber}</div>
         <div className='font-light'>{bankName}</div>
         <div className='font-semibold text-lg'>{selectedCountry.countryName.toUpperCase()}</div>
         <div className='flex justify-end'>

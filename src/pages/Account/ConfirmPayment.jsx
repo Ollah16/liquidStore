@@ -71,7 +71,7 @@ const ConfirmPayment = () => {
                             <div className='py-5 flex justify-end'>
                                 <div className='flex gap-x-5 items-center'>
                                     <Link to={'/makepayment'} className='underline text-theme'>Cancel</Link>
-                                    <Link className='hover:underline text-white bg-theme hover:bg-[#004A36] gap-x-1 flex py-3 px-5 items-center justify-center md:justify-normal font-semibold  transition-colors duration-200 ease-in-out'>
+                                    <Link to={'/error'} className='hover:underline text-white bg-theme hover:bg-[#004A36] gap-x-1 flex py-3 px-5 items-center justify-center md:justify-normal font-semibold  transition-colors duration-200 ease-in-out'>
                                         <span>Make payment</span>
                                         <span><ChevronRightIcon className='size-5' /></span>
                                     </Link>

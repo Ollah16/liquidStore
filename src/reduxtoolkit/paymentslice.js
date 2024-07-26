@@ -10,15 +10,16 @@ const paymentSlice = createSlice({
         countries: [],
         selectedCountry: {},
         informationType: '',
-        fullName: '',
-        accountNumber: '',
+        recipientFullName: '',
+        recipientActNumber: '',
         addressLineI: '',
         addressLineII: '',
         addressLineIII: '',
         bankName: '',
         bankaddressLineI: '',
         bankaddressLineII: '',
-        bankaddressLineIII: ''
+        bankaddressLineIII: '',
+        total: ''
     },
     reducers: {
         getSelectedCountry(state, action) {
@@ -35,7 +36,8 @@ const paymentSlice = createSlice({
         },
         getRate(state, action) {
             state.rate = action.payload
-            state.equivalent = state.amount * state.rate
+            state.equivalent = (state.amount * state.rate).toFixed(2)
+            state.total = state.amount ? (state.amount + Number(9.50)).toFixed(2) : null
         },
         changeCurrency(state, action) {
             state.selectedCountry = action.payload
@@ -45,10 +47,10 @@ const paymentSlice = createSlice({
             state.informationType = action.payload;
         },
         getFullName(state, action) {
-            state.fullName = action.payload
+            state.recipientFullName = action.payload
         },
-        getAccountNumber(state, action) {
-            state.accountNumber = action.payload
+        getAcctNumber(state, action) {
+            state.recipientActNumber = action.payload
         },
         getAddressLineI(state, action) {
             state.addressLineI = action.payload
@@ -73,8 +75,8 @@ const paymentSlice = createSlice({
             state.bankaddressLineIII = action.payload
         },
         clearCurrentInputs(state) {
-            state.fullName = ''
-            state.accountNumber = ''
+            state.recipeintFullName = ''
+            state.recipeintActNumber = ''
             state.addressLineI = ''
             state.addressLineII = ''
             state.addressLineIII = ''
@@ -82,11 +84,14 @@ const paymentSlice = createSlice({
             state.bankaddressLineI = ''
             state.bankaddressLineII = ''
             state.bankaddressLineIII = ''
+            state.amount = ''
+            state.rate = ''
+            state.equivalent = ''
         }
     }
 })
 
 export const { getAllCountry, handleMoreCurrency, changeCurrency, getSelectedCountry,
-    setInformation, getFullName, getAddressLineI, getAddressLineII, getAccountNumber, getRate,
+    setInformation, getFullName, getAddressLineI, getAddressLineII, getAcctNumber, getRate,
     getAddressLineIII, getBankAddressI, getBankAddressII, getBankAddressIII, getBankName, clearCurrentInputs, getAmount } = paymentSlice.actions
 export const paymentReducer = paymentSlice.reducer

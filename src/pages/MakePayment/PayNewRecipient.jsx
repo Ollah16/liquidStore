@@ -7,11 +7,11 @@ import FraudProtection from '../../components/NewPayeeComponent/FraudProtection'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
-import { handleMoreCurrency, setInformation } from '../../reduxtoolkit/paymentslice'
+import { clearCurrentInputs, handleMoreCurrency, setInformation } from '../../reduxtoolkit/paymentslice'
 import toast from 'react-hot-toast'
 
 const PayNewRecipient = () => {
-    const { selectedCountry, isCurrencyClicked, fullName, accountNumber, addressLineI, bankName, bankaddressLineI, bankSwift } = useSelector(state => state.pay)
+    const { selectedCountry, isCurrencyClicked, recipientFullName, recipientActNumber, addressLineI, bankName, bankaddressLineI, bankSwift } = useSelector(state => state.pay)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -19,6 +19,10 @@ const PayNewRecipient = () => {
 
     useEffect(() => {
         dispatch(setInformation(false))
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(clearCurrentInputs())
     }, [dispatch])
 
     //handle method of transfer
@@ -29,11 +33,10 @@ const PayNewRecipient = () => {
     //handle routing after validating fields
     const handleRoute = () => {
         // Check if required bank details are filled
-        const isBankDetailsFilled = Boolean(bankName && bankaddressLineI || bankSwift);
+        const isBankDetailsFilled = Boolean(bankName && (bankaddressLineI || bankSwift));
 
         // Validate all required fields
-        const isFormValid = Boolean(fullName && accountNumber && addressLineI && isBankDetailsFilled);
-
+        const isFormValid = Boolean(recipientFullName && recipientActNumber && addressLineI && isBankDetailsFilled);
         if (isFormValid) {
             // Navigate to the international payments page if the form is valid
             navigate('/internationalpayments');
@@ -42,7 +45,6 @@ const PayNewRecipient = () => {
             toast.error('Fields marked with * are required');
         }
     };
-
 
     return (
         <Layout>

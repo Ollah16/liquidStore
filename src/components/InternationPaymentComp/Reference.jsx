@@ -10,7 +10,7 @@ const Reference = () => {
     const { informationType } = useSelector(state => state.pay)
 
     return (
-        <div className='relative md:w-8/12 w-10/12'>
+        <div className='relative w-full'>
             <div>
                 <button onClick={() => dispatch(setInformation('ratefee'))} className='text-theme underline text-base mb-3'>More information about our Standard Exchange Rate and fee.</button>
                 <p className='text-xl  font-medium mb-[1px]'>Reference (optional)</p>
