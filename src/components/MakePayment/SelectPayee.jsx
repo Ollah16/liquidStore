@@ -2,13 +2,11 @@ import { ChevronRightIcon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/rea
 import React, { useEffect, useState } from 'react'
 import { deleteBeneficiary, getAllBen } from '../../util/api'
 import { TiPlus } from 'react-icons/ti'
-import { useNavigate } from 'react-router-dom'
 
 const SelectPayee = React.memo(({ isSelected, onClick, newPay, clickRecipient }) => {
 
     const [allBeneficiaries, setBeneficiary] = useState([])
     const [isDeleteClicked, setIsDelete] = useState(false)
-    const navigate = useNavigate()
 
     useEffect(() => {
 

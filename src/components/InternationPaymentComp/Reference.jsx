@@ -1,13 +1,13 @@
 import React from 'react'
 import { BiSolidDownArrow } from 'react-icons/bi'
-import { setInformation } from '../../reduxtoolkit/paymentslice'
+import { getPaymentref, setInformation } from '../../reduxtoolkit/paymentslice'
 import { useDispatch, useSelector } from 'react-redux'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
 const Reference = () => {
 
     const dispatch = useDispatch()
-    const { informationType } = useSelector(state => state.pay)
+    const { informationType, paymentRef } = useSelector(state => state.pay)
 
     return (
         <div className='relative w-full'>
@@ -18,7 +18,7 @@ const Reference = () => {
             </div>
             <div className='w-full my-5'>
                 <div className='w-full'>
-                    <input className='py-2 w-full px-1 inline-block border-2 border-gray-500/70' />
+                    <input value={paymentRef} onChange={(e) => dispatch(getPaymentref(e.target.value))} className='py-2 w-full px-1 inline-block border-2 border-gray-500/70' />
                 </div>
             </div>
             <div className={`absolute bg-theme text-white font-normal top-[-190px] ${informationType === 'ratefee' ? 'block' : 'hidden'}`}>

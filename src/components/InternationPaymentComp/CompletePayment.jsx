@@ -11,10 +11,14 @@ const CompletePayment = () => {
 
     //middleware to check if recipient is chosen
     const handleRouting = () => {
-        if (!isFilled) return toast.error('please add a recipient')
-        if (!amount) return toast.error('please enter an amount')
-        navigate('/confirmintpayment')
-    }
+        if (!isFilled) {
+            return toast.error('Please add a recipient to proceed.');
+        }
+        if (!amount) {
+            return toast.error('Please enter a valid amount to continue.');
+        }
+        navigate('/confirmintpayment');
+    };
 
     return (<Fragment>
         <hr className='text-black mb-5 block'></hr>

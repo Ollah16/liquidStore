@@ -6,6 +6,7 @@ import { getAccountInfo } from '../../util/api';
 import { getAccountInformation } from '../../reduxtoolkit/authslice';
 import { useDispatch } from 'react-redux';
 
+
 const AccountPage = () => {
 
     const dispatch = useDispatch()

@@ -1,22 +1,24 @@
-import React, { lazy, useEffect } from 'react'
+import React, { lazy, Suspense, useEffect } from 'react'
 import { Navigate, Outlet, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import HomePage from '../pages/HomePage'
 import { useDispatch, useSelector } from 'react-redux'
 import { resetNav } from '../reduxtoolkit/navslice'
 import ProtectedRoutes from './ProtectedRoutes'
 import { useAuthentication } from '../util/authentication'
-import AccountPage from '../pages/Account/AccountPage'
-import StatementPage from '../pages/Account/StatementPage'
 import OneTimeP from '../pages/Authentication/OTP'
 import LoginAuth from '../pages/Authentication/LoginAuth'
-import MakePayment from '../pages/Account/MakePayment'
-import InternationalPayment from '../pages/MakePayment/InternationalPayment'
-import PayNewRecipient from '../pages/MakePayment/PayNewRecipient'
 import NotFound from '../pages/NotFound'
-import TransfersAndPayment from '../pages/TransfersAndPayment'
-import ConfirmPayment from '../pages/Account/ConfirmPayment'
-import ConfirmIntPayment from '../pages/MakePayment/ConfirmIntPayment'
-import ErrorPage from '../pages/ErrorPage'
+import FallbackPage from '../pages/FallBack'
+
+const PayNewRecipient = lazy(() => import('../pages/MakePayment/PayNewRecipient'))
+const MakePayment = lazy(() => import('../pages/Account/MakePayment'))
+const AccountPage = lazy(() => import('../pages/Account/AccountPage'))
+const StatementPage = lazy(() => import('../pages/Account/StatementPage'))
+const InternationalPayment = lazy(() => import('../pages/MakePayment/InternationalPayment'))
+const TransfersAndPayment = lazy(() => import('../pages/TransfersAndPayment'))
+const ConfirmPayment = lazy(() => import('../pages/Account/ConfirmPayment'))
+const ConfirmIntPayment = lazy(() => import('../pages/MakePayment/ConfirmIntPayment'))
+const ErrorPage = lazy(() => import('../pages/ErrorPage'))
 
 const AuthRoute = ({ isOTPValidated, isLoggedIn }) => {
     console.log(isOTPValidated, isLoggedIn)
@@ -73,15 +75,59 @@ const AppRoutes = () => {
             <Route path='/onetimepassword' element={<OneTimeP />} />
 
             <Route element={<ProtectedRoutes isAuthenticated={isAuthenticated} />}>
-                <Route path='/accounts' element={<AccountPage />} />
-                <Route path='/accountstatement' element={<StatementPage />} />
-                <Route path='/makepayment' element={<MakePayment />} />
-                <Route path='/internationalpayments' element={<InternationalPayment />} />
-                <Route path='/paynew' element={<PayNewRecipient />} />
-                <Route path='/makepayment_transfer/:id' element={<TransfersAndPayment />} />
-                <Route path='/confirmpayment/:id/:amount/:ref' element={<ConfirmPayment />} />
-                <Route path='/confirmintpayment' element={<ConfirmIntPayment />} />
-                <Route path='/error' element={<ErrorPage />} />
+                <Route path='/accounts' element={
+                    <Suspense fallback={<FallbackPage />}>
+                        <AccountPage />
+                    </Suspense>
+                } />
+
+                <Route path='/accountstatement' element={
+                    <Suspense fallback={<FallbackPage />}>
+                        <StatementPage />
+                    </Suspense>
+                } />
+
+                <Route path='/makepayment' element={
+                    <Suspense fallback={<FallbackPage />}>
+                        <MakePayment />
+                    </Suspense>
+                } />
+
+                <Route path='/internationalpayments' element={
+                    <Suspense fallback={<FallbackPage />}>
+                        <InternationalPayment />
+                    </Suspense>}
+                />
+
+                <Route path='/paynew' element={
+                    <Suspense fallback={<FallbackPage />}>
+                        <PayNewRecipient />
+                    </Suspense>
+                } />
+
+                <Route path='/makepayment_transfer/:id' element={
+                    <Suspense fallback={<FallbackPage />}>
+                        <TransfersAndPayment />
+                    </Suspense>
+                } />
+
+                <Route path='/confirmpayment/:id' element={
+                    <Suspense fallback={<FallbackPage />}>
+                        <ConfirmPayment />
+                    </Suspense>}
+                />
+
+                <Route path='/confirmintpayment' element={
+                    <Suspense fallback={<FallbackPage />}>
+                        <ConfirmIntPayment />
+                    </Suspense>}
+                />
+
+                <Route path='/error' element={
+                    <Suspense fallback={<FallbackPage />}>
+                        <ErrorPage />
+                    </Suspense>
+                } />
             </Route>
             <Route path='*' element={<NotFound />} />
         </Routes >

@@ -1,6 +1,9 @@
 import React, { Fragment } from 'react'
+import { useDispatch } from 'react-redux'
+import { getAmount, getPaymentref } from '../../reduxtoolkit/paymentslice'
 
-const PaymentInfo = ({ onChange }) => {
+const PaymentInfo = () => {
+    const dispatch = useDispatch()
 
     return (
         <Fragment>
@@ -11,7 +14,7 @@ const PaymentInfo = ({ onChange }) => {
                         <span className='w-3'>£</span>
                         <input
                             name='amount'
-                            onChange={onChange}
+                            onChange={e => dispatch(getAmount(e.target.value))}
                             className='px-1 py-2 w-full border border-gray-500/70' required />
                     </div>
                 </div>
@@ -23,7 +26,7 @@ const PaymentInfo = ({ onChange }) => {
                     <div className='w-full'>
                         <input
                             name='ref'
-                            onChange={onChange}
+                            onChange={e => dispatch(getPaymentref(e.target.value))}
                             className='px-1 py-2 md:w-5/12 w-10/12 border border-gray-500/70' required />
                     </div>
                 </div>

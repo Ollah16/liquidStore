@@ -7,7 +7,8 @@ import { useSelector } from 'react-redux'
 
 const ConfirmPayment = () => {
     const { accountNumber, accountType, sortCode } = useSelector(state => state.auth)
-    const { id, amount, ref } = useParams()
+    const { amount, paymentRef } = useSelector(state => state.pay)
+    const { id } = useParams()
     const [recipient, setRecipient] = useState({})
 
     useEffect(() => {
@@ -35,7 +36,7 @@ const ConfirmPayment = () => {
                             <div className='border-b border-b-gray-500 pb-8 mb-7'>
                                 <p className='text-2xl mb-2'>You are making a <span className='font-semibold'>payment</span> of</p>
                                 <h1 className='flex items-baseline mb-2'><span className='text-6xl font-semibold'>£{amount}.</span><sup className='text-4xl'>00</sup></h1>
-                                <p className='text-lg font-light'>Reference: {ref}</p>
+                                <p className='text-lg font-light'>Reference: {paymentRef}</p>
                             </div>
                             <div className='border-b border-b-gray-500 pb-5'>
                                 <div className='my-3'>

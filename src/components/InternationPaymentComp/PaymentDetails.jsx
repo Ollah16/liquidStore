@@ -14,9 +14,8 @@ const PaymentDetails = React.memo(() => {
 
     useEffect(() => {
 
-        let timeOut;
-
-        const fetchExchangeRates = async () => {
+        if (!amount) return
+        const timeOut = setTimeout(async () => {
             try {
                 const currentRates = await getExchangeRates();
 
@@ -34,9 +33,8 @@ const PaymentDetails = React.memo(() => {
             } catch (error) {
                 console.error('Error fetching exchange rates:', error);
             }
-        };
+        }, 500);
 
-        timeOut = setTimeout(fetchExchangeRates, 500)
         return () => clearTimeout(timeOut)
 
     }, [amount, selectedCountry, dispatch]);
