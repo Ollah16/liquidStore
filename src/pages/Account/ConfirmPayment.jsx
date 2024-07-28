@@ -3,25 +3,32 @@ import Layout from './Layout'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
 import { Link, useParams } from 'react-router-dom'
 import { getRecipient } from '../../util/api'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { handle_Login_Signout } from '../../reduxtoolkit/authslice'
 
 const ConfirmPayment = () => {
     const { accountNumber, accountType, sortCode } = useSelector(state => state.auth)
     const { amount, paymentRef } = useSelector(state => state.pay)
     const { id } = useParams()
     const [recipient, setRecipient] = useState({})
+    const dispatch = useDispatch()
 
     useEffect(() => {
 
         //fetch beneficiary
         const getBeneficiary = async () => {
-            const response = await getRecipient(id)
-            setRecipient(response)
+            try {
+                const response = await getRecipient(id)
+                setRecipient(response)
+            } catch (err) {
+                console.error(err)
+                dispatch(handle_Login_Signout(false))
+            }
         }
 
         getBeneficiary()
 
-    }, [])
+    }, [id, dispatch])
 
     return (
         <Layout>

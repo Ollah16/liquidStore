@@ -1,23 +1,32 @@
 import React, { useEffect } from 'react'
 import { ChevronDownIcon, HomeIcon, LockClosedIcon } from '@heroicons/react/24/outline'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCredentials } from '../../../util/api'
-import { getUser } from '../../../reduxtoolkit/authslice'
+import { getUser, handle_Login_Signout } from '../../../reduxtoolkit/authslice'
 
 const SubNavComp = React.memo(({ handleCurrentClick, currentClick }) => {
 
     const dispatch = useDispatch()
     const { firstName, lastName, lastLogin, title } = useSelector(state => state.auth)
+    const navigate = useNavigate()
 
     useEffect(() => {
 
         const getCred = async () => {
-            const accountInfo = await getCredentials()
-            dispatch(getUser(accountInfo))
+            const token = localStorage.getItem('token')
+            try {
+                const accountInfo = await getCredentials()
+                dispatch(getUser(accountInfo))
+            } catch (err) {
+                if (token) {
+                    dispatch(handle_Login_Signout(false))
+                }
+            }
         }
 
         getCred()
+
 
     }, [dispatch])
 
@@ -36,13 +45,12 @@ const SubNavComp = React.memo(({ handleCurrentClick, currentClick }) => {
             title: 'Your Security',
 
         }
-        // {
-        //     title: 'Help & Support',
-        //     class: '',
-        //     icon: <ChevronDownIcon className='size-5' />
-
-        // }
     ]
+
+    const handleLogOff = () => {
+        dispatch(handle_Login_Signout(false))
+        navigate('/login')
+    }
 
     return (
         <nav className={`bg-white w-full hidden md:block after:content-[""] relative transition-colors ease-in-out duration-300  ${currentClick ? 'border-b-[#5a8c00] border-b-4 ' : 'border-b border-black/20'} z-30 h-fit flex flex-col`}>
@@ -73,7 +81,9 @@ const SubNavComp = React.memo(({ handleCurrentClick, currentClick }) => {
                                 </button>)
                         })}
 
-                        <button className='border-r px-2 py-3 border-gray-500/20 w-fit hover:bg-gray-100 hover:text-theme_light cursor-pointer transition-colors duration-200 ease-in-out'>Log off</button>
+                        <button
+                            onClick={() => handleLogOff()}
+                            className='border-r px-2 py-3 border-gray-500/20 w-fit hover:bg-gray-100 hover:text-theme_light cursor-pointer transition-colors duration-200 ease-in-out'>Log off</button>
                     </div>
                 </div>
             </div>

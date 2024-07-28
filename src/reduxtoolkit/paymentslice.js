@@ -88,6 +88,8 @@ const paymentSlice = createSlice({
             state.bankaddressLineI = ''
             state.bankaddressLineII = ''
             state.bankaddressLineIII = ''
+            state.paymentRef = ''
+            state.amount = ''
         }
     }
 })

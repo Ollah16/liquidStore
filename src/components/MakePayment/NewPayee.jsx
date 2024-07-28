@@ -2,9 +2,8 @@ import { ChevronRightIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import React, { useEffect, useState } from 'react'
 import { RiErrorWarningFill } from 'react-icons/ri'
 import { useDispatch } from 'react-redux'
-import { getAccountInformation } from '../../reduxtoolkit/authslice'
+import { getAccountInformation, handle_Login_Signout } from '../../reduxtoolkit/authslice'
 import { addBen, getAccountInfo } from '../../util/api'
-import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
 const NewPayee = React.memo(({ payNew, onClick }) => {
@@ -18,8 +17,13 @@ const NewPayee = React.memo(({ payNew, onClick }) => {
     useEffect(() => {
         //get account balance
         const getInfo = async () => {
-            const accountInfo = await getAccountInfo()
-            dispatch(getAccountInformation(accountInfo))
+            try {
+                const accountInfo = await getAccountInfo()
+                dispatch(getAccountInformation(accountInfo))
+            } catch (err) {
+                console.error(err)
+                dispatch(handle_Login_Signout(false))
+            }
         }
 
         getInfo()

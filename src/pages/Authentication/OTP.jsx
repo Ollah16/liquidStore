@@ -8,10 +8,10 @@ import { useDispatch } from 'react-redux'
 import { handleOTP } from '../../reduxtoolkit/authslice'
 import Layout from './Layout'
 
+
 const OneTimeP = () => {
 
     const [otp, setOtp] = useState('');
-
     const [requestDuration, setDuration] = useState(60)
     const [isDisabled, setIsDisable] = useState(false)
     const [clear, setClear] = useState(false)

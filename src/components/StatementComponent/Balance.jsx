@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAccountInformation } from '../../reduxtoolkit/authslice'
+import { getAccountInformation, handle_Login_Signout } from '../../reduxtoolkit/authslice'
 import { getAccountInfo } from '../../util/api'
 
 const Balance = () => {
@@ -10,8 +10,13 @@ const Balance = () => {
 
     useEffect(() => {
         const getInfo = async () => {
-            const accountInfo = await getAccountInfo()
-            dispatch(getAccountInformation(accountInfo))
+            try {
+                const accountInfo = await getAccountInfo()
+                dispatch(getAccountInformation(accountInfo))
+            } catch (err) {
+                console.error(err)
+                dispatch(handle_Login_Signout(false))
+            }
         }
         getInfo()
 

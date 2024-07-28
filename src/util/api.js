@@ -36,6 +36,7 @@ export const getAccountInfo = async () => {
         return accountInformation
 
     } catch (error) {
+
         console.error(error)
     }
 }

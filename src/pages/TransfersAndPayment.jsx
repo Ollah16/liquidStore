@@ -7,12 +7,15 @@ import Layout from './Account/Layout'
 import Recipient from '../components/TransferComponent/Recipient'
 import PaymentInfo from '../components/TransferComponent/PaymentInfor'
 import SelectPayee from '../components/MakePayment/SelectPayee'
+import { handle_Login_Signout } from '../reduxtoolkit/authslice'
+import { useDispatch } from 'react-redux'
 
 const TransfersAndPayment = () => {
 
     const { id } = useParams()
     const [recipient, setRecipient] = useState({})
     const [isSelected, selectRecipient] = useState(false)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const getBody = document.querySelector('body')
@@ -23,13 +26,19 @@ const TransfersAndPayment = () => {
 
         //fetch beneficiary
         const getBeneficiary = async () => {
-            const response = await getRecipient(id)
-            setRecipient(response)
+            try {
+                const response = await getRecipient(id)
+                setRecipient(response)
+            }
+            catch (err) {
+                console.error(err)
+                dispatch(handle_Login_Signout(false))
+            }
         }
 
         getBeneficiary()
 
-    }, [])
+    }, [id, dispatch])
 
     //choose beneficiary
     const handleBeneficiary = (value) => {

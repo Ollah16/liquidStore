@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useEffect } from 'react'
-import { Navigate, Outlet, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import HomePage from '../pages/HomePage'
 import { useDispatch, useSelector } from 'react-redux'
 import { resetNav } from '../reduxtoolkit/navslice'
@@ -9,6 +9,7 @@ import OneTimeP from '../pages/Authentication/OTP'
 import LoginAuth from '../pages/Authentication/LoginAuth'
 import NotFound from '../pages/NotFound'
 import FallbackPage from '../pages/FallBack'
+import { clearState } from '../reduxtoolkit/authslice'
 
 const PayNewRecipient = lazy(() => import('../pages/MakePayment/PayNewRecipient'))
 const MakePayment = lazy(() => import('../pages/Account/MakePayment'))
@@ -20,25 +21,14 @@ const ConfirmPayment = lazy(() => import('../pages/Account/ConfirmPayment'))
 const ConfirmIntPayment = lazy(() => import('../pages/MakePayment/ConfirmIntPayment'))
 const ErrorPage = lazy(() => import('../pages/ErrorPage'))
 
-const AuthRoute = ({ isOTPValidated, isLoggedIn }) => {
-    console.log(isOTPValidated, isLoggedIn)
-
-    if (isOTPValidated && isLoggedIn) return <Navigate to={'/'} replace />
-
-
-    return <Outlet />
-}
-
-
 const AppRoutes = () => {
     const isAuthenticated = useAuthentication()
     const { pathname } = useLocation()
     const dispatch = useDispatch()
     const { isMenu, isLoginDropDown } = useSelector(state => state.nav)
-    const { isOTPValidated, isLoggedIn } = useSelector(state => state.auth)
+    const token = localStorage.getItem('token')
 
     useEffect(() => {
-
         const monitorRoutes = () => {
             dispatch(resetNav())
         }
@@ -46,7 +36,6 @@ const AppRoutes = () => {
         monitorRoutes()
 
     }, [pathname, dispatch])
-
 
     useEffect(() => {
         const handleOverflow = () => {
@@ -66,11 +55,17 @@ const AppRoutes = () => {
 
     }, [isMenu, isLoginDropDown])
 
+    useEffect(() => {
+        const handleResetState = () => {
+            if (!token) return dispatch(clearState())
+        }
+        handleResetState()
+    }, [token, dispatch])
+
 
     return (
         <Routes>
             <Route path='/' element={<HomePage />} />
-            {/* <Route element={<AuthRoute isOTPValidated={isOTPValidated} isLoggedIn={isLoggedIn} />}> */}
             <Route path='/login' element={<LoginAuth />} />
             <Route path='/onetimepassword' element={<OneTimeP />} />
 

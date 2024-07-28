@@ -3,7 +3,6 @@ import React, { useState, useRef, useEffect } from 'react';
 const OTPInput = ({ length, onChange, clear }) => {
 
     const inputsRef = useRef([]);
-
     const [otp, setOtp] = useState(new Array(length).fill(''));
 
     useEffect(() => {
@@ -16,7 +15,7 @@ const OTPInput = ({ length, onChange, clear }) => {
 
         handleClear()
 
-    }, [clear])
+    }, [clear, length])
 
     const handleChange = (element, index) => {
         const value = element.value.replace(/[^0-9]/g, '');

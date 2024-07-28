@@ -9,13 +9,21 @@ const AccountBalance = ({ path_Name }) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        const getInfo = async () => {
-            const accountInfo = await getAccountInfo()
-            dispatch(getAccountInformation(accountInfo))
-        }
-        getInfo()
+        const token = localStorage.getItem('token')
 
-    }, [dispatch])
+        const fetchAccountInfo = async () => {
+            try {
+                const accountInfo = await getAccountInfo();
+                dispatch(getAccountInformation(accountInfo));
+            } catch (error) {
+                if (token) {
+                    localStorage.removeItem('token')
+                }
+            }
+        };
+
+        fetchAccountInfo();
+    }, [dispatch]);
 
     return (
         <div className={`relative overflow-hidden before:content-[''] before:absolute before:left-0 before:right-0 before:bottom-0 before:bg-gray-500/30 before:w-full before:h-[.5px] ${path_Name ? "before:inline-block" : "before:hidden"} after:content-[''] after:bg-gray-500/30 h-[50%] after:md:inline-block after:hidden after:w-full after:h-[.5px] w-9/12 p-5`}>

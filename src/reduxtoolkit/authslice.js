@@ -48,7 +48,11 @@ const authSlice = createSlice({
     reducers: {
         handle_Login_Signout(state, action) {
             state.isLoggedIn = action.payload
-            if (!action.payload) localStorage.removeItem('token')
+            if (!action.payload) {
+                localStorage.removeItem('token')
+                state.isOTPValidated = !action.payload
+
+            }
 
         },
         handleOTP(state, action) {
@@ -105,10 +109,24 @@ const authSlice = createSlice({
 
 
             state.statement = refinedStatement
+        },
+        clearState(state) {
+            state.isLoggedIn = false
+            state.isOTPValidated = false
+            state.firstName = ''
+            state.lastName = ''
+            state.email = ''
+            state.phone = ''
+            state.address = {}
+            state.balance = ''
+            state.accountType = ''
+            state.sortCode = ''
+            state.lastLogin = ''
+            state.statement = []
         }
 
     }
 })
 
-export const { handle_Login_Signout, handleOTP, getUser, getTransactions, viewReference, getAccountInformation } = authSlice.actions
+export const { handle_Login_Signout, handleOTP, clearState, getUser, getTransactions, viewReference, getAccountInformation } = authSlice.actions
 export const authReducer = authSlice.reducer

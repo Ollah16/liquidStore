@@ -3,7 +3,7 @@ import AccountDesktop from '../../components/AccountComponent/Account/AccountDes
 import AccountMobile from '../../components/AccountComponent/Account/AccountMobile'
 import Layout from './Layout';
 import { getAccountInfo } from '../../util/api';
-import { getAccountInformation } from '../../reduxtoolkit/authslice';
+import { getAccountInformation, handle_Login_Signout } from '../../reduxtoolkit/authslice';
 import { useDispatch } from 'react-redux';
 
 
@@ -13,8 +13,13 @@ const AccountPage = () => {
 
     useEffect(() => {
         const getInfo = async () => {
-            const accountInfo = await getAccountInfo()
-            dispatch(getAccountInformation(accountInfo))
+            try {
+                const accountInfo = await getAccountInfo()
+                dispatch(getAccountInformation(accountInfo))
+            } catch (err) {
+                console.error(err)
+                dispatch(handle_Login_Signout(false))
+            }
         }
 
         getInfo()

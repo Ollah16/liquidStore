@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { ChevronUpIcon } from '@heroicons/react/24/outline'
 import FooterProps from '../../../constants/HomePageConstants/FooterProps'
+import { Link } from 'react-router-dom'
 
 const FooterList = () => {
     const footerPropt = FooterProps()
@@ -24,7 +25,11 @@ const FooterList = () => {
 
                         <ul className={`${isClicked ? 'h-auto' : 'h-0'} md:h-full transition-height ease-in-out duration-300 top-0 relative`}>
                             {footer.items.map((foot, index) => (
-                                <li key={index} className={`md:block text-md md:text-lg hover:underline cursor-pointer text-white/75 pb-3`}>{foot}</li>
+                                <li key={index} className={`md:block text-md md:text-lg hover:underline cursor-pointer text-white/75 pb-3`}>
+                                    <Link to={`/${foot}`}>
+                                        {foot}
+                                    </Link>
+                                </li>
                             )
                             )}
                         </ul>

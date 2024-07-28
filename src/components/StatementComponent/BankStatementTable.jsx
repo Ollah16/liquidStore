@@ -3,7 +3,7 @@ import axios from 'axios';
 import React, { useEffect } from 'react'
 import { TbArrowBigRightLineFilled } from "react-icons/tb";
 import { useDispatch, useSelector } from 'react-redux';
-import { getTransactions, viewReference } from '../../reduxtoolkit/authslice';
+import { getTransactions, handle_Login_Signout, viewReference } from '../../reduxtoolkit/authslice';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaRegClock } from "react-icons/fa";
 import { Link } from 'react-router-dom';
@@ -18,8 +18,9 @@ const BankStatementTable = () => {
 
     useEffect(() => {
         const getStatement = async () => {
+            const token = localStorage.getItem('token')
+
             try {
-                const token = localStorage.getItem('token')
                 const serverLink = 'http://localhost:8080/user/getstatement'
                 const header = { headers: { 'Authorization': `Bearer ${token}` } }
                 const response = await axios.get(serverLink, header)
@@ -27,7 +28,8 @@ const BankStatementTable = () => {
                 dispatch(getTransactions(statement))
 
             } catch (error) {
-                console.error(error.message)
+                console.error(error)
+                dispatch(handle_Login_Signout(false))
             }
         }
 
