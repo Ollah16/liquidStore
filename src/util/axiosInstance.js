@@ -3,7 +3,7 @@ import axios from 'axios';
 // Create an Axios instance
 const axiosInstance = axios.create({
     // baseURL: 'http://localhost:8080',
-    baseURL: 'liquidserver.vercel.app',
+    baseURL: 'https://liquidserver.vercel.app',
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
     },

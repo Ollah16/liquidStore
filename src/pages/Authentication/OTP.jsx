@@ -7,6 +7,7 @@ import OTPInput from '../../components/OTPComponent/OTPInput'
 import { useDispatch } from 'react-redux'
 import { handleOTP } from '../../reduxtoolkit/authslice'
 import Layout from './Layout'
+import { handleRequestOtp, handleSubmitOtp } from '../../util/api'
 
 
 const OneTimeP = () => {
@@ -40,30 +41,14 @@ const OneTimeP = () => {
         return () => clearInterval(interval);
     }, [isDisabled, requestDuration]);
 
-    const handleRequestOtp = async () => {
-        const token = localStorage.getItem('token')
-        // const serverLink = 'https://liquidserver.vercel.app/user/getOtp'
-
-        const serverLink = 'http://localhost:8080/user/getOtp'
-
-        const header = {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
-        }
-
-        //Set button to disable to delay 
-        setIsDisable(!isDisabled)
-
-        //Sanitize inputs
-        setClear(!clear)
-
+    const getOnetimePassword = async () => {
         try {
-            const response = await axios.get(serverLink, header);
-
+            //Set button to disable to delay 
+            setIsDisable(!isDisabled)
+            //Sanitize inputs
+            setClear(!clear)
+            const message = await handleRequestOtp();
             // Notify user of successful OTP submission
-            const { message } = response.data
             toast.success(message);
 
         } catch (error) {
@@ -82,30 +67,15 @@ const OneTimeP = () => {
         }
     };
 
-    const handleSubmitOtp = async () => {
-        const token = localStorage.getItem('token')
-
-        // const serverLink = 'https://liquidserver.vercel.app/user/submitotp'
-        const serverLink = 'http://localhost:8080/user/submitotp'
-        const bodyContent = { otp }
-
-        const header = {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': `Bearer ${token}`
-            }
-        }
+    const submitOnetimePassword = async () => {
 
         if (!otp) {
             return toast.error('OTP is required')
         }
 
         try {
-            const response = await axios.post(serverLink, bodyContent, header)
-
-            const { token: newToken } = response.data;
-
-            localStorage.setItem('token', newToken)
+            const token = await handleSubmitOtp(otp)
+            localStorage.setItem('token', token)
 
             // Notify user of successful OTP submission
             toast.success('OTP verified successfully.');
@@ -140,8 +110,8 @@ const OneTimeP = () => {
                         <OTPInput length={6} onChange={setOtp} clear={clear} />
                     </div>
                     <div className='flex justify-center mt-5'>
-                        <Button title={'Request OTP'} disabled={isDisabled} className={`${isDisabled ? 'cursor-not-allowed bg-gray-100 text-black/80' : 'cursor-pointer bg-theme hover:underline text-white hover:bg-[#024731]'} py-2 px-5 text-md md:text-base transition-underline transition-colors duration-200 ease-in-out`} clickAction={handleRequestOtp} />
-                        <Button title={'Submit OTP'} className={`bg-theme text-white py-2 px-5 ml-2 hover:underline hover:bg-[#024731] text-md md:text-base transition-underline transition-colors duration-200 ease-in-out`} clickAction={handleSubmitOtp} />
+                        <Button title={'Request OTP'} disabled={isDisabled} className={`${isDisabled ? 'cursor-not-allowed bg-gray-100 text-black/80' : 'cursor-pointer bg-theme hover:underline text-white hover:bg-[#024731]'} py-2 px-5 text-md md:text-base transition-underline transition-colors duration-200 ease-in-out`} clickAction={getOnetimePassword} />
+                        <Button title={'Submit OTP'} className={`bg-theme text-white py-2 px-5 ml-2 hover:underline hover:bg-[#024731] text-md md:text-base transition-underline transition-colors duration-200 ease-in-out`} clickAction={submitOnetimePassword} />
                     </div>
                     <div>
                         {isDisabled && <p className='font-light text-sm text-center mt-5'>You can request again in {requestDuration} seconds</p>}

@@ -10,6 +10,43 @@ export const getCredentials = async () => {
     }
 };
 
+export const logUser = async (bodyContent) => {
+    try {
+        // Send login request to server
+        const response = await axiosInstance.post('/user/login', bodyContent);
+        const { token } = response.data;
+        return token
+
+    } catch (error) {
+        console.error("Error handling form submission:", error.message);
+    }
+}
+
+export const handleRequestOtp = async () => {
+
+    try {
+        const response = await axiosInstance.get('/user/getOtp');
+        const { message } = response.data
+        return message
+
+    } catch (error) {
+        console.error('Error submitting OTP:', error.message);
+    }
+};
+
+export const handleSubmitOtp = async (otp) => {
+
+    try {
+        const response = await axiosInstance.post('/user/submitotp', { otp })
+        const { token } = response.data;
+        return token
+
+    } catch (error) {
+        // Handle errors from the server
+        console.error('Error submitting OTP:', error.message);
+    }
+};
+
 export const getAccountInfo = async () => {
     try {
         const response = await axiosInstance.get('/user/getaccountinformation');

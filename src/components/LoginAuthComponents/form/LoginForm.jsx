@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import FormFeatures from './FormFeatures'
 import FormInputs from './FormInputs'
 import { toast } from 'react-hot-toast';
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { handle_Login_Signout } from '../../../reduxtoolkit/authslice';
 import { useDispatch } from 'react-redux';
+import { logUser } from '../../../util/api';
 
 const LoginForm = () => {
 
@@ -23,44 +23,47 @@ const LoginForm = () => {
     }
 
     const handleSubmit = async () => {
-
-        const serverLink = 'https://liquidserver.vercel.app/user/login'
-        // const serverLink = 'http://localhost:8080/user/login'
-        const bodyContent = { userId, password }
-        const headers = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
-
         try {
             // Validate input
             if (!userId || !password) {
-                toast.error("User ID or Password is missing.");
+                toast.error("User ID and Password are required.");
                 return;
             }
 
             // Send login request to server
-            const response = await axios.post(serverLink, bodyContent, headers);
+            const token = await logUser({ userId, password });
+            // Check if token is received
+            if (token) {
+                // Clear input fields and store token
+                handleUserId('');
+                handlePassword('');
+                localStorage.setItem('token', token);
 
-            handleUserId('')
-            handlePassword('')
-
-            const { token } = response.data;
-
-            localStorage.setItem('token', token)
-
-            dispatch(handle_Login_Signout(true))
-
-            navigate('/onetimepassword');
+                // Update application state and navigate
+                dispatch(handle_Login_Signout(true));
+                navigate('/onetimepassword');
+            } else {
+                // Handle unexpected response
+                toast.error("Login failed. Please check your credentials.");
+            }
 
         } catch (error) {
-            // Handle errors from the server
+            // Handle different types of errors
             if (error.response) {
+                // Server-side errors
                 const { data } = error.response;
-                toast.error(data.error);
+                toast.error(data.error || "An error occurred. Please try again.");
+            } else if (error.request) {
+                // Network errors
+                toast.error("Network error. Please check your connection.");
             } else {
+                // Unexpected errors
                 toast.error("An unexpected error occurred. Please try again later.");
             }
-            console.error("Error handling form submission:", error.message);
+            console.error("Login error:", error.message);
         }
     };
+
 
 
     return (
