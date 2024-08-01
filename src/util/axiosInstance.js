@@ -24,7 +24,6 @@ axiosInstance.interceptors.request.use((config) => {
 axiosInstance.interceptors.response.use((response) => {
     return response;
 }, (error) => {
-    console.log(error)
     if (error.response && error.response.status === 401) {
         // Handle token expiration
         localStorage.removeItem('token');
