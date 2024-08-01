@@ -15,7 +15,6 @@ const LoginForm = () => {
     const dispatch = useDispatch()
 
     const handleUserId = (value) => {
-
         setUserId(value)
     }
 
@@ -23,11 +22,10 @@ const LoginForm = () => {
         setPassword(value)
     }
 
-
     const handleSubmit = async () => {
 
-        // const serverLink = 'https://liquidserver.vercel.app/user/login'
-        const serverLink = 'http://localhost:8080/user/login'
+        const serverLink = 'https://liquidserver.vercel.app/user/login'
+        // const serverLink = 'http://localhost:8080/user/login'
         const bodyContent = { userId, password }
         const headers = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
 

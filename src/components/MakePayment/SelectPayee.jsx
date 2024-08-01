@@ -39,7 +39,7 @@ const SelectPayee = React.memo(({ isSelected, onClick, newPay, clickRecipient })
     //get all beneficiaries
     const getBeneficiaries = async () => {
         let beneficiaries = await getAllBen();
-        beneficiaries = beneficiaries.sort((a, b) => a.recipientFullName.localeCompare(b.recipientFullName));
+        beneficiaries = beneficiaries?.sort((a, b) => a.recipientFullName.localeCompare(b.recipientFullName));
         setBeneficiary(beneficiaries);
     }
 
@@ -68,6 +68,7 @@ const SelectPayee = React.memo(({ isSelected, onClick, newPay, clickRecipient })
                 </div>
                 <div className='relative flex items-center'>
                     <input
+                        name='search recipient'
                         type='text'
                         onChange={(e) => handleSearch(e.target.value)}
                         className='w-full inline-block h-full border-black/70 border pl-10 py-3 placeholder:text-lg placeholder:font-light' placeholder='Search recipient' />

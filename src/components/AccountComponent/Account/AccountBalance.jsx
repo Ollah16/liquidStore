@@ -1,30 +1,8 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getAccountInfo } from '../../../util/api'
-import { getAccountInformation } from '../../../reduxtoolkit/authslice'
-
+import React from 'react'
+import { useSelector } from 'react-redux'
 const AccountBalance = ({ path_Name }) => {
 
     const { balance, accountNumber, accountType, sortCode } = useSelector(state => state.auth)
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        const token = localStorage.getItem('token')
-
-        const fetchAccountInfo = async () => {
-            try {
-                const accountInfo = await getAccountInfo();
-                dispatch(getAccountInformation(accountInfo));
-            } catch (error) {
-                if (token) {
-                    localStorage.removeItem('token')
-                }
-            }
-        };
-
-        fetchAccountInfo();
-    }, [dispatch]);
-
     return (
         <div className={`relative overflow-hidden before:content-[''] before:absolute before:left-0 before:right-0 before:bottom-0 before:bg-gray-500/30 before:w-full before:h-[.5px] ${path_Name ? "before:inline-block" : "before:hidden"} after:content-[''] after:bg-gray-500/30 h-[50%] after:md:inline-block after:hidden after:w-full after:h-[.5px] w-9/12 p-5`}>
             < div className='pb-3' >

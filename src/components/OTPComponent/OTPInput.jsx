@@ -47,6 +47,7 @@ const OTPInput = ({ length, onChange, clear }) => {
                 <input
                     key={index}
                     type="text"
+                    name={`input${index}`}
                     maxLength="1"
                     className="w-9 border h-9 inline-block text-center"
                     value={otp[index]}

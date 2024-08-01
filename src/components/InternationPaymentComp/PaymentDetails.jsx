@@ -46,6 +46,7 @@ const PaymentDetails = React.memo(() => {
                 <div className='flex items-stretch h-12'>
                     <input
                         value={amount}
+                        name='amount'
                         onChange={(e) => dispatch(getAmount(e.target.value))}
                         className='border py-2 w-10/12 inline-block border-gray-500/70 px-1' />
                     <span className='border border-l-0 py-2 px-1 border-gray-500/70 w-2/12 flex items-center justify-center'>
@@ -58,6 +59,7 @@ const PaymentDetails = React.memo(() => {
                 <p className='text-xl  font-medium mb-1'>You're sending ({selectedCountry?.abbr})</p>
                 <div className='flex items-stretch h-12'>
                     <input
+                        name='equivalent'
                         defaultValue={amount ? equivalent : ''}
                         className='border py-2 w-10/12 inline-block border-gray-500/70 px-1' />
                     <div className='border border-l-0 py-2 px-1 border-gray-500/70 w-2/12'>

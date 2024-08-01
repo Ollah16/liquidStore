@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { getAccountInformation, handle_Login_Signout } from '../../reduxtoolkit/authslice'
 import { addBen, getAccountInfo } from '../../util/api'
 import { useNavigate } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 const NewPayee = React.memo(({ payNew, onClick }) => {
 
@@ -22,7 +23,6 @@ const NewPayee = React.memo(({ payNew, onClick }) => {
                 dispatch(getAccountInformation(accountInfo))
             } catch (err) {
                 console.error(err)
-                dispatch(handle_Login_Signout(false))
             }
         }
 
@@ -46,6 +46,7 @@ const NewPayee = React.memo(({ payNew, onClick }) => {
     //add new beneficiary
     const addNewBeneficiary = async () => {
         const body = { recipientFullName, recipientAccountNumber, recipientSortCode }
+        if (!recipientFullName && !recipientAccountNumber && !recipientSortCode) return toast.error('Please fill the input fields')
         const beneficiaryId = await addBen(body)
         setFullName('')
         setAccountNumber('')
@@ -63,26 +64,32 @@ const NewPayee = React.memo(({ payNew, onClick }) => {
                     <p className='text-xl font-semibold pb-5 border-b border-b-gray-500/70'>New payee details</p>
                 </div>
                 <div>
-                    <label className='block mb-2 text-lg font-semibold'>Payee name</label>
+                    <label htmlFor='fullname' className='block mb-2 text-lg font-semibold'>Payee name</label>
                     <input
+                        id='fullname'
                         value={recipientFullName}
+                        name='full name'
                         onChange={(e) => setFullName(e.target.value)} className='py-2 block px-2 border border-black/70 w-full md:w-6/12' placeholder='e.g. Jane Smith or Acme Ltd' />
                 </div>
                 <div>
-                    <label className='block mb-2 text-lg font-semibold'>Sort code</label>
+                    <label htmlFor='sortcode' className='block mb-2 text-lg font-semibold'>Sort code</label>
                     <input
+                        id='sortcode'
+                        name='sort code'
                         value={recipientSortCode}
                         onChange={(e) => setSortCode(e.target.value)} className='py-2 block px-2 border border-black/70 w-full md:w-6/12' placeholder='Enter sort code' />
                 </div>
                 <div>
-                    <label className='block mb-2 text-lg font-semibold'>Account number</label>
+                    <label htmlFor='recipientaccount' className='block mb-2 text-lg font-semibold'>Account number</label>
                     <input
+                        id='recipientaccount'
+                        name='recipient account'
                         value={recipientAccountNumber}
                         onChange={(e) => setAccountNumber(e.target.value)} className='py-2 block px-2 border border-black/70 w-full md:w-6/12' placeholder='Account number' />
                 </div>
                 <div>
                     <div className='flex gap-x-1'>
-                        <input type='checkbox' className='py-2 inline-block border-black/70 w-1/12' />
+                        <input type='checkbox' name='business/individual' className='py-2 inline-block border-black/70 w-1/12' />
                         <p className='text-lg w-11/12'>Is this a business</p>
                     </div>
                 </div>

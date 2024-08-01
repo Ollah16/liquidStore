@@ -18,7 +18,10 @@ const Reference = () => {
             </div>
             <div className='w-full my-5'>
                 <div className='w-full'>
-                    <input value={paymentRef} onChange={(e) => dispatch(getPaymentref(e.target.value))} className='py-2 w-full px-1 inline-block border-2 border-gray-500/70' />
+                    <input
+                        name='reference'
+                        value={paymentRef}
+                        onChange={(e) => dispatch(getPaymentref(e.target.value))} className='py-2 w-full px-1 inline-block border-2 border-gray-500/70' />
                 </div>
             </div>
             <div className={`absolute bg-theme text-white font-normal top-[-190px] ${informationType === 'ratefee' ? 'block' : 'hidden'}`}>

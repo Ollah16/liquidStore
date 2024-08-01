@@ -10,6 +10,8 @@ import LoginAuth from '../pages/Authentication/LoginAuth'
 import NotFound from '../pages/NotFound'
 import FallbackPage from '../pages/FallBack'
 import { clearState } from '../reduxtoolkit/authslice'
+import Security from '../pages/Account/Security'
+import SessionExpired from '../pages/SessionExpired'
 
 const PayNewRecipient = lazy(() => import('../pages/MakePayment/PayNewRecipient'))
 const MakePayment = lazy(() => import('../pages/Account/MakePayment'))
@@ -62,7 +64,7 @@ const AppRoutes = () => {
         handleResetState()
     }, [token, dispatch])
 
-
+    console.log(isAuthenticated)
     return (
         <Routes>
             <Route path='/' element={<HomePage />} />
@@ -70,10 +72,15 @@ const AppRoutes = () => {
             <Route path='/onetimepassword' element={<OneTimeP />} />
 
             <Route element={<ProtectedRoutes isAuthenticated={isAuthenticated} />}>
+
                 <Route path='/accounts' element={
                     <Suspense fallback={<FallbackPage />}>
                         <AccountPage />
                     </Suspense>
+                } />
+
+                <Route path='/security' element={
+                    <Security />
                 } />
 
                 <Route path='/accountstatement' element={
@@ -124,7 +131,9 @@ const AppRoutes = () => {
                     </Suspense>
                 } />
             </Route>
+
             <Route path='*' element={<NotFound />} />
+            <Route path='session-expired' element={<SessionExpired />} />
         </Routes >
     )
 }

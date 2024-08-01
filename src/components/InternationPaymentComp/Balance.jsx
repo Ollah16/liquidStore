@@ -1,29 +1,9 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getAccountInformation, handle_Login_Signout } from '../../reduxtoolkit/authslice'
-import { getAccountInfo } from '../../util/api'
+import React from 'react'
+import { useSelector } from 'react-redux'
 
 const Balance = () => {
 
     const { accountType, accountNumber, sortCode, balance } = useSelector(state => state.auth)
-
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-
-        const getInfo = async () => {
-            try {
-                const accountInfo = await getAccountInfo()
-                dispatch(getAccountInformation(accountInfo))
-            }
-            catch (err) {
-                console.error(err)
-                dispatch(handle_Login_Signout(false))
-            }
-        }
-
-        getInfo()
-    }, [dispatch])
 
     return (
         <div>

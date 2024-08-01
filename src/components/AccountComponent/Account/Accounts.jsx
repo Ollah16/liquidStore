@@ -12,7 +12,7 @@ const Accounts = ({ currentClick }) => {
 
             <div className={`z-10 py-12 transition-top duration-300 ease-in-out w-full`}>
                 <div className='md:w-10/12 w-full px-5 md:px-0 mx-auto'>
-                    <div className={`bg-white before:content-[''] before:bg-theme before:inline-block before:w-full before:h-1 before:absolute before:top-0 py-5 w-full md:w-3/12 relative flex items-center`}>
+                    <div className={`bg-white before:content-[''] before:bg-theme before:inline-block before:w-full before:h-1 before:absolute before:top-0 py-5 w-full md:w-4/12 relative flex items-center`}>
                         <div className='p-3'>
                             <div className='mb-1 flex gap-x-2'>
                                 <div className='mb-1 flex gap-x-2'>

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getBankAddressI, getBankAddressII, getBankAddressIII, getBankName, setInformation } from '../../reduxtoolkit/paymentslice'
 import { BiSolidDownArrow } from 'react-icons/bi'
 
-const PaymentMethod = ({ isBank }) => {
+const PaymentMethod = () => {
     const { informationType } = useSelector(state => state.pay)
     const dispatch = useDispatch()
 
@@ -22,17 +22,17 @@ const PaymentMethod = ({ isBank }) => {
         <div className='mb-5 flex flex-col gap-y-3'>
             <input
                 onChange={(e) => dispatch(getBankAddressI(e.target.value))}
-                id='address'
+                id='bankaddressI'
                 className='border py-2 w-full inline-block px-1 border-gray-500/70'
                 required />
             <input
                 onChange={(e) => dispatch(getBankAddressII(e.target.value))}
-                id='address'
+                id='bankaddressII'
                 className='border py-2 w-full inline-block px-1 border-gray-500/70'
                 required />
             <input
                 onChange={(e) => dispatch(getBankAddressIII(e.target.value))}
-                id='address'
+                id='bankaddressIII'
                 className='border py-2 w-full inline-block px-1 border-gray-500/70'
                 required />
         </div>

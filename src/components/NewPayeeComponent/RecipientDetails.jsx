@@ -38,22 +38,22 @@ const RecipientDetails = () => {
                         id='full name' className='border py-2 w-full px-1 inline-block border-gray-500/70' required />
                 </div>
                 <div>
-                    <label htmlFor='address' className='block mb-1 text-base font-semibold text-black/80'>Recipient's address*</label>
+                    <label htmlFor='addressI' className='block mb-1 text-base font-semibold text-black/80'>Recipient's address*</label>
                     <button
                         onClick={(e) => dispatch(setInformation('address'))}
                         className='text-theme underline text-sm mb-3'>Why do I need to provide an address?</button>
                     <div className='flex flex-col gap-y-3'>
                         <input
                             onChange={(e) => dispatch(getAddressLineI(e.target.value))}
-                            id='address' className='border py-2 w-full px-1 inline-block border-gray-500/70' required />
+                            id='addressI' className='border py-2 w-full px-1 inline-block border-gray-500/70' required />
 
                         <input
                             onChange={(e) => dispatch(getAddressLineII(e.target.value))}
-                            id='address' className='border py-2 w-full px-1 inline-block border-gray-500/70' required />
+                            id='addressII' className='border py-2 w-full px-1 inline-block border-gray-500/70' required />
 
                         <input
                             onChange={(e) => dispatch(getAddressLineIII(e.target.value))}
-                            id='address' className='border py-2 w-full px-1 inline-block border-gray-500/70' required />
+                            id='addressIII' className='border py-2 w-full px-1 inline-block border-gray-500/70' required />
                     </div>
                 </div>
                 <div className={`absolute bg-theme text-white font-normal top-[60px] ${informationType === 'address' ? 'block' : 'hidden'}`}>
@@ -61,7 +61,7 @@ const RecipientDetails = () => {
                         <div className='absolute right-2 top-2'>
                             <button onClick={() => dispatch(setInformation(false))}><XMarkIcon className='size-6 text-white' /></button>
                         </div>
-                        <p className='text-sm font-semibold mb-3 text-black/80'>Recipient's address</p>
+                        <p className='text-sm font-semibold mb-3 text-white'>Recipient's address</p>
                         <p className='text-sm'>To help combat fraud, banks require the recipient's full address in the address fields.</p>
                         <BiSolidDownArrow className='text-theme inline-block -bottom-3 absolute left-8' />
                     </div>

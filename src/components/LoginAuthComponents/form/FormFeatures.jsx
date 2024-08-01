@@ -10,7 +10,7 @@ const FormFeatures = ({ onClick }) => {
         <div>
             <div className="after:h-[.5px] after:w-full after:content-[''] after:bg-black/70 after:inline-block mb-5">
                 <div className='flex items-center gap-x-2 mb-2'>
-                    <input type='checkbox' className='h-10 w-7 inline-block' />
+                    <input type='checkbox' name='remember' className='h-10 w-7 inline-block' />
                     <span className='text-md font-light tracking-tight'>Remember my user ID</span>
                     <ExclamationCircleIcon className='size-5 text-theme' />
                 </div>

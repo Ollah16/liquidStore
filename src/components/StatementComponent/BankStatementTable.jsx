@@ -1,13 +1,13 @@
 import { CalendarIcon } from '@heroicons/react/24/outline';
-import axios from 'axios';
 import React, { useEffect } from 'react'
 import { TbArrowBigRightLineFilled } from "react-icons/tb";
 import { useDispatch, useSelector } from 'react-redux';
-import { getTransactions, handle_Login_Signout, viewReference } from '../../reduxtoolkit/authslice';
+import { getTransactions, viewReference } from '../../reduxtoolkit/authslice';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaRegClock } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { IoCloseSharp } from "react-icons/io5";
+import { getStatement } from '../../util/api';
 
 
 const BankStatementTable = () => {
@@ -17,23 +17,17 @@ const BankStatementTable = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        const getStatement = async () => {
-            const token = localStorage.getItem('token')
-
+        const handleStatement = async () => {
             try {
-                const serverLink = 'http://localhost:8080/user/getstatement'
-                const header = { headers: { 'Authorization': `Bearer ${token}` } }
-                const response = await axios.get(serverLink, header)
-                const { statement } = response.data
+                const statement = await getStatement()
                 dispatch(getTransactions(statement))
-
-            } catch (error) {
+            }
+            catch (error) {
                 console.error(error)
-                dispatch(handle_Login_Signout(false))
             }
         }
 
-        getStatement()
+        handleStatement()
     }, [dispatch])
 
     return (

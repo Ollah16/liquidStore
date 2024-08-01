@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
 
 let initialState = {
     isLoggedIn: false,
@@ -12,8 +12,8 @@ let initialState = {
     accountType: '',
     sortCode: '',
     lastLogin: '',
-    statement: []
-}
+    statement: [],
+};
 
 const formatDate = (dateString, type) => {
     const date = new Date(dateString);
@@ -42,91 +42,114 @@ const formatDate = (dateString, type) => {
     }
 };
 
+// Check for token at the initialization
+const token = localStorage.getItem('token');
+if (token) {
+    initialState.isLoggedIn = true;
+}
+
 const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
         handle_Login_Signout(state, action) {
-            state.isLoggedIn = action.payload
+            state.isLoggedIn = action.payload;
             if (!action.payload) {
-                localStorage.removeItem('token')
-                state.isOTPValidated = !action.payload
-
+                localStorage.removeItem('token');
+                state.isOTPValidated = false;
+                // Clear user data
+                state.firstName = '';
+                state.lastName = '';
+                state.email = '';
+                state.phone = '';
+                state.address = {};
+                state.balance = '';
+                state.accountType = '';
+                state.sortCode = '';
+                state.lastLogin = '';
+                state.statement = [];
             }
-
         },
         handleOTP(state, action) {
-            state.isOTPValidated = action.payload
+            if (state.isLoggedIn) {
+                state.isOTPValidated = action.payload;
+            }
         },
         getUser(state, action) {
-            const { firstName, title, lastName, email, phone, address, lastLogin } = action.payload
-
-            const formattedDate = formatDate(lastLogin, 'account');
-
-            state.firstName = firstName;
-            state.title = title
-            state.lastName = lastName;
-            state.email = email;
-            state.phone = phone;
-            state.address = address;
-            state.lastLogin = formattedDate;
+            if (state.isLoggedIn) {
+                const { firstName, title, lastName, email, phone, address, lastLogin } = action.payload;
+                const formattedDate = formatDate(lastLogin, 'account');
+                state.firstName = firstName;
+                state.title = title;
+                state.lastName = lastName;
+                state.email = email;
+                state.phone = phone;
+                state.address = address;
+                state.lastLogin = formattedDate;
+            }
         },
         getAccountInformation(state, action) {
-
-            const { accountType, sortCode, balance, accountNumber } = action.payload
-
-            state.balance = balance;
-            state.accountNumber = accountNumber;
-            state.sortCode = sortCode;
-            state.accountType = accountType.toUpperCase().charAt(0) + accountType.slice(1, accountType.length)
-
+            if (state.isLoggedIn) {
+                const { accountType, sortCode, balance, accountNumber } = action.payload;
+                state.balance = balance;
+                state.accountNumber = accountNumber;
+                state.sortCode = sortCode;
+                state.accountType = accountType.charAt(0).toUpperCase() + accountType.slice(1);
+            }
         },
         getTransactions(state, action) {
-            const statement = action.payload
-
-            const refinedStatement = statement.sort((a, b) => new Date(b.transaction_date) - new Date(a.transaction_date))
-                .map((tran) => ({
-                    ...tran,
-                    transaction_date: formatDate(tran.transaction_date, 'statement'),
-                    isViewed: false,
-                    referenceDate: formatDate(tran.transaction_date, 'referencedate'),
-                    referenceTime: formatDate(tran.transaction_date, 'referencetime')
-                }
-                ))
-
-
-            state.statement = refinedStatement
+            if (state.isLoggedIn) {
+                const statement = action.payload;
+                const refinedStatement = statement
+                    .sort((a, b) => new Date(b.transaction_date) - new Date(a.transaction_date))
+                    .map((tran) => ({
+                        ...tran,
+                        transaction_date: formatDate(tran.transaction_date, 'statement'),
+                        isViewed: false,
+                        referenceDate: formatDate(tran.transaction_date, 'referencedate'),
+                        referenceTime: formatDate(tran.transaction_date, 'referencetime'),
+                    }));
+                state.statement = refinedStatement;
+            }
         },
         viewReference(state, action) {
-            const index = action.payload
-            const refinedStatement = state.statement.map((tran, ind) => {
-                const stateIndex = ind === index
-                return {
-                    ...tran,
-                    isViewed: stateIndex ? !tran.isViewed : tran.isViewed
-                }
-            })
-
-
-            state.statement = refinedStatement
+            if (state.isLoggedIn) {
+                const index = action.payload;
+                const refinedStatement = state.statement.map((tran, ind) => {
+                    const stateIndex = ind === index;
+                    return {
+                        ...tran,
+                        isViewed: stateIndex ? !tran.isViewed : tran.isViewed,
+                    };
+                });
+                state.statement = refinedStatement;
+            }
         },
         clearState(state) {
-            state.isLoggedIn = false
-            state.isOTPValidated = false
-            state.firstName = ''
-            state.lastName = ''
-            state.email = ''
-            state.phone = ''
-            state.address = {}
-            state.balance = ''
-            state.accountType = ''
-            state.sortCode = ''
-            state.lastLogin = ''
-            state.statement = []
-        }
+            state.isLoggedIn = false;
+            state.isOTPValidated = false;
+            state.firstName = '';
+            state.lastName = '';
+            state.email = '';
+            state.phone = '';
+            state.address = {};
+            state.balance = '';
+            state.accountType = '';
+            state.sortCode = '';
+            state.lastLogin = '';
+            state.statement = [];
+        },
+    },
+});
 
-    }
-})
+export const {
+    handle_Login_Signout,
+    handleOTP,
+    clearState,
+    getUser,
+    getTransactions,
+    viewReference,
+    getAccountInformation,
+} = authSlice.actions;
 
-export const { handle_Login_Signout, handleOTP, clearState, getUser, getTransactions, viewReference, getAccountInformation } = authSlice.actions
-export const authReducer = authSlice.reducer
+export const authReducer = authSlice.reducer;
