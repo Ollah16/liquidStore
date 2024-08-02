@@ -43,7 +43,7 @@ export const handleSubmitOtp = async (otp) => {
 
     } catch (error) {
         // Handle errors from the server
-        console.error('Error submitting OTP:', error.message);
+        console.error('Error submitting OTP:', error);
     }
 };
 
