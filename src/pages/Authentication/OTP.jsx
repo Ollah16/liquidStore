@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import { toast } from 'react-hot-toast'
 import Button from '../../components/Button'
 import { useNavigate } from 'react-router-dom'
@@ -62,7 +61,7 @@ const OneTimeP = () => {
         }
 
         // Re-enable the button after handling the OTP request
-        setIsDisable(false);
+        setIsDisable(!isDisabled);
     };
 
 
