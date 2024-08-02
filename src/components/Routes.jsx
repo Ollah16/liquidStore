@@ -64,7 +64,6 @@ const AppRoutes = () => {
         handleResetState()
     }, [token, dispatch])
 
-    console.log(isAuthenticated)
     return (
         <Routes>
             <Route path='/' element={<HomePage />} />

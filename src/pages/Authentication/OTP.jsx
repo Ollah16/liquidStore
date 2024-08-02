@@ -75,14 +75,17 @@ const OneTimeP = () => {
 
         try {
             const token = await handleSubmitOtp(otp)
-            localStorage.setItem('token', token)
+            if (token) {
+                localStorage.setItem('token', token)
+                // Notify user of successful OTP submission
+                toast.success('OTP verified successfully.');
 
-            // Notify user of successful OTP submission
-            toast.success('OTP verified successfully.');
+                dispatch(handleOTP(true))
 
-            dispatch(handleOTP(true))
-
-            navigate('/accounts')
+                navigate('/accounts')
+            } else {
+                toast.error(token)
+            }
 
         } catch (error) {
             // Handle errors from the server

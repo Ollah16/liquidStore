@@ -20,6 +20,7 @@ const OTPInput = ({ length, onChange, clear }) => {
     const handleChange = (element, index) => {
         const value = element.value.replace(/[^0-9]/g, '');
 
+        // Ensure only a single digit is entered
         if (value.length > 1) {
             return;
         }
@@ -29,9 +30,13 @@ const OTPInput = ({ length, onChange, clear }) => {
         setOtp(updatedOtp);
         onChange(updatedOtp.join(''));
 
-        // Move focus to the next input field
+        // Move focus to the next input field if there is a value and it is not the last field
         if (value && index < length - 1) {
-            inputsRef.current[index + 1].focus();
+
+            const nextIndex = index + 1;
+            if (inputsRef.current && inputsRef.current[nextIndex]) {
+                inputsRef.current[nextIndex].focus();
+            }
         }
     };
 
@@ -40,7 +45,6 @@ const OTPInput = ({ length, onChange, clear }) => {
             inputsRef.current[index - 1].focus();
         }
     };
-
     return (
         <div className="flex gap-x-2">
             {otp?.map((_, index) => (
