@@ -22,7 +22,7 @@ const PaymentInfo = () => {
             <div className='mb-5 w-full'>
                 <div className='w-full'>
                     <p className='mb-1 font-normal text-lg'>Reference</p>
-                    <p className='font-light text-sm my-1'>The recipient will see this on their statement</p>
+                    <p className='font-light text-xs md:text-sm my-1'>The recipient will see this on their statement</p>
                     <div className='w-full'>
                         <input
                             name='ref'

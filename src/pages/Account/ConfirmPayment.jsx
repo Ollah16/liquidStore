@@ -36,7 +36,7 @@ const ConfirmPayment = () => {
                 <div className='lg:w-10/12 w-full px-5 lg:px-0 mx-auto'>
                     <div className='lg:w-10/12 w-full'>
                         <div className='p-5'>
-                            <h3 className='font-semibold text-3xl md:text-5xl'>Are these details correct?</h3>
+                            <h3 className='font-semibold text-2xl md:text-5xl'>Are these details correct?</h3>
                         </div>
                         <div className='md:w-10/12 w-full bg-white p-5'>
 

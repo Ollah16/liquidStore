@@ -38,7 +38,7 @@ const MakePayment = () => {
                     <div className='lg:w-9/12 md:w-11/12 w-full'>
                         <div>
                             <div className='px-5 py-8'>
-                                <p className='text-4xl font-semibold tracking-tight'>Payments and transfers</p>
+                                <p className='md:text-4xl text-2xl font-semibold tracking-tight'>Payments and transfers</p>
                             </div>
 
                             <div className='bg-white p-5'>
