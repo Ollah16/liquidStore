@@ -26,7 +26,8 @@ axiosInstance.interceptors.response.use((response) => {
 }, (error) => {
     if (error.response && error.response.status === 401) {
         // Handle token expiration
-        localStorage.removeItem('token');
+
+        // localStorage.removeItem('token');
     }
     return Promise.reject(error);
 });
