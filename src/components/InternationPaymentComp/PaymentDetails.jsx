@@ -48,7 +48,7 @@ const PaymentDetails = React.memo(() => {
                         value={amount}
                         name='amount'
                         onChange={(e) => dispatch(getAmount(e.target.value))}
-                        className='border py-2 w-10/12 inline-block border-gray-500/70 px-1' />
+                        className='border rounded-none py-2 w-10/12 inline-block border-gray-500/70 px-1' />
                     <span className='border border-l-0 py-2 px-1 border-gray-500/70 w-2/12 flex items-center justify-center'>
                         <GB title='Great Britain' className='w-10 h-10' />
                     </span>
@@ -61,7 +61,7 @@ const PaymentDetails = React.memo(() => {
                     <input
                         name='equivalent'
                         defaultValue={amount ? equivalent : ''}
-                        className='border py-2 w-10/12 inline-block border-gray-500/70 px-1' />
+                        className='border py-2 w-10/12 inline-block rounded-none border-gray-500/70 px-1' />
                     <div className='border border-l-0 py-2 px-1 border-gray-500/70 w-2/12'>
                         <button
                             onClick={() => dispatch(handleMoreCurrency(!isCurrencyClicked))}
