@@ -23,16 +23,17 @@ export const logUser = async (bodyContent) => {
 }
 
 export const handleRequestOtp = async () => {
-
     try {
         const response = await axiosInstance.get('/user/getOtp');
-        const { message } = response.data
-        return message
-
+        const { message } = response.data;
+        return { message };  // Return message wrapped in an object
     } catch (error) {
         console.error('Error requesting OTP:', error.message);
+        // Return an error object to handle it in the calling function
+        return { error: error.response?.data?.error || 'An error occurred while requesting OTP.' };
     }
 };
+
 
 export const handleSubmitOtp = async (otp) => {
 
@@ -43,7 +44,7 @@ export const handleSubmitOtp = async (otp) => {
 
     } catch (error) {
         // Handle errors from the server
-        console.error('Error submitting OTP:', error);
+        return { error: error.response?.data?.error || 'An error occurred' };
     }
 };
 

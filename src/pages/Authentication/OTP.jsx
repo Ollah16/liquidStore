@@ -42,65 +42,51 @@ const OneTimeP = () => {
     }, [isDisabled, requestDuration]);
 
     const getOnetimePassword = async () => {
-        try {
-            //Set button to disable to delay 
-            setIsDisable(!isDisabled)
-            //Sanitize inputs
-            setClear(!clear)
-            const message = await handleRequestOtp();
-            // Notify user of successful OTP submission
-            toast.success(message);
+        // Set button to disabled to prevent multiple submissions
+        setIsDisable(true);
+        // Clear any previous input or state
+        setClear(true);
 
-        } catch (error) {
-            // Handle errors from the server
-            if (error.response) {
-                const { data } = error.response;
-                toast.error(data.error);
-            } else if (error.request) {
-                // Handle network errors
+        const { message, error } = await handleRequestOtp();
+
+        if (error) {
+            // Handle errors and display appropriate messages
+            if (error.includes('Network Error')) {
                 toast.error('Network error. Please try again later.');
             } else {
-                // Handle other errors
-                toast.error('An unexpected error occurred. Please try again later.');
+                toast.error(error);
             }
-            console.error('Error submitting OTP:', error.message);
+        } else if (message) {
+            // Notify user of successful OTP request
+            toast.success(message);
         }
+
+        // Re-enable the button after handling the OTP request
+        setIsDisable(false);
     };
 
-    const submitOnetimePassword = async () => {
 
+    const submitOnetimePassword = async () => {
         if (!otp) {
-            return toast.error('OTP is required')
+            return toast.error('OTP is required.');
         }
 
-        try {
-            const token = await handleSubmitOtp(otp)
-            if (token) {
-                localStorage.setItem('token', token)
-                // Notify user of successful OTP submission
-                toast.success('OTP verified successfully.');
+        const { token, error } = await handleSubmitOtp(otp);
 
-                dispatch(handleOTP(true))
-
-                navigate('/accounts')
-            } else {
-                toast.error(token)
-            }
-
-        } catch (error) {
-            // Handle errors from the server
-            if (error.response) {
-                const { data } = error.response;
-                toast.error(data.error);
-                setClear(!clear)
-            } else if (error.request) {
-                // Handle network errors
+        if (error) {
+            // Handle errors and display appropriate messages
+            if (error.includes('Network Error')) {
                 toast.error('Network error. Please try again later.');
             } else {
-                // Handle other errors
-                toast.error('An unexpected error occurred. Please try again later.');
+                toast.error(error);
             }
-            console.error('Error submitting OTP:', error.message);
+            setClear(!clear); // Assuming this toggles a state for clearing the input
+        } else if (token) {
+            // Handle successful OTP submission
+            localStorage.setItem('token', token);
+            toast.success('OTP verified successfully.');
+            dispatch(handleOTP(true));
+            navigate('/accounts');
         }
     };
 
