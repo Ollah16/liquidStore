@@ -30,7 +30,7 @@ export const handleRequestOtp = async () => {
         return message
 
     } catch (error) {
-        console.error('Error submitting OTP:', error.message);
+        console.error('Error requesting OTP:', error.message);
     }
 };
 
