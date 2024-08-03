@@ -35,9 +35,9 @@ export const handleRequestOtp = async () => {
 
 
 export const handleSubmitOtp = async (otp) => {
-
+    const oneTimePass = otp.toString()
     try {
-        const response = await axiosInstance.post('/user/submitotp', { otp })
+        const response = await axiosInstance.post('/user/submitotp', { oneTimePass })
         const { token } = response.data;
         return { token }
 
