@@ -24,7 +24,7 @@ const AccountSetting = ({ handleCurrentClick, currentClick, settingsClass }) => 
 
     return (
         <div className={`flex-row justify-between text-theme font-medium text-sm tracking-tight ${settingsClass}`}>
-            <div className={`items-center px-2 py-3 hover:bg-gray-100 hover:text-theme_light cursor-pointer transition-colors duration-200 ease-in-out`}>
+            <div className={`items-center flex px-2 py-3 hover:bg-gray-100 hover:text-theme_light cursor-pointer transition-colors duration-200 ease-in-out`}>
                 <Link to={'/accounts'}><HomeIcon className='size-5' /></Link></div>
             {navDoc.map((nav, index) => {
 

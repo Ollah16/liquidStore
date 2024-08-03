@@ -13,8 +13,8 @@ const Recipient = ({ recipient, onClick }) => {
                 </div>
                 <button
                     onClick={onClick}
-                    className='text-theme flex items-center gap-x-1'>
-                    <PencilIcon className='size-4' /> <span>Change this</span>
+                    className='text-theme text-xs sm:text-base flex items-center gap-x-[.5px]'>
+                    <PencilIcon className='size-2 sm:size-4' /> <span>Change this</span>
                 </button>
             </div>
         </div>

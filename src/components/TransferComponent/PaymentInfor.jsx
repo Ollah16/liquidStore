@@ -22,7 +22,7 @@ const PaymentInfo = () => {
             <div className='mb-5 w-full'>
                 <div className='w-full'>
                     <p className='mb-1 font-normal text-lg'>Reference</p>
-                    <p className='font-light text-xs md:text-sm my-1'>The recipient will see this on their statement</p>
+                    <p className='font-light text-sm my-1'>The recipient will see this on their statement</p>
                     <div className='w-full'>
                         <input
                             name='ref'
@@ -33,9 +33,9 @@ const PaymentInfo = () => {
             </div>
             <div className='mb-5 w-full'>
                 <div className='w-full'>
-                    <div className='my-4 gap-x-5 flex items-center'>
+                    <div className='my-4 gap-x-3 flex items-center'>
                         <input type='checkbox' className='w-5 h-5 border border-gray-500/70' />
-                        <span>Repeat payment (make this a standing order)</span>
+                        <span className='text-sm md:text-base'>Repeat payment (make this a standing order)</span>
                     </div>
                 </div>
             </div>

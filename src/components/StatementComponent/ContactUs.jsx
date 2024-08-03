@@ -1,7 +1,8 @@
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import React, { useState } from 'react'
 import { TiMinus, TiPlus } from "react-icons/ti";
 
-const ContactUs = () => {
+const ContactUs = ({ contactClass, icon }) => {
 
     const [contactWithin, setContact] = useState(false)
 
@@ -42,14 +43,16 @@ const ContactUs = () => {
     ]
 
     return (
-        <div className='w-full bg-theme text-white p-5 text-base tracking-tight'>
+        <div className={`w-full bg-theme text-white p-5 text-base tracking-tight ${contactClass}`}>
             <div>
-                <h2 className='font-semibold cursor-pointer flex justify-between items-center'
+                <h2 className={`font-semibold cursor-pointer flex justify-between items-center`}
                     onClick={() => setContact(!contactWithin)}>
-                    <span className='w-9/12 text-center'>CONTACT US</span>
-                    {!contactWithin ?
-                        <TiPlus className={'text-theme_light size-5'} />
-                        : <TiMinus className={'text-theme_light size-5'} />}
+                    <span className='w-9/12 text-start md:text-center'>CONTACT US</span>
+                    {!icon ?
+                        (!contactWithin ?
+                            <TiPlus className={'text-theme_light size-5'} />
+                            : <TiMinus className={'text-theme_light size-5'} />) :
+                        <ChevronDownIcon className={`text-white size-5 transition-transform duration-300 ease-in-out ${contactWithin ? 'rotate-x-180' : 'rotate-x-0'}`} />}
                 </h2>
 
                 <div className={`${contactWithin ? 'max-h-[1000px]' : 'max-h-0'} transition-all ease-in-out duration-300 overflow-hidden`}>

@@ -4,7 +4,7 @@ import Footer from '../../components/AccountComponent/Footer';
 
 const Layout = ({ children }) => {
     return (
-        <div className='tracking-tight'>
+        <div className='tracking-tight overflow-x-hidden'>
             <NavBar />
             <main className='bg-gray-100'>{children}</main>
             <Footer />
