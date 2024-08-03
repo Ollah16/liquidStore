@@ -11,7 +11,7 @@ const AccountBalance = ({ path_Name }) => {
                     <span className='text-base font-light text-black/90'>{sortCode}</span>
                     <span className='text-base font-light text-black/90'>{accountNumber}</span>
                 </div>
-                <span className='text-3xl font-normal flex items-baseline leading-normal gap-x-2'>
+                <span className='md:text-3xl text-2xl font-normal flex items-baseline leading-normal gap-x-2'>
                     <p>£ {balance.toLocaleString()}</p> {path_Name && <p className='font-light text-base'>Balance after pending</p>}
                 </span>
             </div >

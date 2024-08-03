@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { LockClosedIcon } from '@heroicons/react/24/outline'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCredentials } from '../../../util/api'
-import { getUser, handle_Login_Signout } from '../../../reduxtoolkit/authslice'
+import { getUser } from '../../../reduxtoolkit/authslice'
 import AccountSetting from './AccountSetting'
 import LogOff from './LogOff'
 
@@ -14,14 +14,11 @@ const SubNavComp = React.memo(({ handleCurrentClick, currentClick }) => {
     useEffect(() => {
 
         const getCred = async () => {
-            const token = localStorage.getItem('token')
             try {
                 const accountInfo = await getCredentials()
                 dispatch(getUser(accountInfo))
             } catch (err) {
-                if (token) {
-                    dispatch(handle_Login_Signout(false))
-                }
+                console.error(err)
             }
         }
 

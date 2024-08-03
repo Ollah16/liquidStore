@@ -7,8 +7,6 @@ const BalanceComp = () => {
     const { pathname } = useLocation()
     const [path_Name, setPathname] = useState()
 
-
-
     useEffect(() => {
         const isPathStatement = pathname === '/accountstatement'
         setPathname(isPathStatement)
