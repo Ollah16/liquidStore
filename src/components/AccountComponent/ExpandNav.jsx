@@ -10,6 +10,7 @@ const ExpandNav = () => {
     useEffect(() => {
         const body = document.querySelector('body')
         body.style.overflowY = isExpanded ? 'hidden' : 'auto'
+        body.style.overflowX = 'hidden'
     }, [isExpanded])
 
     const productClass = `after:w-full after:h-[1px]`
