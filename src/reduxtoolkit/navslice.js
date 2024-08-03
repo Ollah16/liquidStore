@@ -19,8 +19,10 @@ const { menuContent, menuSubContent } = MenuContents()
 const initialState = {
     navlist,
     current: 'Personal',
+    isExpanded: false,
     isLoginDropDown: false,
     searchOptions,
+    isProducts: false,
     searchTitle: '',
     isMenu: false,
     isSearch: false,
@@ -39,6 +41,9 @@ const navSlice = createSlice({
     reducers: {
         getCurrent(state, action) {
             state.current = action.payload;
+        },
+        toggleProducts(state) {
+            state.isProducts = !state.isProducts;
         },
         expandNav(state) {
             state.isExpanded = !state.isExpanded;
@@ -84,4 +89,15 @@ const navSlice = createSlice({
 });
 
 export const navReducer = navSlice.reducer
-export const { getCurrent, toggleLoginBox, getInput, toggleMenu, toggleSearch, getClickedMenu, resetMenu, handleNavOnScroll, resetNav } = navSlice.actions
+export const {
+    expandNav,
+    getCurrent,
+    toggleLoginBox,
+    getInput,
+    toggleMenu,
+    toggleSearch,
+    getClickedMenu,
+    resetMenu,
+    handleNavOnScroll,
+    toggleProducts,
+    resetNav } = navSlice.actions

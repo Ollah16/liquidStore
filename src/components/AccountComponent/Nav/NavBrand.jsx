@@ -1,8 +1,15 @@
 import { Bars3Icon } from '@heroicons/react/24/outline'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { expandNav } from '../../../reduxtoolkit/navslice'
+import { RxCross2 } from "react-icons/rx";
+
 
 const NavBrand = () => {
+    const dispatch = useDispatch()
+    const { isExpanded } = useSelector(state => state.nav)
+
     return (
         <nav className='bg-theme text-white relative z-30'>
             <div className='w-full px-5 lg:px-0 lg:w-10/12 mx-auto flex justify-between items-center'>
@@ -57,7 +64,11 @@ const NavBrand = () => {
                     </Link>
                 </div>
                 <div className='h-full flex items-center md:hidden'>
-                    <button><Bars3Icon className='size-8' /></button>
+                    <button onClick={() => dispatch(expandNav())}>
+                        {!isExpanded ?
+                            <Bars3Icon className='size-8 hover:shadow hover:shadow-white' /> :
+                            <RxCross2 className='size-8 hover:shadow hover:shadow-white' />
+                        }</button>
                 </div>
             </div>
 

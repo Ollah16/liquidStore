@@ -105,7 +105,6 @@ const Navbrand = () => {
                 </Link>
             </div>
         </div>
-
     )
 }
 
