@@ -31,8 +31,8 @@ const MobileSetting = () => {
                     <div className={`${isVisible ? 'max-h-[500px]' : 'max-h-0'} transition-all duration-300 ease-in-out overflow-hidden`}>
                         <Accounts />
                     </div>
-                    <div className={`${isVisible ? 'max-h-[2000px]' : 'max-h-0'} overflow-y-auto transition-all duration-300 ease-in-out overflow-hidden`}>
-                        <Profile />
+                    <div className={`${isVisible ? 'max-h-[2000px]' : 'max-h-0'} transition-all duration-300 ease-in-out overflow-hidden`}>
+                        <Profile className={`max-h-[2000px] overflow-y-auto`} />
                     </div>
                 </div>)
             })}
