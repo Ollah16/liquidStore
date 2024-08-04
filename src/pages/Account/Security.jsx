@@ -25,7 +25,7 @@ const Security = () => {
                         </div>
                     </header>
 
-                    <main className="max-w-7xl mx-auto p-6">
+                    <main className="md:max-w-7xl w-full mx-auto p-6">
                         <section className="text-center py-8">
                             <h2 className="text-2xl font-bold">Your Security gives you the latest tips to protect your accounts, whenever you need them.</h2>
                         </section>
