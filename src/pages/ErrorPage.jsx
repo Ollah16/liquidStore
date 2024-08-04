@@ -1,8 +1,17 @@
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { clearCurrentInputs } from '../reduxtoolkit/paymentslice';
 
 const ErrorPage = () => {
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(clearCurrentInputs())
+    }, [dispatch])
+
     return (
         <div className="py-20 flex items-center justify-center bg-gray-100 min-h-screen">
             <div className="bg-white shadow-md rounded-lg p-8 max-w-md text-center">

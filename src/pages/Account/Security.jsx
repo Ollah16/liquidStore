@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from './Layout';
 import AllSections from '../../constants/SecurityConstants/AllSections';
+import { useDispatch } from 'react-redux';
+import { expandNav } from '../../reduxtoolkit/navslice';
+import ExpandNav from '../../components/AccountComponent/ExpandNav';
 
 const Security = () => {
 
     const { sections, additionalSections, footerContent } = AllSections()
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(expandNav())
+    }, [dispatch])
 
     return (
         <Layout>
@@ -64,9 +72,9 @@ const Security = () => {
 
                         <section className="text-center py-8 bg-gray-200">
                             <h2 className="text-2xl font-bold">Check how safe you are online</h2>
-                            <p>Find out if your security knowledge is basic, intermediate or advanced. <a href="#" className="text-green-700 underline">Take the quiz</a>.</p>
+                            <p>Find out if your security knowledge is basic, intermediate or advanced. <a href="/yah" className="text-green-700 underline">Take the quiz</a>.</p>
                         </section>
-
+                        <ExpandNav />
                         <footer className="bg-gray-800 text-white text-center py-8">
                             <div className="max-w-7xl mx-auto p-6">
                                 <p className="text-lg font-bold">Our online and mobile banking guarantee</p>

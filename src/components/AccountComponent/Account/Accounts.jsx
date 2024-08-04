@@ -2,13 +2,14 @@ import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-const Accounts = ({ currentClick }) => {
+const Accounts = ({ className }) => {
 
+    const { currentClick } = useSelector(state => state.nav)
     const isVisible = /accounts/i.test(currentClick)
     const { balance, accountNumber, accountType, sortCode } = useSelector(state => state.auth)
 
     return (
-        <div className={`overflow-hidden bg-gray-200 ${isVisible ? 'max-h-[800px]' : 'max-h-0'} transition-all ease-in-out duration-300`}>
+        <div className={`overflow-hidden ${className} bg-gray-200 ${isVisible ? 'max-h-[800px]' : 'max-h-0'} transition-all ease-in-out duration-300`}>
 
             <div className={`z-10 py-12 transition-top duration-300 ease-in-out w-full`}>
                 <div className='md:w-10/12 w-full px-5 md:px-0 mx-auto'>

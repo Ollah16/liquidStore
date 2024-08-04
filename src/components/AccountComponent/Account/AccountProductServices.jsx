@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import AccountFeaures from '../../../constants/AccountConstants/AccountFeaures'
 import { TiPlus } from "react-icons/ti";
 import { TiMinus } from "react-icons/ti";
@@ -10,14 +10,22 @@ const AccountProductServices = ({ productClass }) => {
     const dispatch = useDispatch()
     const { isProducts } = useSelector(state => state.nav)
     const [currentFeature, setCurrentFeature] = useState('')
-
     const accountFeatures = AccountFeaures()
 
-    const handleFeature = (value) => {
+    const handleFeature = useCallback((value) => {
         const isExist = value === currentFeature
         const newFeature = isExist ? '' : value
         setCurrentFeature(newFeature)
-    }
+    }, [currentFeature])
+
+    useEffect(() => {
+        //reset features when !isProducts
+        const handleChanges = () => {
+            if (isProducts) return
+            handleFeature('')
+        }
+        handleChanges()
+    }, [isProducts, handleFeature])
 
     return (
         <div className='w-full md:w-full'>

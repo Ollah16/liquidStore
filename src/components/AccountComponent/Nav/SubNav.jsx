@@ -6,10 +6,11 @@ import { getUser } from '../../../reduxtoolkit/authslice'
 import AccountSetting from './AccountSetting'
 import LogOff from './LogOff'
 
-const SubNavComp = React.memo(({ handleCurrentClick, currentClick }) => {
+const SubNavComp = () => {
 
     const dispatch = useDispatch()
     const { firstName, lastName, lastLogin, title } = useSelector(state => state.auth)
+    const { currentClick } = useSelector(state => state.nav)
 
     useEffect(() => {
 
@@ -40,10 +41,7 @@ const SubNavComp = React.memo(({ handleCurrentClick, currentClick }) => {
                         </div>
                     </div>
                     <AccountSetting
-                        handleCurrentClick={handleCurrentClick}
-                        currentClick={currentClick}
                         settingsClass={settingsClass} />
-
                     <div className='flex md:hidden text-theme h-full items-center my-auto font-semibold'>
                         <LogOff />
                     </div>
@@ -51,6 +49,6 @@ const SubNavComp = React.memo(({ handleCurrentClick, currentClick }) => {
             </div>
         </nav >
     )
-})
+}
 
 export default SubNavComp

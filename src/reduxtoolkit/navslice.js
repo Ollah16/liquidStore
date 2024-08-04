@@ -32,7 +32,8 @@ const initialState = {
     currentMenuTitle: menuContent[0].title,
     currentMenuSubTitle: menuContent[0].subTitle,
     currentWelcome: {},
-    isNavTopLess: false
+    isNavTopLess: false,
+    currentClick: ''
 }
 
 const navSlice = createSlice({
@@ -84,6 +85,11 @@ const navSlice = createSlice({
             state.isLoginDropDown = false
             state.isSearch = false
             state.isMenu = false
+        },
+        getCurrentClick(state, action) {
+            const value = action.payload
+            const isExist = value === state.currentClick
+            state.currentClick = isExist ? '' : value
         }
     },
 });
@@ -100,4 +106,5 @@ export const {
     resetMenu,
     handleNavOnScroll,
     toggleProducts,
-    resetNav } = navSlice.actions
+    resetNav,
+    getCurrentClick } = navSlice.actions
