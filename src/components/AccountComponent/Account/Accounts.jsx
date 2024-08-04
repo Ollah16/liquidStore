@@ -1,12 +1,30 @@
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAccountInformation } from '../../../reduxtoolkit/authslice'
+import { getAccountInfo } from '../../../util/api'
 
 const Accounts = ({ className }) => {
 
     const { currentClick } = useSelector(state => state.nav)
     const isVisible = /accounts/i.test(currentClick)
     const { balance, accountNumber, accountType, sortCode } = useSelector(state => state.auth)
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        const getInfo = async () => {
+            try {
+                const accountInfo = await getAccountInfo()
+                dispatch(getAccountInformation(accountInfo))
+            } catch (err) {
+                console.error(err)
+            }
+        }
+
+        getInfo()
+    }, [dispatch])
+
 
     return (
         <div className={`overflow-hidden ${className} bg-gray-200 ${isVisible ? 'max-h-[800px]' : 'max-h-0'} transition-all ease-in-out duration-300`}>
