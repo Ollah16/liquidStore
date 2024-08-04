@@ -14,7 +14,7 @@ const ExpandNav = () => {
         body.style.overflowY = isExpanded ? 'hidden' : 'auto'
     }, [isExpanded])
 
-    const productClass = `after:w-full after:h-[1px] hover:bg-white/5 transition-colors ease-in-out duration-200`
+    const productClass = `after:w-full after:h-[.5px] hover:bg-white/5 transition-colors ease-in-out duration-200`
     const contactClass = `justify-between hover:bg-white/5 transition-colors ease-in-out duration-200 items-center after:content-[''] after:bg-theme_light after:w-full after:h-[.5px] after:left-0 after:absolute after:bottom-0 relative`
 
     return (
