@@ -19,7 +19,7 @@ const ExpandNav = () => {
 
     return (
         <nav className={`${isExpanded ? 'translate-x-0' : 'translate-x-full'} right-0 md:hidden w-full bg-theme top-[94px] min-h-screen z-50 h-full transition-all ease-in-out duration-300 fixed bottom-0 my-0`}>
-            <div className={`before:h-[.5px] before:w-full before:absolute after:h-[150px] after:content-[''] after:block after:w-full after:relative before:top-0 before:bg-theme_light overflow-y-auto max-h-screen`}>
+            <div className={`before:h-[1px] before:w-full before:absolute after:h-[150px] after:content-[''] after:block after:w-full after:relative before:top-0 before:bg-theme_light overflow-y-auto max-h-screen`}>
                 <MobileSetting />
                 <AccountProductServices productClass={productClass} />
                 <ContactUs contactClass={contactClass} icon={ChevronDownIcon} />
