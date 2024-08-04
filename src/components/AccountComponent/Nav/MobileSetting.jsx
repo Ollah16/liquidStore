@@ -18,7 +18,7 @@ const MobileSetting = () => {
             {navLinks.map((nav, index) => {
 
                 const isVisible = new RegExp(nav.title, 'i').test(currentClick);
-
+                console.log(currentClick)
                 return (<div key={index}>
                     <button
                         onClick={() => dispatch(getCurrentClick(nav.title))}
@@ -28,11 +28,11 @@ const MobileSetting = () => {
                         <span>{nav.title}</span>
                         <span className={`${isVisible ? 'rotate-x-180' : 'rotate-x-0'} transition-transform ease-in-out duration-300`}>{nav.icon}</span>
                     </button>
-                    <div className={`${isVisible ? 'max-h-[500px]' : 'max-h-0'} transition-all duration-300 ease-in-out overflow-hidden`}>
+                    <div className={`${currentClick.includes('Accounts') && index === 0 ? 'max-h-[500px]' : 'max-h-0'} transition-all duration-300 ease-in-out overflow-hidden`}>
                         <Accounts />
                     </div>
-                    <div className={`${isVisible ? 'max-h-[2000px]' : 'max-h-0'} transition-all duration-300 ease-in-out overflow-hidden`}>
-                        <Profile className={`max-h-[1000px] overflow-y-auto`} />
+                    <div className={`${currentClick.includes('Profile') && index === 1 ? 'max-h-[2000px]' : 'max-h-0'} transition-all duration-300 ease-in-out overflow-hidden`}>
+                        <Profile />
                     </div>
                 </div>)
             })}

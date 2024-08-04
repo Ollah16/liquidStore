@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import AccountDesktop from '../../components/AccountComponent/Account/AccountDesktop'
 import AccountMobile from '../../components/AccountComponent/Account/AccountMobile'
 import Layout from './Layout';

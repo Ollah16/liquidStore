@@ -13,7 +13,7 @@ const Profile = ({ className }) => {
     const { address, email, phone } = useSelector(state => state.auth)
 
     return (
-        <div className={`overflow-hidden ${className} bg-white ${isVisible ? 'max-h-[800px]' : 'max-h-0'} transition-all ease-in-out duration-300`}>
+        <div className={`${className} md:overflow-hidden overflow-y-auto bg-white ${isVisible ? 'max-h-[800px]' : 'max-h-0'} transition-all ease-in-out duration-300`}>
             <div className={`z-10 transition-top transition-position duration-300 ease-in-out w-full relative pt-5 md:pb-10`}>
 
                 <div className='flex flex-col md:flex-row flex-wrap justify-between w-full md:w-10/12 px-5 md:p-0 mx-auto tracking-tight font-normal'>
