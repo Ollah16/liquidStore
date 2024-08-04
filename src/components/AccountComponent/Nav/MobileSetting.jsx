@@ -32,7 +32,7 @@ const MobileSetting = () => {
                         <Accounts />
                     </div>
                     <div className={`${isVisible ? 'max-h-[2000px]' : 'max-h-0'} transition-all duration-300 ease-in-out overflow-hidden`}>
-                        <Profile className={`max-h-[2000px] overflow-y-auto`} />
+                        <Profile className={`max-h-[1000px] overflow-y-auto`} />
                     </div>
                 </div>)
             })}

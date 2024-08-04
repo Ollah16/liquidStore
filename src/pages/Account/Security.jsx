@@ -11,7 +11,7 @@ const Security = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(expandNav())
+        dispatch(expandNav(false))
     }, [dispatch])
 
     return (
@@ -21,11 +21,11 @@ const Security = () => {
                     <header className="bg-green-700 text-white">
                         <div className="p-6 flex flex-col md:flex-row items-center md:justify-between">
                             <h1 className="text-3xl font-bold">Your Security</h1>
-                            <p className="text-xl mt-2 md:mt-0">Find out how to stay safe and secure when banking online.</p>
+                            <p className="text-xl mt-2 md:mt-0 text-center">Find out how to stay safe and secure when banking online.</p>
                         </div>
                     </header>
 
-                    <main className="md:max-w-7xl w-full mx-auto p-6">
+                    <main className="md:max-w-7xl w-full mx-auto py-6 md:p-6">
                         <section className="text-center py-8">
                             <h2 className="text-2xl font-bold">Your Security gives you the latest tips to protect your accounts, whenever you need them.</h2>
                         </section>

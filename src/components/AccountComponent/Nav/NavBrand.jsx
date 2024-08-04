@@ -64,7 +64,7 @@ const NavBrand = () => {
                     </Link>
                 </div>
                 <div className='h-full flex items-center md:hidden'>
-                    <button aria-label='expand-nav' onClick={() => dispatch(expandNav())}>
+                    <button aria-label='expand-nav' onClick={() => dispatch(expandNav(!isExpanded))}>
                         {!isExpanded ?
                             <Bars3Icon className='size-8 hover:shadow hover:shadow-white' /> :
                             <RxCross2 className='size-8 hover:shadow hover:shadow-white' />

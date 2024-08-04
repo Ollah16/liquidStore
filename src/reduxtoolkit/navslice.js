@@ -46,8 +46,8 @@ const navSlice = createSlice({
         toggleProducts(state) {
             state.isProducts = !state.isProducts;
         },
-        expandNav(state) {
-            state.isExpanded = !state.isExpanded;
+        expandNav(state, action) {
+            state.isExpanded = action.payload;
         },
         getInput(state, action) {
             state.searchTitle = action.payload;
