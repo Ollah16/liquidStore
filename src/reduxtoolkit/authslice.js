@@ -12,7 +12,7 @@ let initialState = {
     accountType: '',
     sortCode: '',
     lastLogin: '',
-    statement: [],
+    allTransactions: [],
 };
 
 const formatDate = (dateString, type) => {
@@ -35,7 +35,7 @@ const formatDate = (dateString, type) => {
             return `${dayOfWeek} ${day} ${monthLong} ${year}`;
         case 'referencetime':
             return `${formattedHours}:${minutes} ${ampm}`;
-        case 'statement':
+        case 'allTransactions':
             return `${day} ${monthShort.slice(0, 3)} ${year}`;
         default:
             return `${day} ${monthShort.slice(0, 3)} ${year}`;
@@ -67,7 +67,7 @@ const authSlice = createSlice({
                 state.accountType = '';
                 state.sortCode = '';
                 state.lastLogin = '';
-                state.statement = [];
+                state.allTransactions = [];
             }
         },
         handleOTP(state, action) {
@@ -98,31 +98,53 @@ const authSlice = createSlice({
             }
         },
         getTransactions(state, action) {
-            if (state.isLoggedIn) {
-                const statement = action.payload;
-                const refinedStatement = statement
-                    .sort((a, b) => new Date(b.transaction_date) - new Date(a.transaction_date))
-                    .map((tran) => ({
-                        ...tran,
-                        transaction_date: formatDate(tran.transaction_date, 'statement'),
-                        isViewed: false,
-                        referenceDate: formatDate(tran.transaction_date, 'referencedate'),
-                        referenceTime: formatDate(tran.transaction_date, 'referencetime'),
-                    }));
-                state.statement = refinedStatement;
-            }
+            if (!state.isLoggedIn) return;
+
+            const allTransactions = action.payload;
+
+            const refinedTransactions = allTransactions
+                .sort((a, b) => new Date(b.transaction_date) - new Date(a.transaction_date))
+                .map(tran => ({
+                    ...tran,
+                    transaction_date: formatDate(tran.transaction_date, 'allTransactions'),
+                    isViewed: false,
+                    referenceDate: formatDate(tran.transaction_date, 'referencedate'),
+                    referenceTime: formatDate(tran.transaction_date, 'referencetime'),
+                }));
+
+            const mappedTransactions = refinedTransactions.reduce((acc, tran) => {
+                const group = acc.find(group => group.groupDate === tran.transaction_date);
+                if (group) {
+                    group.groupTransaction.push(tran);
+                } else {
+                    acc.push({
+                        groupDate: tran.transaction_date,
+                        groupTransaction: [tran]
+                    });
+                }
+                return acc;
+            }, []);
+
+            state.allTransactions = mappedTransactions;
         },
         viewReference(state, action) {
             if (state.isLoggedIn) {
-                const index = action.payload;
-                const refinedStatement = state.statement.map((tran, ind) => {
-                    const stateIndex = ind === index;
+                const { index, date } = action.payload
+                const refinedallTransactions = state.allTransactions.map((tran) => {
+                    const tDate = tran.groupDate === date;
                     return {
                         ...tran,
-                        isViewed: stateIndex ? !tran.isViewed : tran.isViewed,
+                        groupTransaction: tDate ? tran.groupTransaction.map((gt, ind) => {
+                            const stateIndex = ind === index;
+                            return {
+                                ...gt,
+                                isViewed: stateIndex ? !gt.isViewed : gt.isViewed,
+                            }
+                        }) : tran.groupTransaction,
                     };
                 });
-                state.statement = refinedStatement;
+
+                state.allTransactions = refinedallTransactions;
             }
         },
         clearState(state) {
@@ -137,7 +159,7 @@ const authSlice = createSlice({
             state.accountType = '';
             state.sortCode = '';
             state.lastLogin = '';
-            state.statement = [];
+            state.allTransactions = [];
         },
     },
 });

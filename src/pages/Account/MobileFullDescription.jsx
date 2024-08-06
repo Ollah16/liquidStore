@@ -8,7 +8,7 @@ import { TbArrowBigRightLineFilled } from 'react-icons/tb';
 const MobileFullDescription = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const { statement } = useSelector(state => state.auth)
+    const { allTransactions } = useSelector(state => state.auth)
     const { id } = useParams()
     const [transaction, setTransaction] = useState({})
     const [isWithdrawal, setIsWithdrawal] = useState()
@@ -16,13 +16,13 @@ const MobileFullDescription = () => {
 
 
     useEffect(() => {
-        const findTransaction = statement.find((_, index) => Number(id) === index)
+        const findTransaction = allTransactions.find((_) => _.groupDate).groupTransaction.find((_, index) => Number(id) === index)
         if (!findTransaction) return navigate('/accountstatement')
         setTransaction(findTransaction)
         setIsWithdrawal(findTransaction?.transaction_type === 'withdrawal')
         let transactionType = findTransaction?.transaction_type.toUpperCase().charAt(0) + findTransaction?.transaction_type.slice(1, findTransaction?.transaction_type.length)
         setTransactionType(transactionType)
-    }, [id, statement, navigate])
+    }, [id, allTransactions, navigate])
 
     return (
         <div className={`tracking-tight`}>
