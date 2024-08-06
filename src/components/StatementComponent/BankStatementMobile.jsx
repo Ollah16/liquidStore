@@ -36,7 +36,7 @@ const BankStatementMobile = () => {
                                                 </div>
                                             </td>
                                             <td className='max-w-[150px] px-2 overflow-hidden max-h-[46px]'>
-                                                <h3 className='text-sm inline-block sm:text-base w-10/12 sm:w-full text-nowrap text-ellipsis overflow-hidden'>{state.transaction_description}</h3>
+                                                <h3 className='text-sm inline-block h-[46px] sm:text-base w-11/12 sm:w-full text-nowrap text-ellipsis overflow-hidden'>{state.transaction_description}</h3>
                                             </td>
                                             <td className='w-1/2 sm:w-2/12 px-2'>
                                                 <div className='flex flex-col items-end w-full'>
