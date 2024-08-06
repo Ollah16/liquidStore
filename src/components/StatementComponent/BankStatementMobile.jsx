@@ -30,13 +30,16 @@ const BankStatementMobile = () => {
                                         }} className='cursor-pointer hover:bg-gray-100/50 transition-colors ease-in-out duration-300'>
                                             <td className={`w-1/12 my-1 px-2 relative overflow-hidden ${!isWithdrawal ? `before:content-[''] before:absolute before:left-0 before:bg-theme before:inline-block before:w-1 before:h-full before:top-0 before:bottom-0` : 'before:hidden'}`}>
                                                 <div className={`w-full`}>
-                                                    <span className='rounded-full border border-gray-200 p-1 flex justify-center items-center w-full'>
-                                                        <TbArrowBigRightLineFilled className={`w-7 h-7 text-theme cursor-pointer ${isWithdrawal ? 'rotate-180' : 'rotate-0'}`} />
-                                                    </span>
+                                                    <div className='rounded-full border border-gray-200 p-1 flex justify-center items-center w-full'>
+                                                        <div className='w-fit relative flex items-center justify-center'>
+                                                            <TbArrowBigRightLineFilled className={`w-7 h-7 text-theme cursor-pointer ${isWithdrawal ? 'rotate-180' : 'rotate-0'}`} />
+                                                            <span className='absolute text-white text-xs font-medium'>£</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </td>
-                                            <td className='w-5/12 px-2 overflow-hidden max-h-[46px]'>
-                                                <h3 className='text-sm inline-block max-w-[200px] h-[45px] sm:max-w-full sm:text-base w-11/12 sm:w-full text-nowrap text-ellipsis overflow-hidden'>{state.transaction_description}</h3>
+                                            <td className='w-2/12 sm:w-5/12 px-2 overflow-hidden max-h-[46px]'>
+                                                <h3 className='text-sm inline-block align-middle max-w-[200px] sm:max-w-full sm:text-base w-11/12 sm:w-full text-nowrap text-ellipsis overflow-hidden'>{state.transaction_description}</h3>
                                             </td>
                                             <td className='w-1/2 sm:w-2/12 px-2'>
                                                 <div className='flex flex-col items-end w-full'>

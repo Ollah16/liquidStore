@@ -37,9 +37,12 @@ const MobileFullDescription = () => {
                     <div></div>
                 </div>
                 <div className='w-2/12 -mt-7'>
-                    <span className='rounded-full border border-gray-200 p-3 block w-fit bg-gray-100'>
-                        <TbArrowBigRightLineFilled className={`w-7 h-7 text-theme cursor-pointer ${isWithdrawal ? 'rotate-180' : 'rotate-0'} `} />
-                    </span>
+                    <div className='rounded-full border border-gray-200 p-3 block w-fit bg-gray-100'>
+                        <div className='w-fit relative flex items-center justify-center'>
+                            <TbArrowBigRightLineFilled className={`w-7 h-7 text-theme cursor-pointer ${isWithdrawal ? 'rotate-180' : 'rotate-0'}`} />
+                            <span className='absolute text-white text-xs font-medium'>£</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div className='flex justify-between items-center py-2'>
@@ -68,7 +71,7 @@ const MobileFullDescription = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
