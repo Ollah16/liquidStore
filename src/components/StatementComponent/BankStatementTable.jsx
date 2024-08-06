@@ -1,37 +1,21 @@
 import { CalendarIcon } from '@heroicons/react/24/outline';
-import React, { useEffect } from 'react'
+import React from 'react'
 import { TbArrowBigRightLineFilled } from "react-icons/tb";
 import { useDispatch, useSelector } from 'react-redux';
-import { getTransactions, viewReference } from '../../reduxtoolkit/authslice';
+import { viewReference } from '../../reduxtoolkit/authslice';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaRegClock } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { IoCloseSharp } from "react-icons/io5";
-import { getStatement } from '../../util/api';
 
 
 const BankStatementTable = () => {
 
     const { statement } = useSelector(state => state.auth)
-
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        const handleStatement = async () => {
-            try {
-                const statement = await getStatement()
-                dispatch(getTransactions(statement))
-            }
-            catch (error) {
-                console.error(error)
-            }
-        }
-
-        handleStatement()
-    }, [dispatch])
-
     return (
-        <div className="my-10 shadow-lg bg-white">
+        <div className="my-10 shadow-lg bg-white overflow-x-auto hidden md:block">
             <table className="w-full border-collapse">
                 <thead className="relative border-b-theme border-b">
                     <tr className='tracking-tight font-light text-black/80'>

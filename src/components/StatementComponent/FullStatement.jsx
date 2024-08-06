@@ -1,9 +1,9 @@
-import { CalendarIcon, ClockIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
-import React, { lazy, Suspense, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { ClockIcon } from '@heroicons/react/24/outline'
+import React, { useState } from 'react'
 import { TiMinus, TiPlus } from "react-icons/ti";
 import { useSelector } from 'react-redux';
-const BankStatementTable = lazy(() => import('./BankStatementTable'))
+import BankStatementMobile from './BankStatementMobile';
+import BankStatementTable from './BankStatementTable'
 
 const FullStatement = () => {
 
@@ -30,9 +30,6 @@ const FullStatement = () => {
                 <div>
                     <div className='p-5 flex justify-between'>
                         <h3 className='text-3xl font-normal'>All transactions</h3>
-                        <select>
-                            <option></option>
-                        </select>
                     </div>
                 </div>
                 <div>
@@ -69,13 +66,12 @@ const FullStatement = () => {
                     <hr className='bg-gray-500'></hr>
                 </div>
 
-                <Suspense fallback={<div>loading...</div>}>
-                    <BankStatementTable />
-                </Suspense>
+                <BankStatementTable />
+                <BankStatementMobile />
 
             </div>
 
-        </div>
+        </div >
     )
 }
 

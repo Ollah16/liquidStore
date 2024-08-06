@@ -7,8 +7,8 @@ import FullStatement from '../../components/StatementComponent/FullStatement'
 import ContactUs from '../../components/StatementComponent/ContactUs'
 import AccountProductServices from '../../components/AccountComponent/Account/AccountProductServices'
 import { useDispatch } from 'react-redux'
-import { getAccountInfo } from '../../util/api'
-import { getAccountInformation } from '../../reduxtoolkit/authslice'
+import { getAccountInfo, getStatement } from '../../util/api'
+import { getAccountInformation, getTransactions } from '../../reduxtoolkit/authslice'
 import ExpandNav from '../../components/AccountComponent/ExpandNav'
 
 const StatementPage = () => {
@@ -25,6 +25,20 @@ const StatementPage = () => {
         }
         getInfo()
 
+    }, [dispatch])
+
+    useEffect(() => {
+        const handleStatement = async () => {
+            try {
+                const statement = await getStatement()
+                dispatch(getTransactions(statement))
+            }
+            catch (error) {
+                console.error(error)
+            }
+        }
+
+        handleStatement()
     }, [dispatch])
 
     const productClass = `after:w-2/12 after:h-1 hidden md:block`

@@ -18,7 +18,6 @@ const MobileSetting = () => {
             {navLinks.map((nav, index) => {
 
                 const isVisible = new RegExp(nav.title, 'i').test(currentClick);
-                console.log(currentClick)
                 return (<div key={index}>
                     <button
                         onClick={() => dispatch(getCurrentClick(nav.title))}

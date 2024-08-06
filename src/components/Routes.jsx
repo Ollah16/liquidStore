@@ -12,6 +12,7 @@ import FallbackPage from '../pages/FallBack'
 import { clearState } from '../reduxtoolkit/authslice'
 import Security from '../pages/Account/Security'
 import SessionExpired from '../pages/SessionExpired'
+import MobileFullDescription from '../pages/Account/MobileFullDescription'
 
 const PayNewRecipient = lazy(() => import('../pages/MakePayment/PayNewRecipient'))
 const MakePayment = lazy(() => import('../pages/Account/MakePayment'))
@@ -87,6 +88,8 @@ const AppRoutes = () => {
                         <StatementPage />
                     </Suspense>
                 } />
+
+                <Route path='/mobiledescription/:id' element={<MobileFullDescription />} />
 
                 <Route path='/makepayment' element={
                     <Suspense fallback={<FallbackPage />}>
