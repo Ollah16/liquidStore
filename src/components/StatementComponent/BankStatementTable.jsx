@@ -96,11 +96,21 @@ const BankStatementTable = () => {
                                                                 </div>
                                                             </div>
                                                         </div>
+
+                                                        <div className='flex items-center gap-2'>
+                                                            <div className='flex gap-x-5'>
+                                                                <RxHamburgerMenu className='w-7 h-7 text-theme' />
+                                                                <div className='flex flex-col'>
+                                                                    <span className='text-black/80'>Payee detail:</span>
+                                                                    <span className='font-semibold'>{state.payment_detail}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div className='flex flex-col justify-between items-start gap-y-5 py-5 px-4'>
                                                         <div className='flex flex-col'>
                                                             <span className='font-normal text-black-500/70'>Reference: </span>
-                                                            <span className='font-semibold'>{state.reference}</span>
+                                                            <span className='font-semibold'>{state.reference_Number}</span>
                                                         </div>
 
                                                         <Link className='bg-white py-3 px-5 font-medium hover:underline text-theme' to={'/makepayment'}>

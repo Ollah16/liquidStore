@@ -14,7 +14,6 @@ const MobileFullDescription = () => {
     const [isWithdrawal, setIsWithdrawal] = useState()
     const [transactionType, setTransactionType] = useState()
 
-
     useEffect(() => {
         const findTransaction = allTransactions.find((_) => _.groupDate).groupTransaction.find((_, index) => Number(id) === index)
         if (!findTransaction) return navigate('/accountstatement')
@@ -23,6 +22,20 @@ const MobileFullDescription = () => {
         let transactionType = findTransaction?.transaction_type.toUpperCase().charAt(0) + findTransaction?.transaction_type.slice(1, findTransaction?.transaction_type.length)
         setTransactionType(transactionType)
     }, [id, allTransactions, navigate])
+
+
+    useEffect(() => {
+
+        const handleResize = () => {
+            if (window.innerWidth > 768) {
+                navigate('/accountstatement')
+            }
+        }
+
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [navigate])
+
 
     return (
         <div className={`tracking-tight`}>
@@ -33,7 +46,7 @@ const MobileFullDescription = () => {
                             <ChevronLeftIcon className='size-6 font-bold' />
                         </button>
                     </div>
-                    <div className='font-semibold text-lg'>Transaction details</div>
+                    <div className='font-semibold text-lg'>Payee details</div>
                     <div></div>
                 </div>
                 <div className='w-2/12 -mt-7'>
@@ -46,7 +59,8 @@ const MobileFullDescription = () => {
                 </div>
 
                 <div className='flex justify-between items-center py-2'>
-                    <div>
+                    <div className='flex flex-col'>
+                        <span className='text-sm uppercase font-medium'>{transaction?.payment_detail}</span>
                         <span className='text-xs'>{transaction?.referenceDate} {transaction?.referenceTime}</span>
                     </div>
                     <div className='flex flex-col items-end'>
@@ -59,7 +73,7 @@ const MobileFullDescription = () => {
                         <p className='text-sm mb-2'>Transaction details</p>
                         <div className='p-3 bg-white'>
                             <div className='py-3 border-b border-dotted border-b-black/60 flex justify-between text-sm font-thin'><p className='w-5/12'>Transaction cleared date</p><p className='w-7/12 text-base font-normal text-end'>{transaction?.referenceDate}</p></div>
-                            <div className='py-3 border-b border-dotted border-b-black/60 flex justify-between text-sm font-thin'><p className='w-5/12'>Payee details</p><p className='w-7/12 text-base font-normal text-end'>{transaction?.referenceDate}</p></div>
+                            <div className='py-3 border-b border-dotted border-b-black/60 flex justify-between text-sm font-thin'><p className='w-5/12'>Reference</p><p className='w-7/12 text-base font-normal text-end'>{transaction?.reference_Number}</p></div>
                             <div className='py-3 flex justify-between text-sm font-thin'><p className='w-5/12'>Balance after transaction</p><p className='w-7/12 text-base font-normal text-end'>£{transaction?.balance_after_transaction?.toLocaleString()}</p></div>
                         </div>
                     </div>
