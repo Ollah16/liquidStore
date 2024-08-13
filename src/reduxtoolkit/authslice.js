@@ -91,7 +91,7 @@ const authSlice = createSlice({
         getAccountInformation(state, action) {
             if (state.isLoggedIn) {
                 const { accountType, sortCode, balance, accountNumber } = action.payload;
-                const newAccount = accountNumber.split('').fill('*', -4).join('')
+                const newAccount = accountNumber.split('').fill('*', 0, 3).join('')
                 state.balance = balance;
                 state.accountNumber = newAccount;
                 state.sortCode = sortCode;
