@@ -9,7 +9,7 @@ const HelpSupportContact = () => {
             title: 'Why am I having trouble logging on?',
             content: `It could be because you're trying to log on from a networked site (the office, for example). If so, please contact your Systems Administrator for help.
 
-If you still have trouble, please call our helpdesk on 0345 300 0116. Lines are open 8am - 8pm seven days a week. Not all Telephone Banking services are available 24 hours a day, seven days a week.
+If you still have trouble, please call our helpdesk on 0328 300 0236. Lines are open 8am - 8pm seven days a week. Not all Telephone Banking services are available 24 hours a day, seven days a week.
 
 You can call us using Relay UK if you have a hearing or speech impairment. There's more information on the Relay UK help pages.
 Sign Video services are also available if you’re Deaf and use British Sign Language.`
@@ -24,7 +24,7 @@ If you choose to reset your password and/or memorable information, you’ll need
             title: 'I’m locked out of my account.What should I do?',
             content: `You may need to reset your password. To do so, go to the Internet Banking log on screen, click on the 'Forgotten your logon details?' link, and follow the on-screen instructions.
 
-If you’re still unable to access Internet Banking, please call our helpdesk on 0345 300 0116 (+44 207 649 9437 from overseas). Lines open 8am - 8pm, seven days a week and closed on Bank Holidays.`
+If you’re still unable to access Internet Banking, please call our helpdesk on 0345 300 0220 (+44 207 009 9437 from overseas). Lines open 8am - 8pm, seven days a week and closed on Bank Holidays.`
         },
         {
             title: 'Are my security details case sensitive?',
@@ -36,16 +36,16 @@ If you’re still unable to access Internet Banking, please call our helpdesk on
     const contactUs = [
         {
             title: 'General banking & account queries',
-            phone: '0345 300 0000'
+            phone: '0345 300 1111'
         },
         {
             title: 'Internet Banking queries',
             content: 'Technical queries about the Internet Banking service',
-            phone: '0345 300 0116'
+            phone: '0345 300 0220'
         },
         {
             title: 'Savings account queries',
-            phone: '0345 300 0000'
+            phone: '0345 300 1111'
         },
         {
             title: '',

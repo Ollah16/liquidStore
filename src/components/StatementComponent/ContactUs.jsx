@@ -10,35 +10,35 @@ const ContactUs = ({ contactClass, icon }) => {
         title: 'Internet banking queries',
         content: [
             'Technical queries about the Internet Banking service.',
-            '0345 300 0116.Lines are open 9am – 6pm Monday – Saturday and closed on Bank Holidays.Not all Telephone Banking services are available 24 hours a day, seven days a week.',
-            'If you need to call us from abroad or prefer not to use our 0345 number, you can also call us on + 4420 7649 9437.'
+            '0345 300 0996.Lines are open 9am – 6pm Monday – Saturday and closed on Bank Holidays.Not all Telephone Banking services are available 24 hours a day, seven days a week.',
+            'If you need to call us from abroad or prefer not to use our 0345 number, you can also call us on + 4420 6549 9437.'
         ]
     },
     {
         title: 'All account related queries',
-        phone: '0345 300 0000',
-        content: ['If you need to call us from abroad or prefer not to use our 0345 number, you can also call us on + 44 1733 347 007.']
+        phone: '0345 300 0220',
+        content: ['If you need to call us from abroad or prefer not to use our 0345 number, you can also call us on + 44 1733 347 227.']
     },
     {
         title: 'Lost or stolen debit card',
-        phone: '0800 096 9779',
+        phone: '0800 096 9229',
         content: [
-            'If you need to call us from abroad or prefer not to use our 0345 number, you can also call us on + 44 1702 278 270.',
-            'If your debit card is declined, there are transactions you don’t recognise or you need a PIN call us on 0345 300 0000.',
-            'If you need to call us from abroad you can also call us on + 44 1733 347 007.We are open 24 / 7, calls may be recorded.Not all Telephone Banking services are available 24 hours a day, seven days a week.Please speak to an adviser for more information.'
+            'If you need to call us from abroad or prefer not to use our 0345 number, you can also call us on + 44 1702 188 270.',
+            'If your debit card is declined, there are transactions you don’t recognise or you need a PIN call us on 0345 300 0220.',
+            'If you need to call us from abroad you can also call us on + 44 1733 347 147.We are open 24/7, calls may be recorded. Not all Telephone Banking services are available 24 hours a day, seven days a week.Please speak to an adviser for more information.'
         ]
     },
     {
         title: 'Credit card customer services line',
-        phone: '0345 606 2172',
+        phone: '0345 606 2292',
         content: [
-            'If you need to call us from abroad or prefer not to use our 0345 number, you can also call us on + 44 1702 278 272.',
+            'If you need to call us from abroad or prefer not to use our 0345 number, you can also call us on + 44 1702 358 272.',
             'Calls may be monitored and recorded in case we need to check we have carried out your instructions correctly and to help us improve our quality of service.'
         ]
     },
     {
         title: 'Scottish Widows pension queries',
-        content: ['If you have any questions about your pension information shown here, please contact Scottish Widows. 0345 769 7318']
+        content: ['If you have any questions about your pension information shown here, please contact Scottish Widows. 0345 769 7298']
     }
     ]
 

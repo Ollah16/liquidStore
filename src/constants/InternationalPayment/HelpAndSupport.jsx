@@ -7,20 +7,20 @@ const HelpSupport = () => {
                 {
                     title: 'Internet Banking queries',
                     content: 'For help with the International Payments service.',
-                    phone: '0345 300 0116',
+                    phone: '0345 300 0220',
                     subContent: 'If you need to call us from abroad you can also call us on + 44 1733 232 030.'
                 },
                 {
                     title: 'International Helpdesk',
                     content: 'For help with payments submitted through Internet Banking.',
-                    phone: '0345 300 0101',
+                    phone: '0345 300 0202',
                     subContent: 'Monday to Friday 8: 30am - 5:00pm(Wednesdays from 9: 45am).'
                 },
                 {
                     title: 'All account related queries',
                     content: 'For help with payments submitted through Internet Banking.',
-                    phone: '0345 300 0000',
-                    subContent: `If you need to call us from abroad you can also call us on + 44 1733 347 007.\n
+                    phone: '0345 300 0220',
+                    subContent: `If you need to call us from abroad you can also call us on + 44 1763 327 007.\n
                     Calls may be monitored and recorded in case we need to check we have carried out your instructions correctly and to help us improve our quality of service.`
                 }
             ]
