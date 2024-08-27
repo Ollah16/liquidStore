@@ -14,7 +14,7 @@ const NavIndex = () => {
                             <span>PREMIER</span>
                             <span>BANK</span>
                         </div>
-                        <div className='md:-ml-14 ml-0'>
+                        <div className='md:-ml-14 ml-[-130px]'>
                             <span className="icon" data-svg-path="/assets/1loyds-desktop-logo.svg" data-
                                 selector="icon-lloyds-desktop-logo" itemProp="logo">
                                 <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink"
