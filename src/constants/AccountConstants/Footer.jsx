@@ -13,7 +13,7 @@ const AccountFooter = () => {
         {
             title: 'About us',
             content: ['Communities',
-                'Lloyds Banking Group',
+                'Lloyds Premier Banking Group',
                 'Careers']
         },
         {

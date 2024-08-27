@@ -152,7 +152,7 @@ const MenuContents = () => {
             ],
             contentIII: [
                 'Features & support',
-                'Switching to Lloyds Bank',
+                'Switching to Lloyds Premier Bank',
                 'Everyday Offers',
                 'Rates & charges',
                 'Save the Change',
@@ -216,7 +216,7 @@ const MenuContents = () => {
                 'First time buyer mortgages',
                 'Moving home',
                 'Remortgage to us',
-                'Existing Lloyds Bank mortgage customers',
+                'Existing Lloyds Premier Bank mortgage customers',
                 'Buying to let',
                 'Equity release',
             ],

@@ -7,13 +7,13 @@ const Navbrand = () => {
             <div className='hidden md:block'>
                 <Link
                     aria-label='navbrand'
-                    href='/' className="text-lg font-semibold flex relative items-center h-[94px]">
+                    href='/' className="text-base font-semibold flex relative items-center h-[94px]">
                     <div className="absolute left-0 hidden md:flex md:flex-col items-center leading-tight">
                         <span>LLOYDS</span>
                         <span>PREMIER</span>
                         <span>BANK</span>
                     </div>
-                    <div className='-ml-8'>
+                    <div className='md:-ml-14 ml-0'>
                         <span className="icon" data-svg-path="/assets/1loyds-desktop-logo.svg" data-
                             selector="icon-lloyds-desktop-logo" itemProp="logo">
                             <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink"

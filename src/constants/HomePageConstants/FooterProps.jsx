@@ -54,9 +54,9 @@ const FooterProps = () => {
         {
             title: 'About us',
             items: [
-                'About Lloyds Bank',
+                'About Lloyds Premier Bank',
                 'Equality & diversity',
-                'Lloyds Banking Group',
+                'Lloyds Premier Banking Group',
                 'Careers']
         }]
 
