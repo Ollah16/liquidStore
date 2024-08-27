@@ -8,9 +8,13 @@ const NavIndex = () => {
                 <div className='block'>
                     <Link
                         aria-label='navbrand'
-                        to='/' className="text-lg font-bold flex relative items-center h-[94px]">
-                        <span className="absolute left-0 block">LLOYDS BANK</span>
-                        <span>
+                        href='/' className="text-lg font-semibold flex relative items-center h-[94px]">
+                        <div className="absolute left-0 hidden md:flex md:flex-col items-center leading-tight">
+                            <span>LLOYDS</span>
+                            <span>PREMIER</span>
+                            <span>BANK</span>
+                        </div>
+                        <div className='-ml-8'>
                             <span className="icon" data-svg-path="/assets/1loyds-desktop-logo.svg" data-
                                 selector="icon-lloyds-desktop-logo" itemProp="logo">
                                 <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink"
@@ -52,7 +56,7 @@ const NavIndex = () => {
                                     </g>
                                 </svg>
                             </span>
-                        </span>
+                        </div>
                     </Link>
                 </div>
             </div>
