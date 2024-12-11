@@ -15,6 +15,7 @@ export const logUser = async (bodyContent) => {
         // Send login request to server
         const response = await axiosInstance.post('/user/login', bodyContent);
         const { token } = response.data;
+
         return token
 
     } catch (error) {
